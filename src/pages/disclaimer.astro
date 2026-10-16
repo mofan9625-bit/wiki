@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "免责声明与合法用途须知";
+const pageDesc = "合法用途声明、无隶属关系说明与风险自担提示。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p><strong>一、合法用途声明</strong>：本站所有技术评测与教程仅供跨国合规商贸、跨国学术科研交流等法律允许的合规用途。用户使用网络加速工具时应自觉遵守当地法律法规。</p><p><strong>二、无隶属关系声明</strong>：本站与任何机场品牌、代理软件无隶属关系，不销售任何网络节点或软件授权。</p><p><strong>三、风险自担提示</strong>：网络加速服务的稳定性和可用性受国际网络环境影响，本站不对任何第三方的服务中断或退款纠纷承担担保责任。</p>
+    </div>
+  </div>
+</BaseLayout>

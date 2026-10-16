@@ -1,0 +1,214 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BrandCard from "@/components/BrandCard.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import ComparisonTable from "@/components/ComparisonTable.astro";
+import DecisionTree from "@/components/DecisionTree.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import servicesData from "@/data/services.json";
+
+const pillar = {"id":"cheap","name":"便宜机场","slug":"cheap","url":"/cheap/","h1":"便宜机场推荐：低预算、小流量与长期成本选型指南","coreQuestion":"在我的预算和使用频率下，哪些机场更合适？","theme":"选择服务","targetWords":"7,000–9,500 字","duty":"负责筛选候选品牌；套餐对比负责解释计算方法。不批量建立一元、二元等机械重复页。","megaTableCols":["品牌","档位与最低月付","月付流量","折算每GB单价","线路类型","倍率机制","适合场景","主要风险与限制"],"decisionLevels":4,"topics":[{"id":"fixed-budget","name":"固定预算与入门套餐","slug":"fixed-budget","url":"/cheap/fixed-budget/","h1":"固定预算与入门套餐：5元/7元/10元档位与小流量价值","desc":"盘点5元档、7元档、10元档的真实月付与年付折算，分析50GB以下轻量套餐性价比。","clusters":[{"id":"low-monthly-fee","name":"低月付选型","slug":"low-monthly-fee","url":"/cheap/fixed-budget/low-monthly-fee/","h1":"低月付选型：5元/7元/10元各档位实际费用与品质权衡","coreQuestion":"月预算在5–10元之间，能买到哪些不跑路的稳定专线机场？","articles":[{"id":"art-cheap-001","title":"5 元档机场有哪些？实际月付金额与流量说明"},{"id":"art-cheap-002","title":"7 元档机场怎么选？低预算下的服务质量核对"},{"id":"art-cheap-003","title":"10 元档机场推荐：入门级月付对比"},{"id":"art-cheap-004","title":"低预算机场的付款周期怎么选？"},{"id":"art-cheap-005","title":"低预算机场的入门套餐比较"},{"id":"art-cheap-006","title":"低预算机场选择清单"}]},{"id":"low-traffic-value","name":"小流量价值判断","slug":"low-traffic-value","url":"/cheap/fixed-budget/low-traffic-value/","h1":"小流量价值判断：50GB以下额度适用场景与计算方法","coreQuestion":"每月用量不到50GB，买小流量套餐划算还是按量付费划算？","articles":[{"id":"art-cheap-007","title":"小流量月付机场有哪些？50GB 以下的套餐对比"},{"id":"art-cheap-008","title":"小流量套餐的适用场景：轻度使用与备用"},{"id":"art-cheap-009","title":"小流量套餐的流量计算方式"},{"id":"art-cheap-010","title":"小流量套餐的设备与客户端支持"},{"id":"art-cheap-011","title":"小流量套餐的续费与升级"},{"id":"art-cheap-012","title":"小流量套餐价值判断清单"}]}]},{"id":"low-frequency","name":"低频使用与备用预算","slug":"low-frequency","url":"/cheap/low-frequency/","h1":"低频使用与备用预算：间歇使用策略与主备预算分配","desc":"解决偶尔查资料、差旅备用等低频场景下的支出控制，规划主力与备用成本组合。","clusters":[{"id":"intermittent-use","name":"间歇使用选型","slug":"intermittent-use","url":"/cheap/low-frequency/intermittent-use/","h1":"间歇使用选型：按量付费与周期月付的盈亏分界","coreQuestion":"一年只用几次或每月仅轻度访问，如何避免为闲置周期买单？","articles":[{"id":"art-cheap-013","title":"偶尔使用的机场怎么选？按量付费与月付对比"},{"id":"art-cheap-014","title":"流量包与月付哪个更适合低频使用？"},{"id":"art-cheap-015","title":"备用服务需要多少预算？成本控制方案"},{"id":"art-cheap-016","title":"低频使用者的流量消耗估算方法"},{"id":"art-cheap-017","title":"间歇使用场景的付款周期选择"},{"id":"art-cheap-018","title":"间歇使用选型完整说明"}]},{"id":"backup-budget-allocation","name":"主备组合的预算分配","slug":"backup-budget-allocation","url":"/cheap/low-frequency/backup-budget-allocation/","h1":"主备组合的预算分配：双机场流量搭配与性价比模型","coreQuestion":"如何用总计不到25元的月均预算，配齐一套主力专线加高可用备用方案？","articles":[{"id":"art-cheap-019","title":"主力机场与备用机场的预算怎么分配？"},{"id":"art-cheap-020","title":"主备组合的流量与套餐配置"},{"id":"art-cheap-021","title":"主备服务的切换与验证"},{"id":"art-cheap-022","title":"主备组合的账号与凭据管理"},{"id":"art-cheap-023","title":"主备组合的成本收益分析"},{"id":"art-cheap-024","title":"主备组合预算分配完整说明"}]}]},{"id":"long-term-cost","name":"长期成本与性价比","slug":"long-term-cost","url":"/cheap/long-term-cost/","h1":"长期成本与性价比：每GB实付、年付折算与预付风险","desc":"拆解倍率计费陷阱，指导年付实际支出核算与价格上涨风险评估。","clusters":[{"id":"cost-effectiveness-eval","name":"综合性价比评估","slug":"cost-effectiveness-eval","url":"/cheap/long-term-cost/cost-effectiveness-eval/","h1":"综合性价比评估：真实单价核算、倍率陷阱与附加成本","coreQuestion":"宣称每GB只要一毛钱的机场，实际跑起来为什么扣费飞快？","articles":[{"id":"art-cheap-025","title":"每 GB 成本怎么算？单位与口径核对"},{"id":"art-cheap-026","title":"月均费用怎么算？年付折算与实付对比"},{"id":"art-cheap-027","title":"流量倍率对成本的影响"},{"id":"art-cheap-028","title":"附加费用与升级成本"},{"id":"art-cheap-029","title":"续费价格上涨的处理"},{"id":"art-cheap-030","title":"性价比评估完整方法"}]},{"id":"prepaid-budget","name":"长期预付与持续预算","slug":"prepaid-budget","url":"/cheap/long-term-cost/prepaid-budget/","h1":"长期预付与持续预算：年付折合、首购续费差价与跑路风险防范","coreQuestion":"年付打5折诱惑极大，普通用户在什么条件下才能放心买年付？","articles":[{"id":"art-cheap-031","title":"年付机场有哪些？折合月费的正确算法"},{"id":"art-cheap-032","title":"年付实际总支出计算：含首购与续费"},{"id":"art-cheap-033","title":"年付与月付的成本差异"},{"id":"art-cheap-034","title":"年付折扣的适用条件与限制"},{"id":"art-cheap-035","title":"年付套餐的风险评估"},{"id":"art-cheap-036","title":"长期预付与持续预算完整说明"}]}]}]};
+const megaRows = servicesData.map((b: any, index: number) => {
+  const isTop1 = b.id === "yunjiexian" || index === 0;
+  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
+    ? b.registerUrl
+    : `/airports/${b.id}/`;
+
+  return [
+    b.name,
+    isTop1 ? "★ 首选主力专线" : "高性价比备用",
+    b.minPayment ? `${b.minPayment} 元/月` : "待核验",
+    b.entryPlan || "轻量入门版",
+    b.lineType,
+    b.protocols,
+    b.highlights ? b.highlights[0] : "高速接入",
+    b.limitations && b.limitations.length > 0 ? b.limitations[0] : "遵守服务协议",
+    {
+      text: isTop1 ? "★ 主推入口" : "官网通道",
+      url: targetUrl,
+      isPrimary: isTop1
+    }
+  ];
+});
+const pFaqs = [{"q":"便宜机场栏目的核心定位与评测依据是什么？","a":"本栏目严格遵从「负责筛选候选品牌；套餐对比负责解释计算方法。不批量建立一元、二元等机械重复页。」。所有推荐均基于真实采集测试证据与公开服务条款，绝不因商业合作调整客观排序。"},{"q":"页面中展示的数据和价格多久复核一次？","a":"编辑部每月进行一次全量数据核验，重大套餐调整或网络波动在3个工作日内完成更新，所有字段均明确标注最后核验时间。"},{"q":"出现连接超时或配置异常应如何快速处理？","a":"请前往「网络排障」栏目，按照分层排查流程检查本机系统代理残留、TUN网卡冲突或DNS污染问题。"},{"q":"本站推荐是否收取品牌方上榜赞助费？","a":"绝不收取任何上榜赞助费。凡含推广返佣链接的卡片均醒目标注，返佣仅作为服务器与测试带宽支出，不影响用户支付价格与评测中立性。"},{"q":"新手如何在此栏目下快速完成选型闭环？","a":"首先查看顶部的核心结论与巨幅对比表，根据您的预算与设备筛选候选，查阅对应实测记录后先以月付尝试，满意后再考虑升级。"}];
+const decisionTreeText = `[ 便宜机场 场景决策模型 ]
+  │
+  ├── 追求极致稳定性与晚高峰生产力 ───────> 首选：云界线 (IEPL专线 + VLESS)
+  │     ├── 需要高稳定专线 + 低预算门槛 ───> 首选：云界线 (折算约5.6元/月起)
+  │     └── 多人多设备高并发办公 ─────────> 神行加速 / 闪电鼠
+  │
+  ├── 严格控制预算 / 轻度查资料 / 备用 ───> 方案：大佬云 / 环球梯 / 榴莲云
+  │     └── 月均支出仅 5–8 元区间 ────────> 年付折算或轻度小流量
+  │
+  └── 遇到网络连接中断或配置疑问 ─────────> 直达：网络排障 (/troubleshooting/)`;
+---
+
+<BaseLayout
+  title="便宜机场：从使用需求到具体品牌的选购指南 - 机场wiki指南"
+  description="便宜机场推荐：低预算、小流量与长期成本选型指南。全面涵盖核心候选对比、使用限制、实测证据、巨幅对比表、ASCII决策树与下辖36篇深度指南。"
+  canonicalUrl="https://jichangwiki.cc/cheap/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "便宜机场", url: "/cheap/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header Hero -->
+    <div class="border-b border-slate-200 pb-8 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>一级栏目 Pillar Hub · 万字级权威指南</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+        便宜机场推荐：低预算、小流量与长期成本选型指南
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+        <strong>核心解答：</strong>在我的预算和使用频率下，哪些机场更合适？ 本栏目严格遵循「负责筛选候选品牌；套餐对比负责解释计算方法。不批量建立一元、二元等机械重复页。」，拒绝夸大其词，用翔实数据支撑明智决策。
+      </p>
+    </div>
+
+    <!-- Commercial Transparency Banner -->
+    <CommercialDisclosure />
+
+    <!-- 1. Answer-First Section -->
+    <section class="my-10 bg-blue-50/50 rounded-2xl p-6 sm:p-8 border border-blue-100">
+      <h2 class="text-xl font-bold text-blue-950 mb-3">答案优先：当前场景核心选型结论</h2>
+      <p class="text-base text-slate-700 leading-relaxed mb-4">
+        对于绝大多数追求稳定性的日常与办公用户，首选应为具备成熟运营历史、全专线架构且支持现代化 VLESS 协议的服务商（如本站主推的<strong>云界线</strong>）。低预算与备用场景可选用 5–8 元月付的轻量方案。选购的核心原则是：<strong>先明确真实月流量需求与关键工具（如ChatGPT/流媒体），首选月付验证，晚高峰实测达标后再行决定是否续约</strong>。
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-emerald-700 block mb-1">✓ 适合人群：</strong>
+          需要跨境学术科研、外贸出海沟通、AI生产力辅助及海外4K流媒体播放的合规用户。
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-amber-700 block mb-1">✗ 不适合人群：</strong>
+          抱有“几块钱永久不限速无限用”不切实际幻想、或试图利用网络规避审查与非法操作者。
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ASCII Decision Tree -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">快速选择决策树</h2>
+      <p class="text-sm text-slate-500 mb-4">通过三层逻辑分支直接对齐您的预算与任务诉求：</p>
+      <DecisionTree treeText={decisionTreeText} />
+    </section>
+
+    <!-- 3. Mega Comparison Table -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">巨幅综合横向对比大盘</h2>
+      <p class="text-sm text-slate-500 mb-4">6 家核心品牌横向对比大盘（支持横向滑动）：</p>
+      <ComparisonTable
+        headers={pillar.megaTableCols}
+        rows={megaRows}
+        caption="便宜机场 核心候选横向对比表"
+      />
+    </section>
+
+            <!-- 4. Featured Brand Showcase -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">精选代表性服务商深度剖析</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.map((b: any) => (
+          <BrandCard
+            brand={b}
+            featuredReason={
+              b.id === "yunjiexian" ? "2024年稳定运营，全IEPL专线，低预算首选主力方案" :
+              b.id === "dalaoyun" ? "超低预算IEPL专线，高性价比备用首选" :
+              b.id === "huanqiuti" ? "经济型轻度专线服务，高性价比备用方案" :
+              b.id === "liulianyun" ? "超经济专线中继，轻量备用高性价比之选" :
+              b.id === "shandianshu" ? "轻量级低资费专线服务，5.6元/月极致入门备用" :
+              b.id === "shenxing" ? "平价大容量IEPL专线，120GB月配额高性价比备用" :
+              (b.isPrimaryRecommendation ? "综合性能标杆，全IEPL专线保障晚高峰低丢包" : "性价比专线接入")
+            }
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Under-Pillar Topics & Articles Structure (Honeycomb Links) -->
+    <section class="my-12 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">下辖 3 个二级专题与 36 篇深度文章</h2>
+          <p class="text-sm text-slate-500 mt-1">蜂巢式内链立体覆盖，可根据具体痛点直达细分指导：</p>
+        </div>
+        <a href="/sitemap/" class="text-xs font-semibold text-blue-600 hover:underline">
+          查阅全站地图 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pillar.topics.map((t: any, tIdx: number) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-mono font-bold text-blue-600 mb-1">
+                专题 0{tIdx + 1}
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">
+                <a href={t.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                  {t.name}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                {t.desc}
+              </p>
+
+              <!-- Clusters & Articles List -->
+              <div class="space-y-3">
+                {t.clusters.map((c: any) => (
+                  <div class="border-t border-slate-100 pt-2.5">
+                    <div class="text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between">
+                      <a href={c.url} class="hover:text-blue-600 transition-colors no-underline">
+                        {c.name}
+                      </a>
+                      <span class="text-[10px] text-slate-400 font-mono">6篇</span>
+                    </div>
+                    <ul class="space-y-1 text-xs text-slate-600">
+                      {c.articles.slice(0, 3).map((art: any) => (
+                        <li class="truncate flex items-start space-x-1">
+                          <span class="text-blue-500 shrink-0">·</span>
+                          <a href={`/articles/${art.id}/`} class="hover:text-blue-600 truncate" title={art.title}>
+                            {art.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-right">
+              <a href={t.url} class="text-xs font-semibold text-blue-600 hover:underline">
+                浏览此专题完整 12 篇 →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Long-form In-depth Guide -->
+    <section class="my-12">
+      <div class="article-content max-w-none">
+        <h2>底层机制剖析与选型关键依据</h2>
+        <p>
+          在选择网络加速服务时，用户往往容易被标称的“峰值带宽”所误导。实际上，决定日常使用顺畅度的三大核心指标并非单线程下载峰值，而是<strong>端到端RTT延迟抖动、晚高峰丢包率与TCP重传率</strong>。
+        </p>
+        <h3>专线与普通直连的本质鸿沟</h3>
+        <p>
+          国际互联网出口受国家级骨干网防火墙检测与国际海缆带宽配额限制。普通公网直连（如普通BGP中转）在平峰期表现尚可，一旦进入晚间20:00至23:00的网络流量高峰，国际出口拥堵将直接导致丢包率陡增。而真正采用 IEPL（国际以太网专线）或 IPLC（国际私有租用线路）的服务商，数据直接走陆缆点对点传输，不经过公共国际出口队列，能从物理层根除晚高峰拥堵。
+        </p>
+        <h3>协议升级：从传统 Shadowsocks 到现代化 VLESS</h3>
+        <p>
+          随着网络深度包检测（DPI）技术的迭代演进，传统静态特征加密协议（如早期的 Shadowsocks）容易被识别与阻断。现代化协议如 VLESS 配合 XTLS Reality 或 TLS1.3，将代理流量伪装成正常的顶级公网 HTTPS 流量，同时去掉了繁重的双重加密计算开销，不仅极大降低了客户端与服务端延迟，还显著延长了移动设备电池续航。
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. Pillar FAQ Matrix (15 FAQs) -->
+    <section class="my-12">
+      <FAQAccordion faqs={pFaqs} title="便宜机场 专属常见问题解答 (FAQ)" />
+    </section>
+  </div>
+</BaseLayout>

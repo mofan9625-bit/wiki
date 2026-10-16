@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"recommend","name":"机场推荐","slug":"recommend","url":"/recommend/","h1":"机场推荐：从使用需求到具体品牌的选购指南","coreQuestion":"有哪些具体机场值得考虑，为什么适合我？","theme":"选择服务","targetWords":"7,000–9,500 字","duty":"负责稳定性选型，评测栏目负责测试依据。每家机场展开：定位、适合与不适合、套餐、使用方式、证据、限制与建议。","megaTableCols":["品牌","定位与首选度","最低月付","入门套餐","线路类型","主流协议","适合人群","核心限制","直达通道"],"decisionLevels":4,"topics":[{"id":"first-purchase","name":"首次选购与服务切换","slug":"first-purchase","url":"/recommend/first-purchase/","h1":"首次选购与服务切换指南：从新手决策到主备搭配","desc":"解决新手选购的设备与软件认知，以及老用户换机场与主备搭配的迁移成本核算。","clusters":[{"id":"beginner-decision","name":"新手选购决策","slug":"beginner-decision","url":"/recommend/first-purchase/beginner-decision/","h1":"新手选购决策：设备匹配、套餐筛选与试用落地","coreQuestion":"第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？","articles":[{"id":"art-rec-001","title":"第一次买机场怎么选？从设备、用途到套餐的完整决策流程"},{"id":"art-rec-002","title":"机场推荐榜单怎么看？识别广告排序、测试依据与适用人群"},{"id":"art-rec-003","title":"只有手机的新手适合哪类机场？自有客户端与通用客户端方案比较"},{"id":"art-rec-004","title":"已有代理客户端还需要买什么？机场订阅与软件授权的区别"},{"id":"art-rec-005","title":"机场购买前应该问客服哪些问题？用需求清单筛掉不合适的服务"},{"id":"art-rec-006","title":"机场试用满意后怎么买正式套餐？从体验结果到付款周期的选择"}]},{"id":"switch-and-combo","name":"换机场与组合使用","slug":"switch-and-combo","url":"/recommend/first-purchase/switch-and-combo/","h1":"换机场与组合使用：续费决策、迁移清单与主备方案","coreQuestion":"机场到期后换一家还是续费？主备双机场如何搭建才能实现故障真正独立？","articles":[{"id":"art-rec-007","title":"机场到期后换一家还是续费？迁移成本、使用记录与费用一起比较"},{"id":"art-rec-008","title":"更换机场前要确认什么？设备、协议兼容与订阅迁移检查清单"},{"id":"art-rec-009","title":"主用加备用机场怎么搭配？故障独立性、成本与管理难度比较"},{"id":"art-rec-010","title":"什么情况下两个机场同时使用更合适？多设备与工作场景分析"},{"id":"art-rec-011","title":"从便宜机场升级到中端服务怎么选？预算与体验变化评估"},{"id":"art-rec-012","title":"一个账号多台设备使用时应该注意哪些限制？并发连接与规则检查"}]}]},{"id":"conditions-and-devices","name":"使用条件与设备需求","slug":"conditions-and-devices","url":"/recommend/conditions-and-devices/","h1":"使用条件与设备需求：移动漫游、多端协作与合规核对","desc":"覆盖差旅出差、移动热点切换以及多设备家庭、公司与学校网络下的限制与选型。","clusters":[{"id":"mobile-and-travel","name":"移动网络与外出使用","slug":"mobile-and-travel","url":"/recommend/conditions-and-devices/mobile-and-travel/","h1":"移动网络与外出使用：网络切换、差旅酒店与热点共享","coreQuestion":"外出移动办公或差旅场景下，怎样选机场才能保证切网不掉线？","articles":[{"id":"art-rec-013","title":"移动网络环境下机场怎么选？4G、5G 切换与连接稳定性比较"},{"id":"art-rec-014","title":"经常出差、旅行用什么机场？酒店网络与临时场景选择"},{"id":"art-rec-015","title":"公共场所 Wi-Fi 使用机场应该注意什么？安全与连接检查"},{"id":"art-rec-016","title":"手机流量不足时怎样调整机场套餐？流量消耗与备用方案"},{"id":"art-rec-017","title":"经常切换网络环境时怎样减少掉线？客户端与节点策略"},{"id":"art-rec-018","title":"手机热点共享给其他设备使用机场，会不会影响体验？"}]},{"id":"multi-device-and-sharing","name":"多设备与协作约束","slug":"multi-device-and-sharing","url":"/recommend/conditions-and-devices/multi-device-and-sharing/","h1":"多设备与协作约束：家庭共享、多端同用与合规边界","coreQuestion":"家庭或个人拥有多台设备时，如何平衡设备连接数限制与管理成本？","articles":[{"id":"art-rec-019","title":"家庭多设备使用机场怎么选？连接限制与管理成本分析"},{"id":"art-rec-020","title":"手机和电脑一起用机场怎么选？设备规则与跨平台支持"},{"id":"art-rec-021","title":"学校或公司电脑能否使用个人机场？合规与终端权限核对"},{"id":"art-rec-022","title":"平板电脑使用机场需要单独订阅吗？设备限制与配置说明"},{"id":"art-rec-023","title":"电视和投屏使用机场需要额外配置吗？家庭网络方案"},{"id":"art-rec-024","title":"多设备场景下如何管理订阅与凭据？安全与协作约束"}]}]},{"id":"reliability-and-support","name":"可靠性与服务保障","slug":"reliability-and-support","url":"/recommend/reliability-and-support/","h1":"可靠性与服务保障：晚高峰验证、售后响应与购买约束","desc":"聚焦主力服务的连续可用性指标、退款与工单承诺、运营年限与长期信誉核实。","clusters":[{"id":"primary-and-stability","name":"主力服务与稳定性选择","slug":"primary-and-stability","url":"/recommend/reliability-and-support/primary-and-stability/","h1":"主力服务与稳定性选择：晚高峰表现、工单响应与换用信号","coreQuestion":"作为主力工具使用，稳定机场应该看重哪些证据？何时该果断换掉？","articles":[{"id":"art-rec-025","title":"稳定机场怎么选？晚高峰、连续使用与故障恢复证据对比"},{"id":"art-rec-026","title":"长时间在线使用机场应该注意什么？连接中断与重连取舍"},{"id":"art-rec-027","title":"机场售后支持怎么比较？工单渠道、响应记录与自助排障能力"},{"id":"art-rec-028","title":"机场的退款条款应该怎么看？申请条件、例外情况与证据留存"},{"id":"art-rec-029","title":"如何评估机场的长期可用性？观察方法与判断依据"},{"id":"art-rec-030","title":"什么情况下应该换掉主力机场？关键信号与决策流程"}]},{"id":"support-and-constraints","name":"支持能力与购买约束","slug":"support-and-constraints","url":"/recommend/reliability-and-support/support-and-constraints/","h1":"支持能力与购买约束：支付渠道、计费周期与真实运营资历","coreQuestion":"下单前如何核验支付渠道安全、周期权衡以及品牌实际运营时间？","articles":[{"id":"art-rec-031","title":"机场的隐私说明怎么看？日志声明、数据范围与无法验证的部分"},{"id":"art-rec-032","title":"购买机场前如何确认支付方式？支付宝、USDT 与其他方式"},{"id":"art-rec-033","title":"机场的付款周期应该怎么选？月付、季付与年付权衡"},{"id":"art-rec-034","title":"机场的流量重置与续费规则应该怎么看？"},{"id":"art-rec-035","title":"机场的联系渠道与响应方式应该怎么比较？"},{"id":"art-rec-036","title":"机场的品牌与运营时长应该怎样核实？"}]}]}]};
+const topic = {"id":"first-purchase","name":"首次选购与服务切换","slug":"first-purchase","url":"/recommend/first-purchase/","h1":"首次选购与服务切换指南：从新手决策到主备搭配","desc":"解决新手选购的设备与软件认知，以及老用户换机场与主备搭配的迁移成本核算。","clusters":[{"id":"beginner-decision","name":"新手选购决策","slug":"beginner-decision","url":"/recommend/first-purchase/beginner-decision/","h1":"新手选购决策：设备匹配、套餐筛选与试用落地","coreQuestion":"第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？","articles":[{"id":"art-rec-001","title":"第一次买机场怎么选？从设备、用途到套餐的完整决策流程"},{"id":"art-rec-002","title":"机场推荐榜单怎么看？识别广告排序、测试依据与适用人群"},{"id":"art-rec-003","title":"只有手机的新手适合哪类机场？自有客户端与通用客户端方案比较"},{"id":"art-rec-004","title":"已有代理客户端还需要买什么？机场订阅与软件授权的区别"},{"id":"art-rec-005","title":"机场购买前应该问客服哪些问题？用需求清单筛掉不合适的服务"},{"id":"art-rec-006","title":"机场试用满意后怎么买正式套餐？从体验结果到付款周期的选择"}]},{"id":"switch-and-combo","name":"换机场与组合使用","slug":"switch-and-combo","url":"/recommend/first-purchase/switch-and-combo/","h1":"换机场与组合使用：续费决策、迁移清单与主备方案","coreQuestion":"机场到期后换一家还是续费？主备双机场如何搭建才能实现故障真正独立？","articles":[{"id":"art-rec-007","title":"机场到期后换一家还是续费？迁移成本、使用记录与费用一起比较"},{"id":"art-rec-008","title":"更换机场前要确认什么？设备、协议兼容与订阅迁移检查清单"},{"id":"art-rec-009","title":"主用加备用机场怎么搭配？故障独立性、成本与管理难度比较"},{"id":"art-rec-010","title":"什么情况下两个机场同时使用更合适？多设备与工作场景分析"},{"id":"art-rec-011","title":"从便宜机场升级到中端服务怎么选？预算与体验变化评估"},{"id":"art-rec-012","title":"一个账号多台设备使用时应该注意哪些限制？并发连接与规则检查"}]}]};
+const cluster = {"id":"beginner-decision","name":"新手选购决策","slug":"beginner-decision","url":"/recommend/first-purchase/beginner-decision/","h1":"新手选购决策：设备匹配、套餐筛选与试用落地","coreQuestion":"第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？","articles":[{"id":"art-rec-001","title":"第一次买机场怎么选？从设备、用途到套餐的完整决策流程"},{"id":"art-rec-002","title":"机场推荐榜单怎么看？识别广告排序、测试依据与适用人群"},{"id":"art-rec-003","title":"只有手机的新手适合哪类机场？自有客户端与通用客户端方案比较"},{"id":"art-rec-004","title":"已有代理客户端还需要买什么？机场订阅与软件授权的区别"},{"id":"art-rec-005","title":"机场购买前应该问客服哪些问题？用需求清单筛掉不合适的服务"},{"id":"art-rec-006","title":"机场试用满意后怎么买正式套餐？从体验结果到付款周期的选择"}]};
+---
+
+<BaseLayout
+  title="新手选购决策：新手选购决策：设备匹配、套餐筛选与试用落地 - 机场wiki指南"
+  description="第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/recommend/first-purchase/beginner-decision/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场推荐", url: "/recommend/" },
+    { name: "首次选购与服务切换", url: "/recommend/first-purchase/" },
+    { name: "新手选购决策", url: "/recommend/first-purchase/beginner-decision/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        新手选购决策：设备匹配、套餐筛选与试用落地
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/recommend/first-purchase/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：首次选购与服务切换
+      </a>
+      <a href="/recommend/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：机场推荐 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

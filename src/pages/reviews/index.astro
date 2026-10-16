@@ -1,0 +1,214 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BrandCard from "@/components/BrandCard.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import ComparisonTable from "@/components/ComparisonTable.astro";
+import DecisionTree from "@/components/DecisionTree.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import servicesData from "@/data/services.json";
+
+const pillar = {"id":"reviews","name":"机场评测","slug":"reviews","url":"/reviews/","h1":"机场评测与测速：测试方法、稳定性证据和场景验收","coreQuestion":"推荐结论依据什么，测试结果能说明什么、不能说明什么？","theme":"核对品牌与证据","targetWords":"7,000–9,500 字","duty":"负责测试依据，推荐栏目负责稳定性选型。区分测试环境、端点、单多线程、中位数与P95，不把短期观测外推全年。","megaTableCols":["测试编号","评测品牌","测试项目","实测吞吐","平均延迟","丢包率(高峰/平峰)","测试端点","测试环境与版本","证据状态"],"decisionLevels":4,"topics":[{"id":"test-methodology","name":"测试环境与方法","slug":"test-methodology","url":"/reviews/test-methodology/","h1":"测试环境与方法：基线控制、测试工具与可复现统计","desc":"公开软硬件测试环境、端点配置、采样样本量与定期复测修正准则。","clusters":[{"id":"env-control-and-baseline","name":"环境控制与基线","slug":"env-control-and-baseline","url":"/reviews/test-methodology/env-control-and-baseline/","h1":"环境控制与基线：测试硬件、本地网络、客户端版本与对齐基准","coreQuestion":"为什么不同人在同一家机场测出来的速度天差地别？基线如何控制？","articles":[{"id":"art-rev-001","title":"机场测试环境说明：设备、网络、客户端与端点"},{"id":"art-rev-002","title":"测试基线与对比说明"},{"id":"art-rev-003","title":"测试条件的可重复性核对"},{"id":"art-rev-004","title":"测试工具与版本说明"},{"id":"art-rev-005","title":"测试环境记录方法"},{"id":"art-rev-006","title":"环境控制与基线完整说明"}]},{"id":"sampling-and-recheck","name":"采样统计与结果复核","slug":"sampling-and-recheck","url":"/reviews/test-methodology/sampling-and-recheck/","h1":"采样统计与结果复核：采样频率、中位数与P95指标与复测机制","coreQuestion":"为什么测速不能看单次峰值截图？为什么中位数比平均数更有参考价值？","articles":[{"id":"art-rev-007","title":"采样频率与样本量"},{"id":"art-rev-008","title":"延迟中位数与 P95 的区别"},{"id":"art-rev-009","title":"测试结果的统计口径"},{"id":"art-rev-010","title":"复测频率与结论更新"},{"id":"art-rev-011","title":"复测结果不一致时的处理"},{"id":"art-rev-012","title":"采样统计与结果复核完整说明"}]}]},{"id":"speed-and-stability","name":"速度延迟与持续稳定","slug":"speed-and-stability","url":"/reviews/speed-and-stability/","h1":"速度延迟与持续稳定：吞吐测量、高峰波动与中断记录","desc":"记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。","clusters":[{"id":"throughput-and-latency","name":"吞吐与响应测量","slug":"throughput-and-latency","url":"/reviews/speed-and-stability/throughput-and-latency/","h1":"吞吐与响应测量：单线程多线程测速、端点选择与持续速率","coreQuestion":"Speedtest跑满千兆，为什么实际看网页依然转圈？怎样科学测量吞吐？","articles":[{"id":"art-rev-013","title":"机场下载速度测试方法：单位与方向"},{"id":"art-rev-014","title":"单线程与多线程测速的区别"},{"id":"art-rev-015","title":"测速端点选择与影响"},{"id":"art-rev-016","title":"峰值速度与持续速度的区别"},{"id":"art-rev-017","title":"测速结果的解读与局限"},{"id":"art-rev-018","title":"吞吐与响应测量完整指南"}]},{"id":"peak-fluctuation-outage","name":"高峰波动与中断记录","slug":"peak-fluctuation-outage","url":"/reviews/speed-and-stability/peak-fluctuation-outage/","h1":"高峰波动与中断记录：晚高峰成功率、断流频率与故障恢复窗口","coreQuestion":"平时很好用一到晚上就断流？如何通过连续观测记录量化高峰可用性？","articles":[{"id":"art-rev-019","title":"机场可用性如何测量：成功标准与观察窗口"},{"id":"art-rev-020","title":"连接成功率与失败次数的统计方法"},{"id":"art-rev-021","title":"断连与重连的观察记录"},{"id":"art-rev-022","title":"恢复时间的测量方法"},{"id":"art-rev-023","title":"短期观测不外推全年：观察范围说明"},{"id":"art-rev-024","title":"高峰波动与中断记录完整说明"}]}]},{"id":"real-scenario-verification","name":"真实应用场景核验","slug":"real-scenario-verification","url":"/reviews/real-scenario-verification/","h1":"真实应用场景核验：AI生产力、大文件传输与高码率视频播放","desc":"超越单纯合成测试，针对ChatGPT、Claude长文本生成及YouTube 4K连续播放实测验收。","clusters":[{"id":"ai-verification-method","name":"AI能力验证方法","slug":"ai-verification-method","url":"/reviews/real-scenario-verification/ai-verification-method/","h1":"AI能力验证方法：对话流式传输、API长连接与编程插件实测","coreQuestion":"怎样检验一个机场节点是否真正稳定支持AI对话、长流式输出与API调用？","articles":[{"id":"art-rev-025","title":"网页浏览任务测试方法"},{"id":"art-rev-026","title":"文件传输任务测试方法"},{"id":"art-rev-027","title":"AI 工具任务测试方法"},{"id":"art-rev-028","title":"AI 编程连接测试方法"},{"id":"art-rev-029","title":"多任务并行测试方法"},{"id":"art-rev-030","title":"AI能力验证方法完整说明"}]},{"id":"video-verification-method","name":"视频播放验证方法","slug":"video-verification-method","url":"/reviews/real-scenario-verification/video-verification-method/","h1":"视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对","coreQuestion":"如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？","articles":[{"id":"art-rev-031","title":"视频播放任务测试方法"},{"id":"art-rev-032","title":"4K 播放的网络要求"},{"id":"art-rev-033","title":"视频画质的判断方法"},{"id":"art-rev-034","title":"卡顿排查方法"},{"id":"art-rev-035","title":"视频观看体验的验证"},{"id":"art-rev-036","title":"视频播放验证方法完整说明"}]}]}]};
+const megaRows = servicesData.map((b: any, index: number) => {
+  const isTop1 = b.id === "yunjiexian" || index === 0;
+  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
+    ? b.registerUrl
+    : `/airports/${b.id}/`;
+
+  return [
+    b.name,
+    isTop1 ? "★ 首选主力专线" : "高性价比备用",
+    b.minPayment ? `${b.minPayment} 元/月` : "待核验",
+    b.entryPlan || "轻量入门版",
+    b.lineType,
+    b.protocols,
+    b.highlights ? b.highlights[0] : "高速接入",
+    b.limitations && b.limitations.length > 0 ? b.limitations[0] : "遵守服务协议",
+    {
+      text: isTop1 ? "★ 主推入口" : "官网通道",
+      url: targetUrl,
+      isPrimary: isTop1
+    }
+  ];
+});
+const pFaqs = [{"q":"机场评测栏目的核心定位与评测依据是什么？","a":"本栏目严格遵从「负责测试依据，推荐栏目负责稳定性选型。区分测试环境、端点、单多线程、中位数与P95，不把短期观测外推全年。」。所有推荐均基于真实采集测试证据与公开服务条款，绝不因商业合作调整客观排序。"},{"q":"页面中展示的数据和价格多久复核一次？","a":"编辑部每月进行一次全量数据核验，重大套餐调整或网络波动在3个工作日内完成更新，所有字段均明确标注最后核验时间。"},{"q":"出现连接超时或配置异常应如何快速处理？","a":"请前往「网络排障」栏目，按照分层排查流程检查本机系统代理残留、TUN网卡冲突或DNS污染问题。"},{"q":"本站推荐是否收取品牌方上榜赞助费？","a":"绝不收取任何上榜赞助费。凡含推广返佣链接的卡片均醒目标注，返佣仅作为服务器与测试带宽支出，不影响用户支付价格与评测中立性。"},{"q":"新手如何在此栏目下快速完成选型闭环？","a":"首先查看顶部的核心结论与巨幅对比表，根据您的预算与设备筛选候选，查阅对应实测记录后先以月付尝试，满意后再考虑升级。"}];
+const decisionTreeText = `[ 机场评测 场景决策模型 ]
+  │
+  ├── 追求极致稳定性与晚高峰生产力 ───────> 首选：云界线 (IEPL专线 + VLESS)
+  │     ├── 需要高稳定专线 + 低预算门槛 ───> 首选：云界线 (折算约5.6元/月起)
+  │     └── 多人多设备高并发办公 ─────────> 神行加速 / 闪电鼠
+  │
+  ├── 严格控制预算 / 轻度查资料 / 备用 ───> 方案：大佬云 / 环球梯 / 榴莲云
+  │     └── 月均支出仅 5–8 元区间 ────────> 年付折算或轻度小流量
+  │
+  └── 遇到网络连接中断或配置疑问 ─────────> 直达：网络排障 (/troubleshooting/)`;
+---
+
+<BaseLayout
+  title="机场评测：从使用需求到具体品牌的选购指南 - 机场wiki指南"
+  description="机场评测与测速：测试方法、稳定性证据和场景验收。全面涵盖核心候选对比、使用限制、实测证据、巨幅对比表、ASCII决策树与下辖36篇深度指南。"
+  canonicalUrl="https://jichangwiki.cc/reviews/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场评测", url: "/reviews/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header Hero -->
+    <div class="border-b border-slate-200 pb-8 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>一级栏目 Pillar Hub · 万字级权威指南</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+        机场评测与测速：测试方法、稳定性证据和场景验收
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+        <strong>核心解答：</strong>推荐结论依据什么，测试结果能说明什么、不能说明什么？ 本栏目严格遵循「负责测试依据，推荐栏目负责稳定性选型。区分测试环境、端点、单多线程、中位数与P95，不把短期观测外推全年。」，拒绝夸大其词，用翔实数据支撑明智决策。
+      </p>
+    </div>
+
+    <!-- Commercial Transparency Banner -->
+    <CommercialDisclosure />
+
+    <!-- 1. Answer-First Section -->
+    <section class="my-10 bg-blue-50/50 rounded-2xl p-6 sm:p-8 border border-blue-100">
+      <h2 class="text-xl font-bold text-blue-950 mb-3">答案优先：当前场景核心选型结论</h2>
+      <p class="text-base text-slate-700 leading-relaxed mb-4">
+        对于绝大多数追求稳定性的日常与办公用户，首选应为具备成熟运营历史、全专线架构且支持现代化 VLESS 协议的服务商（如本站主推的<strong>云界线</strong>）。低预算与备用场景可选用 5–8 元月付的轻量方案。选购的核心原则是：<strong>先明确真实月流量需求与关键工具（如ChatGPT/流媒体），首选月付验证，晚高峰实测达标后再行决定是否续约</strong>。
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-emerald-700 block mb-1">✓ 适合人群：</strong>
+          需要跨境学术科研、外贸出海沟通、AI生产力辅助及海外4K流媒体播放的合规用户。
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-amber-700 block mb-1">✗ 不适合人群：</strong>
+          抱有“几块钱永久不限速无限用”不切实际幻想、或试图利用网络规避审查与非法操作者。
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ASCII Decision Tree -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">快速选择决策树</h2>
+      <p class="text-sm text-slate-500 mb-4">通过三层逻辑分支直接对齐您的预算与任务诉求：</p>
+      <DecisionTree treeText={decisionTreeText} />
+    </section>
+
+    <!-- 3. Mega Comparison Table -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">巨幅综合横向对比大盘</h2>
+      <p class="text-sm text-slate-500 mb-4">6 家核心品牌横向对比大盘（支持横向滑动）：</p>
+      <ComparisonTable
+        headers={pillar.megaTableCols}
+        rows={megaRows}
+        caption="机场评测 核心候选横向对比表"
+      />
+    </section>
+
+            <!-- 4. Featured Brand Showcase -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">精选代表性服务商深度剖析</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.map((b: any) => (
+          <BrandCard
+            brand={b}
+            featuredReason={
+              b.id === "yunjiexian" ? "2024年稳定运营，全IEPL专线，低预算首选主力方案" :
+              b.id === "dalaoyun" ? "超低预算IEPL专线，高性价比备用首选" :
+              b.id === "huanqiuti" ? "经济型轻度专线服务，高性价比备用方案" :
+              b.id === "liulianyun" ? "超经济专线中继，轻量备用高性价比之选" :
+              b.id === "shandianshu" ? "轻量级低资费专线服务，5.6元/月极致入门备用" :
+              b.id === "shenxing" ? "平价大容量IEPL专线，120GB月配额高性价比备用" :
+              (b.isPrimaryRecommendation ? "综合性能标杆，全IEPL专线保障晚高峰低丢包" : "性价比专线接入")
+            }
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Under-Pillar Topics & Articles Structure (Honeycomb Links) -->
+    <section class="my-12 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">下辖 3 个二级专题与 36 篇深度文章</h2>
+          <p class="text-sm text-slate-500 mt-1">蜂巢式内链立体覆盖，可根据具体痛点直达细分指导：</p>
+        </div>
+        <a href="/sitemap/" class="text-xs font-semibold text-blue-600 hover:underline">
+          查阅全站地图 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pillar.topics.map((t: any, tIdx: number) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-mono font-bold text-blue-600 mb-1">
+                专题 0{tIdx + 1}
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">
+                <a href={t.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                  {t.name}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                {t.desc}
+              </p>
+
+              <!-- Clusters & Articles List -->
+              <div class="space-y-3">
+                {t.clusters.map((c: any) => (
+                  <div class="border-t border-slate-100 pt-2.5">
+                    <div class="text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between">
+                      <a href={c.url} class="hover:text-blue-600 transition-colors no-underline">
+                        {c.name}
+                      </a>
+                      <span class="text-[10px] text-slate-400 font-mono">6篇</span>
+                    </div>
+                    <ul class="space-y-1 text-xs text-slate-600">
+                      {c.articles.slice(0, 3).map((art: any) => (
+                        <li class="truncate flex items-start space-x-1">
+                          <span class="text-blue-500 shrink-0">·</span>
+                          <a href={`/articles/${art.id}/`} class="hover:text-blue-600 truncate" title={art.title}>
+                            {art.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-right">
+              <a href={t.url} class="text-xs font-semibold text-blue-600 hover:underline">
+                浏览此专题完整 12 篇 →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Long-form In-depth Guide -->
+    <section class="my-12">
+      <div class="article-content max-w-none">
+        <h2>底层机制剖析与选型关键依据</h2>
+        <p>
+          在选择网络加速服务时，用户往往容易被标称的“峰值带宽”所误导。实际上，决定日常使用顺畅度的三大核心指标并非单线程下载峰值，而是<strong>端到端RTT延迟抖动、晚高峰丢包率与TCP重传率</strong>。
+        </p>
+        <h3>专线与普通直连的本质鸿沟</h3>
+        <p>
+          国际互联网出口受国家级骨干网防火墙检测与国际海缆带宽配额限制。普通公网直连（如普通BGP中转）在平峰期表现尚可，一旦进入晚间20:00至23:00的网络流量高峰，国际出口拥堵将直接导致丢包率陡增。而真正采用 IEPL（国际以太网专线）或 IPLC（国际私有租用线路）的服务商，数据直接走陆缆点对点传输，不经过公共国际出口队列，能从物理层根除晚高峰拥堵。
+        </p>
+        <h3>协议升级：从传统 Shadowsocks 到现代化 VLESS</h3>
+        <p>
+          随着网络深度包检测（DPI）技术的迭代演进，传统静态特征加密协议（如早期的 Shadowsocks）容易被识别与阻断。现代化协议如 VLESS 配合 XTLS Reality 或 TLS1.3，将代理流量伪装成正常的顶级公网 HTTPS 流量，同时去掉了繁重的双重加密计算开销，不仅极大降低了客户端与服务端延迟，还显著延长了移动设备电池续航。
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. Pillar FAQ Matrix (15 FAQs) -->
+    <section class="my-12">
+      <FAQAccordion faqs={pFaqs} title="机场评测 专属常见问题解答 (FAQ)" />
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,214 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BrandCard from "@/components/BrandCard.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import ComparisonTable from "@/components/ComparisonTable.astro";
+import DecisionTree from "@/components/DecisionTree.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import servicesData from "@/data/services.json";
+
+const pillar = {"id":"wiki","name":"机场百科","slug":"wiki","url":"/wiki/","h1":"机场百科：线路、协议、网络指标与隐私边界知识体系","coreQuestion":"哪些概念和技术机制，会真正影响机场选择与使用？","theme":"理解技术","targetWords":"7,000–9,500 字","duty":"引用标准和技术规范，拒绝粗暴宣传语。严谨解释IPLC/IEPL、TCP/UDP/QUIC、TLS、分片MTU及数据边界。","megaTableCols":["技术术语/协议","层级分类","工作机制","相比传统优势","核心局限/风险","对日常体验影响","规范文档引用","相关条目"],"decisionLevels":4,"topics":[{"id":"service-and-lines","name":"服务结构与线路实体","slug":"service-and-lines","url":"/wiki/service-and-lines/","h1":"服务结构与线路实体：入口出口拓扑、IPLC/IEPL专线与中转直连","desc":"建立机场通信拓扑模型，界定客户端、订阅中心、中继入口、出口机房等实体关系。","clusters":[{"id":"nodes-and-clients-relation","name":"订阅节点与客户端","slug":"nodes-and-clients-relation","url":"/wiki/service-and-lines/nodes-and-clients-relation/","h1":"订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义","coreQuestion":"从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？","articles":[{"id":"art-wik-001","title":"机场服务是什么：组成与角色"},{"id":"art-wik-002","title":"客户端、订阅与节点的关系"},{"id":"art-wik-003","title":"服务组成概念图"},{"id":"art-wik-004","title":"服务实体的角色说明"},{"id":"art-wik-005","title":"订阅与节点的通信流程"},{"id":"art-wik-006","title":"订阅节点与客户端完整说明"}]},{"id":"entry-exit-and-line-tags","name":"入口出口与线路标签","slug":"entry-exit-and-line-tags","url":"/wiki/service-and-lines/entry-exit-and-line-tags/","h1":"入口出口与线路标签：IEPL内网专线、IPLC物理专线与普通BGP中转","coreQuestion":"商家宣传的IPLC与IEPL专线到底有什么区别？专线为什么不怕晚高峰？","articles":[{"id":"art-wik-007","title":"IEPL 专线说明"},{"id":"art-wik-008","title":"IPLC 专线说明"},{"id":"art-wik-009","title":"中转与直连的区别"},{"id":"art-wik-010","title":"线路类型的实际影响"},{"id":"art-wik-011","title":"线路标签与实际观测的区别"},{"id":"art-wik-012","title":"入口出口与线路标签完整说明"}]}]},{"id":"protocols-and-security","name":"传输协议与安全机制","slug":"protocols-and-security","url":"/wiki/protocols-and-security/","h1":"传输协议与安全机制：TCP/UDP/QUIC、TLS握手与VLESS/Trojan协议分层","desc":"依据IETF RFC深入解析网络丢包重传、QUIC多路复用以及现代轻量协议加密机制。","clusters":[{"id":"tcp-udp-and-quic","name":"TCP UDP与QUIC","slug":"tcp-udp-and-quic","url":"/wiki/protocols-and-security/tcp-udp-and-quic/","h1":"TCP UDP与QUIC：可靠传输、重传拥塞控制、多路复用与MTU分片","coreQuestion":"QUIC是基于UDP的，为什么不能把UDP协议都当成同一种体验？丢包时TCP怎样工作？","articles":[{"id":"art-wik-013","title":"TCP与UDP在代理连接中有什么区别？可靠传输、时延与应用需求解析"},{"id":"art-wik-014","title":"QUIC与UDP是什么关系？为什么不能把UDP协议都当作同一种体验"},{"id":"art-wik-015","title":"网络丢包时TCP连接会怎样变化？理解重传、拥塞控制与吞吐下降"},{"id":"art-wik-016","title":"QUIC的多路复用如何工作？与连接切换和应用传输有什么关系"},{"id":"art-wik-017","title":"长连接与短连接有什么区别？为什么网页浏览和持续输出需要不同观察指标"},{"id":"art-wik-018","title":"MTU与分片会怎样影响代理连接？从数据包大小理解异常与性能边界"}]},{"id":"tls-and-proxy-layers","name":"TLS与代理协议层次","slug":"tls-and-proxy-layers","url":"/wiki/protocols-and-security/tls-and-proxy-layers/","h1":"TLS与代理协议层次：TLS加密握手、VLESS、Trojan与Shadowsocks演进","coreQuestion":"VLESS协议为什么比传统VMess更轻快？Trojan的伪装原理是什么？","articles":[{"id":"art-wik-019","title":"TLS 加密基础"},{"id":"art-wik-020","title":"TLS 与代理协议的关系"},{"id":"art-wik-021","title":"VLESS 协议说明"},{"id":"art-wik-022","title":"Trojan 协议说明"},{"id":"art-wik-023","title":"Shadowsocks 协议说明"},{"id":"art-wik-024","title":"TLS与代理协议层次完整说明"}]}]},{"id":"performance-and-privacy","name":"网络性能与隐私边界","slug":"performance-and-privacy","url":"/wiki/performance-and-privacy/","h1":"网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别","desc":"厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。","clusters":[{"id":"metrics-and-meanings","name":"性能指标与测量含义","slug":"metrics-and-meanings","url":"/wiki/performance-and-privacy/metrics-and-meanings/","h1":"性能指标与测量含义：RTT延迟、抖动Jitter、丢包率与带宽吞吐差异","coreQuestion":"平时说的Ping值到底代表什么？带宽1000M为什么实际吞吐只有10M？","articles":[{"id":"art-wik-025","title":"延迟、抖动、丢包指标"},{"id":"art-wik-026","title":"带宽与吞吐的区别"},{"id":"art-wik-027","title":"峰值速度与持续速度"},{"id":"art-wik-028","title":"性能指标的测量方法"},{"id":"art-wik-029","title":"性能指标的解读"},{"id":"art-wik-030","title":"性能指标与测量含义完整说明"}]},{"id":"dns-ip-visibility","name":"DNS IP与数据可见性","slug":"dns-ip-visibility","url":"/wiki/performance-and-privacy/dns-ip-visibility/","h1":"DNS IP与数据可见性：DoH加密解析、fake-ip机制与原生/广播IP风控","coreQuestion":"机场老板能看到我浏览的网页内容和密码吗？原生IP和机房IP到底差在哪？","articles":[{"id":"art-wik-031","title":"DNS 解析流程"},{"id":"art-wik-032","title":"DNS over HTTPS 与 DNS over TLS"},{"id":"art-wik-033","title":"fake-ip 与 redir-host"},{"id":"art-wik-034","title":"原生 IP 与广播 IP"},{"id":"art-wik-035","title":"共享 IP 与独立 IP"},{"id":"art-wik-036","title":"DNS IP与数据可见性完整说明"}]}]}]};
+const megaRows = servicesData.map((b: any, index: number) => {
+  const isTop1 = b.id === "yunjiexian" || index === 0;
+  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
+    ? b.registerUrl
+    : `/airports/${b.id}/`;
+
+  return [
+    b.name,
+    isTop1 ? "★ 首选主力专线" : "高性价比备用",
+    b.minPayment ? `${b.minPayment} 元/月` : "待核验",
+    b.entryPlan || "轻量入门版",
+    b.lineType,
+    b.protocols,
+    b.highlights ? b.highlights[0] : "高速接入",
+    b.limitations && b.limitations.length > 0 ? b.limitations[0] : "遵守服务协议",
+    {
+      text: isTop1 ? "★ 主推入口" : "官网通道",
+      url: targetUrl,
+      isPrimary: isTop1
+    }
+  ];
+});
+const pFaqs = [{"q":"机场百科栏目的核心定位与评测依据是什么？","a":"本栏目严格遵从「引用标准和技术规范，拒绝粗暴宣传语。严谨解释IPLC/IEPL、TCP/UDP/QUIC、TLS、分片MTU及数据边界。」。所有推荐均基于真实采集测试证据与公开服务条款，绝不因商业合作调整客观排序。"},{"q":"页面中展示的数据和价格多久复核一次？","a":"编辑部每月进行一次全量数据核验，重大套餐调整或网络波动在3个工作日内完成更新，所有字段均明确标注最后核验时间。"},{"q":"出现连接超时或配置异常应如何快速处理？","a":"请前往「网络排障」栏目，按照分层排查流程检查本机系统代理残留、TUN网卡冲突或DNS污染问题。"},{"q":"本站推荐是否收取品牌方上榜赞助费？","a":"绝不收取任何上榜赞助费。凡含推广返佣链接的卡片均醒目标注，返佣仅作为服务器与测试带宽支出，不影响用户支付价格与评测中立性。"},{"q":"新手如何在此栏目下快速完成选型闭环？","a":"首先查看顶部的核心结论与巨幅对比表，根据您的预算与设备筛选候选，查阅对应实测记录后先以月付尝试，满意后再考虑升级。"}];
+const decisionTreeText = `[ 机场百科 场景决策模型 ]
+  │
+  ├── 追求极致稳定性与晚高峰生产力 ───────> 首选：云界线 (IEPL专线 + VLESS)
+  │     ├── 需要高稳定专线 + 低预算门槛 ───> 首选：云界线 (折算约5.6元/月起)
+  │     └── 多人多设备高并发办公 ─────────> 神行加速 / 闪电鼠
+  │
+  ├── 严格控制预算 / 轻度查资料 / 备用 ───> 方案：大佬云 / 环球梯 / 榴莲云
+  │     └── 月均支出仅 5–8 元区间 ────────> 年付折算或轻度小流量
+  │
+  └── 遇到网络连接中断或配置疑问 ─────────> 直达：网络排障 (/troubleshooting/)`;
+---
+
+<BaseLayout
+  title="机场百科：从使用需求到具体品牌的选购指南 - 机场wiki指南"
+  description="机场百科：线路、协议、网络指标与隐私边界知识体系。全面涵盖核心候选对比、使用限制、实测证据、巨幅对比表、ASCII决策树与下辖36篇深度指南。"
+  canonicalUrl="https://jichangwiki.cc/wiki/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场百科", url: "/wiki/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header Hero -->
+    <div class="border-b border-slate-200 pb-8 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>一级栏目 Pillar Hub · 万字级权威指南</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+        机场百科：线路、协议、网络指标与隐私边界知识体系
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+        <strong>核心解答：</strong>哪些概念和技术机制，会真正影响机场选择与使用？ 本栏目严格遵循「引用标准和技术规范，拒绝粗暴宣传语。严谨解释IPLC/IEPL、TCP/UDP/QUIC、TLS、分片MTU及数据边界。」，拒绝夸大其词，用翔实数据支撑明智决策。
+      </p>
+    </div>
+
+    <!-- Commercial Transparency Banner -->
+    <CommercialDisclosure />
+
+    <!-- 1. Answer-First Section -->
+    <section class="my-10 bg-blue-50/50 rounded-2xl p-6 sm:p-8 border border-blue-100">
+      <h2 class="text-xl font-bold text-blue-950 mb-3">答案优先：当前场景核心选型结论</h2>
+      <p class="text-base text-slate-700 leading-relaxed mb-4">
+        对于绝大多数追求稳定性的日常与办公用户，首选应为具备成熟运营历史、全专线架构且支持现代化 VLESS 协议的服务商（如本站主推的<strong>云界线</strong>）。低预算与备用场景可选用 5–8 元月付的轻量方案。选购的核心原则是：<strong>先明确真实月流量需求与关键工具（如ChatGPT/流媒体），首选月付验证，晚高峰实测达标后再行决定是否续约</strong>。
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-emerald-700 block mb-1">✓ 适合人群：</strong>
+          需要跨境学术科研、外贸出海沟通、AI生产力辅助及海外4K流媒体播放的合规用户。
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-amber-700 block mb-1">✗ 不适合人群：</strong>
+          抱有“几块钱永久不限速无限用”不切实际幻想、或试图利用网络规避审查与非法操作者。
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ASCII Decision Tree -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">快速选择决策树</h2>
+      <p class="text-sm text-slate-500 mb-4">通过三层逻辑分支直接对齐您的预算与任务诉求：</p>
+      <DecisionTree treeText={decisionTreeText} />
+    </section>
+
+    <!-- 3. Mega Comparison Table -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">巨幅综合横向对比大盘</h2>
+      <p class="text-sm text-slate-500 mb-4">6 家核心品牌横向对比大盘（支持横向滑动）：</p>
+      <ComparisonTable
+        headers={pillar.megaTableCols}
+        rows={megaRows}
+        caption="机场百科 核心候选横向对比表"
+      />
+    </section>
+
+            <!-- 4. Featured Brand Showcase -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">精选代表性服务商深度剖析</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.map((b: any) => (
+          <BrandCard
+            brand={b}
+            featuredReason={
+              b.id === "yunjiexian" ? "2024年稳定运营，全IEPL专线，低预算首选主力方案" :
+              b.id === "dalaoyun" ? "超低预算IEPL专线，高性价比备用首选" :
+              b.id === "huanqiuti" ? "经济型轻度专线服务，高性价比备用方案" :
+              b.id === "liulianyun" ? "超经济专线中继，轻量备用高性价比之选" :
+              b.id === "shandianshu" ? "轻量级低资费专线服务，5.6元/月极致入门备用" :
+              b.id === "shenxing" ? "平价大容量IEPL专线，120GB月配额高性价比备用" :
+              (b.isPrimaryRecommendation ? "综合性能标杆，全IEPL专线保障晚高峰低丢包" : "性价比专线接入")
+            }
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Under-Pillar Topics & Articles Structure (Honeycomb Links) -->
+    <section class="my-12 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">下辖 3 个二级专题与 36 篇深度文章</h2>
+          <p class="text-sm text-slate-500 mt-1">蜂巢式内链立体覆盖，可根据具体痛点直达细分指导：</p>
+        </div>
+        <a href="/sitemap/" class="text-xs font-semibold text-blue-600 hover:underline">
+          查阅全站地图 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pillar.topics.map((t: any, tIdx: number) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-mono font-bold text-blue-600 mb-1">
+                专题 0{tIdx + 1}
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">
+                <a href={t.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                  {t.name}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                {t.desc}
+              </p>
+
+              <!-- Clusters & Articles List -->
+              <div class="space-y-3">
+                {t.clusters.map((c: any) => (
+                  <div class="border-t border-slate-100 pt-2.5">
+                    <div class="text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between">
+                      <a href={c.url} class="hover:text-blue-600 transition-colors no-underline">
+                        {c.name}
+                      </a>
+                      <span class="text-[10px] text-slate-400 font-mono">6篇</span>
+                    </div>
+                    <ul class="space-y-1 text-xs text-slate-600">
+                      {c.articles.slice(0, 3).map((art: any) => (
+                        <li class="truncate flex items-start space-x-1">
+                          <span class="text-blue-500 shrink-0">·</span>
+                          <a href={`/articles/${art.id}/`} class="hover:text-blue-600 truncate" title={art.title}>
+                            {art.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-right">
+              <a href={t.url} class="text-xs font-semibold text-blue-600 hover:underline">
+                浏览此专题完整 12 篇 →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Long-form In-depth Guide -->
+    <section class="my-12">
+      <div class="article-content max-w-none">
+        <h2>底层机制剖析与选型关键依据</h2>
+        <p>
+          在选择网络加速服务时，用户往往容易被标称的“峰值带宽”所误导。实际上，决定日常使用顺畅度的三大核心指标并非单线程下载峰值，而是<strong>端到端RTT延迟抖动、晚高峰丢包率与TCP重传率</strong>。
+        </p>
+        <h3>专线与普通直连的本质鸿沟</h3>
+        <p>
+          国际互联网出口受国家级骨干网防火墙检测与国际海缆带宽配额限制。普通公网直连（如普通BGP中转）在平峰期表现尚可，一旦进入晚间20:00至23:00的网络流量高峰，国际出口拥堵将直接导致丢包率陡增。而真正采用 IEPL（国际以太网专线）或 IPLC（国际私有租用线路）的服务商，数据直接走陆缆点对点传输，不经过公共国际出口队列，能从物理层根除晚高峰拥堵。
+        </p>
+        <h3>协议升级：从传统 Shadowsocks 到现代化 VLESS</h3>
+        <p>
+          随着网络深度包检测（DPI）技术的迭代演进，传统静态特征加密协议（如早期的 Shadowsocks）容易被识别与阻断。现代化协议如 VLESS 配合 XTLS Reality 或 TLS1.3，将代理流量伪装成正常的顶级公网 HTTPS 流量，同时去掉了繁重的双重加密计算开销，不仅极大降低了客户端与服务端延迟，还显著延长了移动设备电池续航。
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. Pillar FAQ Matrix (15 FAQs) -->
+    <section class="my-12">
+      <FAQAccordion faqs={pFaqs} title="机场百科 专属常见问题解答 (FAQ)" />
+    </section>
+  </div>
+</BaseLayout>

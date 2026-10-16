@@ -1,0 +1,38 @@
+---
+export interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="面包屑导航" class="py-3 px-4 sm:px-0">
+  <ol class="flex flex-wrap items-center space-x-2 text-xs sm:text-[13px] text-slate-500">
+    {items.map((item, index) => {
+      const isLast = index === items.length - 1;
+      return (
+        <li class="flex items-center space-x-2">
+          {index > 0 && (
+            <svg width="14" height="14" style="max-width:14px;max-height:14px;display:inline-block;" class="w-3.5 h-3.5 text-slate-400 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          )}
+          {isLast ? (
+            <span class="text-slate-900 font-semibold truncate max-w-[240px] sm:max-w-md" aria-current="page">
+              {item.name}
+            </span>
+          ) : (
+            <a href={item.url} class="hover:text-blue-600 transition-colors">
+              {item.name}
+            </a>
+          )}
+        </li>
+      );
+    })}
+  </ol>
+</nav>

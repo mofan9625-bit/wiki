@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"streaming","name":"流媒体机场","slug":"streaming","url":"/streaming/","h1":"流媒体机场推荐：平台条件、视频画质与设备选型指南","coreQuestion":"在我的平台、账号和设备条件下，怎样选择观看方案？","theme":"按用途选择","targetWords":"7,000–9,500 字","duty":"严禁把首页能开等同于全片库播放，拒绝少量样本夸大为全平台保证。详细拆解平台、画质、时段与终端方案。","megaTableCols":["品牌","Netflix解锁","Disney+解锁","YouTube 4K支持","原生机房/广播IP","晚高峰测速吞吐","电视端配置","直达通道"],"decisionLevels":4,"topics":[{"id":"platform-requirements","name":"平台需求与观看条件","slug":"platform-requirements","url":"/streaming/platform-requirements/","h1":"平台需求与观看条件：Netflix非自制剧解锁、Disney+与多平台共用","desc":"解决各主流平台IP风控机制，区分自制剧与非自制版权剧片库解锁的真实差异。","clusters":[{"id":"netflix-selection","name":"Netflix观看选型","slug":"netflix-selection","url":"/streaming/platform-requirements/netflix-selection/","h1":"Netflix观看选型：地区限制、版权片库解锁与画质判定","coreQuestion":"为什么连上节点只能看Netflix自制剧（如怪奇物语）却搜不到地区限定版权剧？","articles":[{"id":"art-stm-001","title":"Netflix 用什么机场？地区与账号条件"},{"id":"art-stm-002","title":"Netflix 播放条件与画质"},{"id":"art-stm-003","title":"Netflix 地区与片库"},{"id":"art-stm-004","title":"Netflix 播放质量判断"},{"id":"art-stm-005","title":"Netflix 观看记录方法"},{"id":"art-stm-006","title":"Netflix观看选型完整说明"}]},{"id":"multi-platform-combo","name":"多平台需求组合","slug":"multi-platform-combo","url":"/streaming/platform-requirements/multi-platform-combo/","h1":"多平台需求组合：Disney+、HBO Max与YouTube 4K高码率","coreQuestion":"想要一个节点同时畅快观看Disney+、HBO Max与YouTube 4K，如何挑选？","articles":[{"id":"art-stm-007","title":"Disney+ 使用条件"},{"id":"art-stm-008","title":"HBO Max 使用条件"},{"id":"art-stm-009","title":"YouTube 用什么机场？4K 与直播区分"},{"id":"art-stm-010","title":"多平台共用的机场选择"},{"id":"art-stm-011","title":"多平台组合的网络方案"},{"id":"art-stm-012","title":"多平台需求组合完整说明"}]}]},{"id":"quality-traffic-playback","name":"清晰度流量与连续播放","slug":"quality-traffic-playback","url":"/streaming/quality-traffic-playback/","h1":"清晰度流量与连续播放：4K码率预算、流量消耗与晚高峰缓冲排查","desc":"核算高码率HDR/杜比视界下的流量消耗速率，解决晚高峰追剧频繁卡顿转圈问题。","clusters":[{"id":"quality-and-budget","name":"画质与流量预算","slug":"quality-and-budget","url":"/streaming/quality-traffic-playback/quality-and-budget/","h1":"画质与流量预算：码率要求、4K带宽门槛与每月流量预算模型","coreQuestion":"每天看2小时4K视频，一个月需要多少流量？百兆宽带够不够用？","articles":[{"id":"art-stm-013","title":"视频码率与清晰度"},{"id":"art-stm-014","title":"4K 播放的网络要求"},{"id":"art-stm-015","title":"清晰度与带宽的关系"},{"id":"art-stm-016","title":"视频观看的流量消耗"},{"id":"art-stm-017","title":"不同清晰度的流量差异"},{"id":"art-stm-018","title":"画质与流量预算完整说明"}]},{"id":"peak-and-long-playback","name":"晚间与长时间观看","slug":"peak-and-long-playback","url":"/streaming/quality-traffic-playback/peak-and-long-playback/","h1":"晚间与长时间观看：高峰丢包分析、缓冲日志观察与抗卡顿方案","coreQuestion":"为什么白天看视频秒开，一到晚上八九点就降画质或者卡顿？","articles":[{"id":"art-stm-019","title":"视频卡顿的原因分析"},{"id":"art-stm-020","title":"缓冲与加载时间的观察"},{"id":"art-stm-021","title":"连续观看的稳定性要求"},{"id":"art-stm-022","title":"晚高峰的视频表现"},{"id":"art-stm-023","title":"视频观看体验的验证"},{"id":"art-stm-024","title":"晚间与长时间观看完整说明"}]}]},{"id":"devices-and-home","name":"观看设备与家庭使用","slug":"devices-and-home","url":"/streaming/devices-and-home/","h1":"观看设备与家庭使用：手机电脑、AirPlay投屏与智能电视/软路由","desc":"从移动手持设备扩展到Apple TV、Android TV电视盒子与全屋旁路由配置。","clusters":[{"id":"mobile-pc-casting","name":"手机电脑与投屏","slug":"mobile-pc-casting","url":"/streaming/devices-and-home/mobile-pc-casting/","h1":"手机电脑与投屏：移动网络播放、投屏协议与局域网代理穿透","coreQuestion":"手机上看正常，投屏到电视上却提示“地区受限”或黑屏怎么解决？","articles":[{"id":"art-stm-025","title":"手机端观看的机场选择"},{"id":"art-stm-026","title":"电脑端观看的机场选择"},{"id":"art-stm-027","title":"投屏场景的机场选择"},{"id":"art-stm-028","title":"多设备同时观看"},{"id":"art-stm-029","title":"移动网络下的观看"},{"id":"art-stm-030","title":"手机电脑与投屏完整说明"}]},{"id":"tv-and-home-network","name":"电视与家庭网络方案","slug":"tv-and-home-network","url":"/streaming/devices-and-home/tv-and-home-network/","h1":"电视与家庭网络方案：Apple TV、Android TV与主旁路由网络设计","coreQuestion":"客厅大屏看原生4K流媒体，是用电视客户端好还是旁路由接管好？","articles":[{"id":"art-stm-031","title":"电视端使用机场的方式"},{"id":"art-stm-032","title":"智能电视客户端配置"},{"id":"art-stm-033","title":"电视与手机同时使用"},{"id":"art-stm-034","title":"家庭网络的路由器配置"},{"id":"art-stm-035","title":"家庭多设备视频方案"},{"id":"art-stm-036","title":"电视与家庭网络方案完整说明"}]}]}]};
+const topic = {"id":"quality-traffic-playback","name":"清晰度流量与连续播放","slug":"quality-traffic-playback","url":"/streaming/quality-traffic-playback/","h1":"清晰度流量与连续播放：4K码率预算、流量消耗与晚高峰缓冲排查","desc":"核算高码率HDR/杜比视界下的流量消耗速率，解决晚高峰追剧频繁卡顿转圈问题。","clusters":[{"id":"quality-and-budget","name":"画质与流量预算","slug":"quality-and-budget","url":"/streaming/quality-traffic-playback/quality-and-budget/","h1":"画质与流量预算：码率要求、4K带宽门槛与每月流量预算模型","coreQuestion":"每天看2小时4K视频，一个月需要多少流量？百兆宽带够不够用？","articles":[{"id":"art-stm-013","title":"视频码率与清晰度"},{"id":"art-stm-014","title":"4K 播放的网络要求"},{"id":"art-stm-015","title":"清晰度与带宽的关系"},{"id":"art-stm-016","title":"视频观看的流量消耗"},{"id":"art-stm-017","title":"不同清晰度的流量差异"},{"id":"art-stm-018","title":"画质与流量预算完整说明"}]},{"id":"peak-and-long-playback","name":"晚间与长时间观看","slug":"peak-and-long-playback","url":"/streaming/quality-traffic-playback/peak-and-long-playback/","h1":"晚间与长时间观看：高峰丢包分析、缓冲日志观察与抗卡顿方案","coreQuestion":"为什么白天看视频秒开，一到晚上八九点就降画质或者卡顿？","articles":[{"id":"art-stm-019","title":"视频卡顿的原因分析"},{"id":"art-stm-020","title":"缓冲与加载时间的观察"},{"id":"art-stm-021","title":"连续观看的稳定性要求"},{"id":"art-stm-022","title":"晚高峰的视频表现"},{"id":"art-stm-023","title":"视频观看体验的验证"},{"id":"art-stm-024","title":"晚间与长时间观看完整说明"}]}]};
+const topicArticles = [{"id":"art-stm-013","title":"视频码率与清晰度","clusterName":"画质与流量预算"},{"id":"art-stm-014","title":"4K 播放的网络要求","clusterName":"画质与流量预算"},{"id":"art-stm-015","title":"清晰度与带宽的关系","clusterName":"画质与流量预算"},{"id":"art-stm-016","title":"视频观看的流量消耗","clusterName":"画质与流量预算"},{"id":"art-stm-017","title":"不同清晰度的流量差异","clusterName":"画质与流量预算"},{"id":"art-stm-018","title":"画质与流量预算完整说明","clusterName":"画质与流量预算"},{"id":"art-stm-019","title":"视频卡顿的原因分析","clusterName":"晚间与长时间观看"},{"id":"art-stm-020","title":"缓冲与加载时间的观察","clusterName":"晚间与长时间观看"},{"id":"art-stm-021","title":"连续观看的稳定性要求","clusterName":"晚间与长时间观看"},{"id":"art-stm-022","title":"晚高峰的视频表现","clusterName":"晚间与长时间观看"},{"id":"art-stm-023","title":"视频观看体验的验证","clusterName":"晚间与长时间观看"},{"id":"art-stm-024","title":"晚间与长时间观看完整说明","clusterName":"晚间与长时间观看"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「画质与流量预算」着重解决基础选型与前置决策；子集群「晚间与长时间观看」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="清晰度流量与连续播放：清晰度流量与连续播放：4K码率预算、流量消耗与晚高峰缓冲排查 - 机场wiki指南"
+  description="核算高码率HDR/杜比视界下的流量消耗速率，解决晚高峰追剧频繁卡顿转圈问题。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/streaming/quality-traffic-playback/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "流媒体机场", url: "/streaming/" },
+    { name: "清晰度流量与连续播放", url: "/streaming/quality-traffic-playback/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：流媒体机场 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        清晰度流量与连续播放：4K码率预算、流量消耗与晚高峰缓冲排查
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        核算高码率HDR/杜比视界下的流量消耗速率，解决晚高峰追剧频繁卡顿转圈问题。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="清晰度流量与连续播放 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

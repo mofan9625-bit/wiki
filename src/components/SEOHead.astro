@@ -1,0 +1,93 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  canonicalUrl?: string;
+  pageType?: "website" | "article";
+  breadcrumbs?: Array<{ name: string; url: string }>;
+  jsonLd?: Record<string, any>;
+}
+
+const {
+  title,
+  description,
+  canonicalUrl = Astro.url.href,
+  pageType = "website",
+  breadcrumbs = [],
+  jsonLd,
+} = Astro.props;
+
+const siteName = "机场wiki指南";
+const fullTitle = title.includes(siteName) ? title : `${title} - ${siteName}`;
+
+// Base Schema Node
+const schemaWebsiteNode = {
+  "@type": "WebSite",
+  "name": siteName,
+  "url": "https://jichangwiki.cc",
+  "description": "以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库",
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": "https://jichangwiki.cc/search/?q={search_term_string}",
+    "query-input": "required name=search_term_string"
+  }
+};
+
+const graphElements: any[] = [schemaWebsiteNode];
+
+if (breadcrumbs && breadcrumbs.length > 0) {
+  graphElements.push({
+    "@type": "BreadcrumbList",
+    "itemListElement": breadcrumbs.map((b, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": b.name,
+      "item": b.url.startsWith("http") ? b.url : `https://jichangwiki.cc${b.url}`
+    }))
+  });
+}
+
+if (jsonLd) {
+  if (Array.isArray(jsonLd["@graph"])) {
+    graphElements.push(...jsonLd["@graph"]);
+  } else if (Array.isArray(jsonLd)) {
+    graphElements.push(...jsonLd);
+  } else {
+    const { "@context": _context, ...cleanItem } = jsonLd;
+    graphElements.push(cleanItem);
+  }
+}
+
+const consolidatedSchema = {
+  "@context": "https://schema.org",
+  "@graph": graphElements
+};
+---
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{fullTitle}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonicalUrl} />
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Open Graph -->
+  <meta property="og:site_name" content={siteName} />
+  <meta property="og:title" content={fullTitle} />
+  <meta property="og:description" content={description} />
+  <meta property="og:type" content={pageType} />
+  <meta property="og:url" content={canonicalUrl} />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:image" content="https://jichangwiki.cc/og-cover.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={fullTitle} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content="https://jichangwiki.cc/og-cover.png" />
+
+  <!-- JSON-LD Structured Data (@graph) -->
+  <script type="application/ld+json" set:html={JSON.stringify(consolidatedSchema)} />
+</head>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "关于本站";
+const pageDesc = "机场wiki指南建站背景、独立性立场与编辑原则。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p>「机场wiki指南」（jichangwiki.cc）是由一群资深网络协议工程师、网络测试爱好者共同维护的中文知识库。我们致力于以严谨客观的工程化方法，为用户在庞杂混乱的跨境网络服务市场中提供清晰可信的选型指南与使用教程。</p><p>本站严格坚持第三方独立立场，与任何机场品牌、代理软件项目无股权、隶属或商业操控关系。</p>
+    </div>
+  </div>
+</BaseLayout>

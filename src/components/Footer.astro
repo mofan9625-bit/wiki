@@ -1,0 +1,100 @@
+---
+import { FOOTER_POLICY_LINKS, MAIN_NAV, TOPICS_DROPDOWN } from "@/data/navigation";
+---
+
+<footer class="bg-slate-900 text-slate-300 border-t border-slate-800 mt-20 pt-16 pb-12">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800">
+      <!-- Col 1: Site Identity & Legal Statement -->
+      <div class="md:col-span-1 space-y-4">
+        <div class="flex items-center space-x-2">
+          <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold">
+            W
+          </div>
+          <span class="text-lg font-bold text-white tracking-tight">机场wiki指南</span>
+        </div>
+        <p class="text-sm text-slate-400 leading-relaxed">
+          以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库。
+        </p>
+        <div class="p-3 rounded-lg bg-slate-800/80 border border-slate-700/60 text-xs text-slate-300 space-y-1.5">
+          <div class="font-semibold text-amber-400 flex items-center space-x-1">
+            <svg width="14" height="14" style="max-width:14px;max-height:14px;display:inline-block;" class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>合规与使用须知</span>
+          </div>
+          <p>
+            请遵守当地法律法规。本站仅供跨境科研学习、跨国贸易及合法通信技术交流等合规用途。
+          </p>
+        </div>
+      </div>
+
+      <!-- Col 2: Pillar Quick Nav -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">核心选购与指南</h4>
+        <ul class="space-y-2 text-sm">
+          {MAIN_NAV.slice(1).map((item) => (
+            <li>
+              <a href={item.url} class="hover:text-white transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/airports/" class="hover:text-white transition-colors">
+              机场大全
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 3: Topics & Technical Navigation -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">专项与技术百科</h4>
+        <ul class="space-y-2 text-sm">
+          {TOPICS_DROPDOWN.flatMap(g => g.items).slice(0, 7).map((item) => (
+            <li>
+              <a href={item.url} class="hover:text-white transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+          <li>
+            <a href="/sitemap/" class="text-blue-400 hover:text-blue-300 font-medium">
+              完整网站地图 (553 节点) →
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Col 4: Editorial Standards & Disclosures -->
+      <div>
+        <h4 class="text-sm font-semibold uppercase tracking-wider text-white mb-4">编辑原则与声明</h4>
+        <ul class="space-y-2 text-sm">
+          {FOOTER_POLICY_LINKS.map((item) => (
+            <li>
+              <a href={item.url} class="hover:text-white transition-colors">
+                {item.name}
+              </a>
+            </li>
+          ))}
+        </ul>
+        <div class="mt-4 pt-3 border-t border-slate-800 text-xs text-slate-400">
+          <p>
+            商业披露：通过本站外链注册可能为本站带来佣金，不影响用户支付价格。未核验字段明确标注 Badge。
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Copyright -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500">
+      <div>
+        © 2020–2026 机场wiki指南 (jichangwiki.cc) — 独立的第三方选购与使用指南站
+      </div>
+      <div class="mt-2 sm:mt-0">
+        静态托管于 Apache Web Server · 基于 Astro 4 构建
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"airports","name":"机场大全","slug":"airports","url":"/airports/","h1":"机场大全：品牌查询、官方资料与服务变更核验指南","coreQuestion":"我找的是哪一家机场，相关资料和入口是否对应同一个服务？","theme":"核对品牌与证据","targetWords":"7,000–9,500 字","duty":"每家真实品牌只建立一个完整档案 `/airports/[brand-slug]/`。聚合品牌公告、官网入口、域名历史、变更时间线与纠错渠道。","megaTableCols":["品牌名称","别名/曾用名","创办年份","最低门槛月付","专线/线路特征","协议支持","运营状态","档案入口","官网核验入口"],"decisionLevels":4,"topics":[{"id":"brand-lookup","name":"品牌查找与档案阅读","slug":"brand-lookup","url":"/airports/brand-lookup/","h1":"品牌查找与档案阅读：名称别名对照、防仿冒镜像与字段定义","desc":"解决同名机场混淆、仿冒钓鱼站辨识，以及档案各项技术字段的统一解读指南。","clusters":[{"id":"names-aliases-and-portals","name":"名称别名与正确入口","slug":"names-aliases-and-portals","url":"/airports/brand-lookup/names-aliases-and-portals/","h1":"名称别名与正确入口：官网辨认、域名变更历史与仿冒钓鱼防范","coreQuestion":"网上同名的机场好几个，怎么辨别哪个才是正牌官网？","articles":[{"id":"art-air-001","title":"机场官网怎么辨认：品牌公告、域名关联与推广入口核验"},{"id":"art-air-002","title":"同名机场是不是同一家：品牌别名、域名与服务资料如何对照"},{"id":"art-air-003","title":"品牌官网入口核验方法"},{"id":"art-air-004","title":"品牌域名变更记录"},{"id":"art-air-005","title":"仿冒网站防范"},{"id":"art-air-006","title":"名称别名与正确入口完整说明"}]},{"id":"brand-profiles-and-data","name":"品牌档案与资料解释","slug":"brand-profiles-and-data","url":"/airports/brand-lookup/brand-profiles-and-data/","h1":"品牌档案与资料解释：档案字段结构、服务范围与支持度判定","coreQuestion":"如何看懂本站的品牌档案？未核验字段与品牌方声称如何区分？","articles":[{"id":"art-air-007","title":"品牌档案包含哪些字段"},{"id":"art-air-008","title":"品牌档案资料解释方法"},{"id":"art-air-009","title":"品牌服务范围说明"},{"id":"art-air-010","title":"品牌客户端支持说明"},{"id":"art-air-011","title":"品牌协议支持说明"},{"id":"art-air-012","title":"品牌档案与资料解释完整说明"}]}]},{"id":"public-info-and-tos","name":"公开资料与服务条款","slug":"public-info-and-tos","url":"/airports/public-info-and-tos/","h1":"公开资料与服务条款：官方公告核对、TOS条款解读与套餐交叉验证","desc":"核实品牌公告发布通道、服务协议中的免责限制、退款与数据保管条款。","clusters":[{"id":"announcements-and-tos","name":"公告支持与条款核查","slug":"announcements-and-tos","url":"/airports/public-info-and-tos/announcements-and-tos/","h1":"公告支持与条款核查：官方群组、服务条款TOS暗坑与客服响应核实","coreQuestion":"商家的服务条款（TOS）里藏有哪些不平等的免责或封号条款？","articles":[{"id":"art-air-013","title":"品牌公告渠道说明"},{"id":"art-air-014","title":"品牌服务状态判断"},{"id":"art-air-015","title":"品牌服务条款核查"},{"id":"art-air-016","title":"品牌客服支持渠道"},{"id":"art-air-017","title":"品牌服务承诺与限制"},{"id":"art-air-018","title":"公告支持与条款核查完整说明"}]},{"id":"plan-data-cross-check","name":"套餐信息与来源交叉核对","slug":"plan-data-cross-check","url":"/airports/public-info-and-tos/plan-data-cross-check/","h1":"套餐信息与来源交叉核对：历史价格变动、核验时间与第三方核实","coreQuestion":"如何核实机场套餐是否悄悄涨价或缩水？数据来源如何实现多方对照？","articles":[{"id":"art-air-019","title":"品牌套餐数据说明"},{"id":"art-air-020","title":"套餐核验日期说明"},{"id":"art-air-021","title":"套餐更新记录"},{"id":"art-air-022","title":"套餐资料交叉核对"},{"id":"art-air-023","title":"套餐来源说明"},{"id":"art-air-024","title":"套餐信息与来源交叉核对完整说明"}]}]},{"id":"brand-changes-and-status","name":"品牌变更与服务状态","slug":"brand-changes-and-status","url":"/airports/brand-changes-and-status/","h1":"品牌变更与服务状态：更名迁移事件、服务停更退出与纠错反馈","desc":"跟踪品牌并购、主体变更历史，记录突发异常停服事件并开放纠错通道。","clusters":[{"id":"rename-migration-adjust","name":"改名迁移与服务调整","slug":"rename-migration-adjust","url":"/airports/brand-changes-and-status/rename-migration-adjust/","h1":"改名迁移与服务调整：机场品牌改名历史、主体迁移与节点架构升级","coreQuestion":"老牌机场突然改名或者换网址，背后有哪些原因？如何确认不是被盗？","articles":[{"id":"art-air-025","title":"品牌改名记录"},{"id":"art-air-026","title":"品牌服务迁移说明"},{"id":"art-air-027","title":"品牌服务调整记录"},{"id":"art-air-028","title":"品牌入口更新"},{"id":"art-air-029","title":"品牌服务变更影响"},{"id":"art-air-030","title":"改名迁移与服务调整完整说明"}]},{"id":"outages-and-exit-records","name":"异常公告与退出信息","slug":"outages-and-exit-records","url":"/airports/brand-changes-and-status/outages-and-exit-records/","h1":"异常公告与退出信息：突发故障停机记录、跑路退出预警与读者纠错","coreQuestion":"某机场打不开了是日常维护还是跑路？本站如何客观记录并核实退出事件？","articles":[{"id":"art-air-031","title":"品牌故障公告"},{"id":"art-air-032","title":"品牌服务停止说明"},{"id":"art-air-033","title":"品牌退出记录"},{"id":"art-air-034","title":"品牌资料纠错"},{"id":"art-air-035","title":"品牌资料反馈"},{"id":"art-air-036","title":"异常公告与退出信息完整说明"}]}]}]};
+const topic = {"id":"public-info-and-tos","name":"公开资料与服务条款","slug":"public-info-and-tos","url":"/airports/public-info-and-tos/","h1":"公开资料与服务条款：官方公告核对、TOS条款解读与套餐交叉验证","desc":"核实品牌公告发布通道、服务协议中的免责限制、退款与数据保管条款。","clusters":[{"id":"announcements-and-tos","name":"公告支持与条款核查","slug":"announcements-and-tos","url":"/airports/public-info-and-tos/announcements-and-tos/","h1":"公告支持与条款核查：官方群组、服务条款TOS暗坑与客服响应核实","coreQuestion":"商家的服务条款（TOS）里藏有哪些不平等的免责或封号条款？","articles":[{"id":"art-air-013","title":"品牌公告渠道说明"},{"id":"art-air-014","title":"品牌服务状态判断"},{"id":"art-air-015","title":"品牌服务条款核查"},{"id":"art-air-016","title":"品牌客服支持渠道"},{"id":"art-air-017","title":"品牌服务承诺与限制"},{"id":"art-air-018","title":"公告支持与条款核查完整说明"}]},{"id":"plan-data-cross-check","name":"套餐信息与来源交叉核对","slug":"plan-data-cross-check","url":"/airports/public-info-and-tos/plan-data-cross-check/","h1":"套餐信息与来源交叉核对：历史价格变动、核验时间与第三方核实","coreQuestion":"如何核实机场套餐是否悄悄涨价或缩水？数据来源如何实现多方对照？","articles":[{"id":"art-air-019","title":"品牌套餐数据说明"},{"id":"art-air-020","title":"套餐核验日期说明"},{"id":"art-air-021","title":"套餐更新记录"},{"id":"art-air-022","title":"套餐资料交叉核对"},{"id":"art-air-023","title":"套餐来源说明"},{"id":"art-air-024","title":"套餐信息与来源交叉核对完整说明"}]}]};
+const topicArticles = [{"id":"art-air-013","title":"品牌公告渠道说明","clusterName":"公告支持与条款核查"},{"id":"art-air-014","title":"品牌服务状态判断","clusterName":"公告支持与条款核查"},{"id":"art-air-015","title":"品牌服务条款核查","clusterName":"公告支持与条款核查"},{"id":"art-air-016","title":"品牌客服支持渠道","clusterName":"公告支持与条款核查"},{"id":"art-air-017","title":"品牌服务承诺与限制","clusterName":"公告支持与条款核查"},{"id":"art-air-018","title":"公告支持与条款核查完整说明","clusterName":"公告支持与条款核查"},{"id":"art-air-019","title":"品牌套餐数据说明","clusterName":"套餐信息与来源交叉核对"},{"id":"art-air-020","title":"套餐核验日期说明","clusterName":"套餐信息与来源交叉核对"},{"id":"art-air-021","title":"套餐更新记录","clusterName":"套餐信息与来源交叉核对"},{"id":"art-air-022","title":"套餐资料交叉核对","clusterName":"套餐信息与来源交叉核对"},{"id":"art-air-023","title":"套餐来源说明","clusterName":"套餐信息与来源交叉核对"},{"id":"art-air-024","title":"套餐信息与来源交叉核对完整说明","clusterName":"套餐信息与来源交叉核对"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「公告支持与条款核查」着重解决基础选型与前置决策；子集群「套餐信息与来源交叉核对」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="公开资料与服务条款：公开资料与服务条款：官方公告核对、TOS条款解读与套餐交叉验证 - 机场wiki指南"
+  description="核实品牌公告发布通道、服务协议中的免责限制、退款与数据保管条款。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/airports/public-info-and-tos/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场大全", url: "/airports/" },
+    { name: "公开资料与服务条款", url: "/airports/public-info-and-tos/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：机场大全 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        公开资料与服务条款：官方公告核对、TOS条款解读与套餐交叉验证
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        核实品牌公告发布通道、服务协议中的免责限制、退款与数据保管条款。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="公开资料与服务条款 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

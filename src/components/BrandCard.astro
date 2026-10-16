@@ -1,0 +1,128 @@
+---
+import DataStatusBadge from "./DataStatusBadge.astro";
+
+interface BrandItem {
+  id: string;
+  name: string;
+  rank: number;
+  registerUrl: string;
+  promoCode?: string | null;
+  since: string;
+  minPayment?: number | null;
+  entryPlan?: string;
+  lineType: string;
+  protocols: string;
+  isPrimaryRecommendation?: boolean;
+  dataStatus?: string;
+  vendorClaims?: string[];
+  highlights?: string[];
+  suitableFor?: string[];
+  notSuitableFor?: string[];
+  limitations?: string[];
+}
+
+interface Props {
+  brand: BrandItem;
+  featuredReason?: string;
+}
+
+const { brand, featuredReason } = Astro.props;
+---
+
+<div class={`card relative overflow-hidden transition-all duration-200 ${brand.isPrimaryRecommendation ? 'border-blue-500 ring-2 ring-blue-500/10 shadow-lg' : ''}`}>
+  {brand.isPrimaryRecommendation && (
+    <div class="absolute top-0 right-0 bg-blue-600 text-white text-[11px] font-bold px-3 py-1 rounded-bl-lg uppercase tracking-wider">
+      本站主推方案
+    </div>
+  )}
+
+  <div class="flex items-start justify-between mb-3">
+    <div>
+      <div class="flex items-center space-x-2">
+        <span class="text-xs font-bold px-2 py-0.5 rounded bg-slate-100 text-slate-700 font-mono">
+          #{brand.rank}
+        </span>
+        <h3 class="text-xl font-bold text-slate-900 m-0">
+          <a href={`/airports/${brand.id}/`} class="hover:text-blue-600 transition-colors no-underline">
+            {brand.name}
+          </a>
+        </h3>
+        <DataStatusBadge status={brand.dataStatus || "vendor"} />
+      </div>
+      <div class="text-xs text-slate-500 mt-1">
+        运营年限：{brand.since}年至今 · 线路：{brand.lineType} · 协议：{brand.protocols}
+      </div>
+    </div>
+  </div>
+
+  {featuredReason && (
+    <div class="bg-blue-50/60 border-l-2 border-blue-500 p-2.5 rounded-r-md text-xs text-blue-900 mb-3">
+      <strong>入选理由：</strong>{featuredReason}
+    </div>
+  )}
+
+  <!-- Price & Entry Plan -->
+  <div class="bg-slate-50 rounded-lg p-3 my-3 border border-slate-100 flex items-center justify-between">
+    <div>
+      <div class="text-[11px] text-slate-500 uppercase tracking-wider font-semibold">入门套餐与资费</div>
+      <div class="text-sm font-bold text-slate-800 font-mono mt-0.5">
+        {brand.entryPlan || (brand.minPayment ? `${brand.minPayment} 元/月起` : '资费待核验')}
+      </div>
+    </div>
+    {brand.promoCode && (
+      <div class="text-right">
+        <span class="text-[11px] text-slate-400 block">专属优惠码</span>
+        <span class="text-xs font-mono font-bold bg-amber-100 text-amber-800 px-2 py-0.5 rounded">
+          {brand.promoCode}
+        </span>
+      </div>
+    )}
+  </div>
+
+  <!-- Highlights & Claims -->
+  {brand.highlights && brand.highlights.length > 0 && (
+    <div class="flex flex-wrap gap-1.5 my-3">
+      {brand.highlights.map((h) => (
+        <span class="text-[11px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-medium">
+          {h}
+        </span>
+      ))}
+    </div>
+  )}
+
+  {brand.vendorClaims && brand.vendorClaims.length > 0 && (
+    <div class="text-xs text-slate-500 space-y-1 my-3 bg-slate-50/50 p-2 rounded">
+      {brand.vendorClaims.map((claim) => (
+        <div class="flex items-start space-x-1">
+          <span class="text-purple-600 shrink-0">·</span>
+          <span>{claim}</span>
+        </div>
+      ))}
+    </div>
+  )}
+
+  <!-- Action CTAs -->
+  <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between gap-2">
+    <a
+      href={`/airports/${brand.id}/`}
+      class="text-xs font-semibold text-slate-600 hover:text-blue-600 py-2 px-3 rounded-lg hover:bg-slate-100 transition-colors"
+    >
+      查阅完整档案 →
+    </a>
+    <a
+      href={brand.registerUrl}
+      target="_blank"
+      rel="nofollow sponsored noopener"
+      class={`text-xs font-bold py-2 px-4 rounded-lg transition-all text-white shadow-sm ${
+        brand.isPrimaryRecommendation
+          ? 'bg-blue-600 hover:bg-blue-700 shadow-blue-500/20'
+          : 'bg-slate-800 hover:bg-slate-900'
+      }`}
+    >
+      直达官网注册
+    </a>
+  </div>
+  <div class="text-[10px] text-slate-400 text-center mt-2">
+    含推广返佣链接 · 不影响用户实付价格
+  </div>
+</div>

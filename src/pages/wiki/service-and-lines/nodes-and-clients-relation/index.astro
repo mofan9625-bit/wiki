@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"wiki","name":"机场百科","slug":"wiki","url":"/wiki/","h1":"机场百科：线路、协议、网络指标与隐私边界知识体系","coreQuestion":"哪些概念和技术机制，会真正影响机场选择与使用？","theme":"理解技术","targetWords":"7,000–9,500 字","duty":"引用标准和技术规范，拒绝粗暴宣传语。严谨解释IPLC/IEPL、TCP/UDP/QUIC、TLS、分片MTU及数据边界。","megaTableCols":["技术术语/协议","层级分类","工作机制","相比传统优势","核心局限/风险","对日常体验影响","规范文档引用","相关条目"],"decisionLevels":4,"topics":[{"id":"service-and-lines","name":"服务结构与线路实体","slug":"service-and-lines","url":"/wiki/service-and-lines/","h1":"服务结构与线路实体：入口出口拓扑、IPLC/IEPL专线与中转直连","desc":"建立机场通信拓扑模型，界定客户端、订阅中心、中继入口、出口机房等实体关系。","clusters":[{"id":"nodes-and-clients-relation","name":"订阅节点与客户端","slug":"nodes-and-clients-relation","url":"/wiki/service-and-lines/nodes-and-clients-relation/","h1":"订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义","coreQuestion":"从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？","articles":[{"id":"art-wik-001","title":"机场服务是什么：组成与角色"},{"id":"art-wik-002","title":"客户端、订阅与节点的关系"},{"id":"art-wik-003","title":"服务组成概念图"},{"id":"art-wik-004","title":"服务实体的角色说明"},{"id":"art-wik-005","title":"订阅与节点的通信流程"},{"id":"art-wik-006","title":"订阅节点与客户端完整说明"}]},{"id":"entry-exit-and-line-tags","name":"入口出口与线路标签","slug":"entry-exit-and-line-tags","url":"/wiki/service-and-lines/entry-exit-and-line-tags/","h1":"入口出口与线路标签：IEPL内网专线、IPLC物理专线与普通BGP中转","coreQuestion":"商家宣传的IPLC与IEPL专线到底有什么区别？专线为什么不怕晚高峰？","articles":[{"id":"art-wik-007","title":"IEPL 专线说明"},{"id":"art-wik-008","title":"IPLC 专线说明"},{"id":"art-wik-009","title":"中转与直连的区别"},{"id":"art-wik-010","title":"线路类型的实际影响"},{"id":"art-wik-011","title":"线路标签与实际观测的区别"},{"id":"art-wik-012","title":"入口出口与线路标签完整说明"}]}]},{"id":"protocols-and-security","name":"传输协议与安全机制","slug":"protocols-and-security","url":"/wiki/protocols-and-security/","h1":"传输协议与安全机制：TCP/UDP/QUIC、TLS握手与VLESS/Trojan协议分层","desc":"依据IETF RFC深入解析网络丢包重传、QUIC多路复用以及现代轻量协议加密机制。","clusters":[{"id":"tcp-udp-and-quic","name":"TCP UDP与QUIC","slug":"tcp-udp-and-quic","url":"/wiki/protocols-and-security/tcp-udp-and-quic/","h1":"TCP UDP与QUIC：可靠传输、重传拥塞控制、多路复用与MTU分片","coreQuestion":"QUIC是基于UDP的，为什么不能把UDP协议都当成同一种体验？丢包时TCP怎样工作？","articles":[{"id":"art-wik-013","title":"TCP与UDP在代理连接中有什么区别？可靠传输、时延与应用需求解析"},{"id":"art-wik-014","title":"QUIC与UDP是什么关系？为什么不能把UDP协议都当作同一种体验"},{"id":"art-wik-015","title":"网络丢包时TCP连接会怎样变化？理解重传、拥塞控制与吞吐下降"},{"id":"art-wik-016","title":"QUIC的多路复用如何工作？与连接切换和应用传输有什么关系"},{"id":"art-wik-017","title":"长连接与短连接有什么区别？为什么网页浏览和持续输出需要不同观察指标"},{"id":"art-wik-018","title":"MTU与分片会怎样影响代理连接？从数据包大小理解异常与性能边界"}]},{"id":"tls-and-proxy-layers","name":"TLS与代理协议层次","slug":"tls-and-proxy-layers","url":"/wiki/protocols-and-security/tls-and-proxy-layers/","h1":"TLS与代理协议层次：TLS加密握手、VLESS、Trojan与Shadowsocks演进","coreQuestion":"VLESS协议为什么比传统VMess更轻快？Trojan的伪装原理是什么？","articles":[{"id":"art-wik-019","title":"TLS 加密基础"},{"id":"art-wik-020","title":"TLS 与代理协议的关系"},{"id":"art-wik-021","title":"VLESS 协议说明"},{"id":"art-wik-022","title":"Trojan 协议说明"},{"id":"art-wik-023","title":"Shadowsocks 协议说明"},{"id":"art-wik-024","title":"TLS与代理协议层次完整说明"}]}]},{"id":"performance-and-privacy","name":"网络性能与隐私边界","slug":"performance-and-privacy","url":"/wiki/performance-and-privacy/","h1":"网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别","desc":"厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。","clusters":[{"id":"metrics-and-meanings","name":"性能指标与测量含义","slug":"metrics-and-meanings","url":"/wiki/performance-and-privacy/metrics-and-meanings/","h1":"性能指标与测量含义：RTT延迟、抖动Jitter、丢包率与带宽吞吐差异","coreQuestion":"平时说的Ping值到底代表什么？带宽1000M为什么实际吞吐只有10M？","articles":[{"id":"art-wik-025","title":"延迟、抖动、丢包指标"},{"id":"art-wik-026","title":"带宽与吞吐的区别"},{"id":"art-wik-027","title":"峰值速度与持续速度"},{"id":"art-wik-028","title":"性能指标的测量方法"},{"id":"art-wik-029","title":"性能指标的解读"},{"id":"art-wik-030","title":"性能指标与测量含义完整说明"}]},{"id":"dns-ip-visibility","name":"DNS IP与数据可见性","slug":"dns-ip-visibility","url":"/wiki/performance-and-privacy/dns-ip-visibility/","h1":"DNS IP与数据可见性：DoH加密解析、fake-ip机制与原生/广播IP风控","coreQuestion":"机场老板能看到我浏览的网页内容和密码吗？原生IP和机房IP到底差在哪？","articles":[{"id":"art-wik-031","title":"DNS 解析流程"},{"id":"art-wik-032","title":"DNS over HTTPS 与 DNS over TLS"},{"id":"art-wik-033","title":"fake-ip 与 redir-host"},{"id":"art-wik-034","title":"原生 IP 与广播 IP"},{"id":"art-wik-035","title":"共享 IP 与独立 IP"},{"id":"art-wik-036","title":"DNS IP与数据可见性完整说明"}]}]}]};
+const topic = {"id":"service-and-lines","name":"服务结构与线路实体","slug":"service-and-lines","url":"/wiki/service-and-lines/","h1":"服务结构与线路实体：入口出口拓扑、IPLC/IEPL专线与中转直连","desc":"建立机场通信拓扑模型，界定客户端、订阅中心、中继入口、出口机房等实体关系。","clusters":[{"id":"nodes-and-clients-relation","name":"订阅节点与客户端","slug":"nodes-and-clients-relation","url":"/wiki/service-and-lines/nodes-and-clients-relation/","h1":"订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义","coreQuestion":"从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？","articles":[{"id":"art-wik-001","title":"机场服务是什么：组成与角色"},{"id":"art-wik-002","title":"客户端、订阅与节点的关系"},{"id":"art-wik-003","title":"服务组成概念图"},{"id":"art-wik-004","title":"服务实体的角色说明"},{"id":"art-wik-005","title":"订阅与节点的通信流程"},{"id":"art-wik-006","title":"订阅节点与客户端完整说明"}]},{"id":"entry-exit-and-line-tags","name":"入口出口与线路标签","slug":"entry-exit-and-line-tags","url":"/wiki/service-and-lines/entry-exit-and-line-tags/","h1":"入口出口与线路标签：IEPL内网专线、IPLC物理专线与普通BGP中转","coreQuestion":"商家宣传的IPLC与IEPL专线到底有什么区别？专线为什么不怕晚高峰？","articles":[{"id":"art-wik-007","title":"IEPL 专线说明"},{"id":"art-wik-008","title":"IPLC 专线说明"},{"id":"art-wik-009","title":"中转与直连的区别"},{"id":"art-wik-010","title":"线路类型的实际影响"},{"id":"art-wik-011","title":"线路标签与实际观测的区别"},{"id":"art-wik-012","title":"入口出口与线路标签完整说明"}]}]};
+const cluster = {"id":"nodes-and-clients-relation","name":"订阅节点与客户端","slug":"nodes-and-clients-relation","url":"/wiki/service-and-lines/nodes-and-clients-relation/","h1":"订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义","coreQuestion":"从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？","articles":[{"id":"art-wik-001","title":"机场服务是什么：组成与角色"},{"id":"art-wik-002","title":"客户端、订阅与节点的关系"},{"id":"art-wik-003","title":"服务组成概念图"},{"id":"art-wik-004","title":"服务实体的角色说明"},{"id":"art-wik-005","title":"订阅与节点的通信流程"},{"id":"art-wik-006","title":"订阅节点与客户端完整说明"}]};
+---
+
+<BaseLayout
+  title="订阅节点与客户端：订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义 - 机场wiki指南"
+  description="从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/wiki/service-and-lines/nodes-and-clients-relation/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场百科", url: "/wiki/" },
+    { name: "服务结构与线路实体", url: "/wiki/service-and-lines/" },
+    { name: "订阅节点与客户端", url: "/wiki/service-and-lines/nodes-and-clients-relation/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/wiki/service-and-lines/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：服务结构与线路实体
+      </a>
+      <a href="/wiki/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：机场百科 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

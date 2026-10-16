@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"reviews","name":"机场评测","slug":"reviews","url":"/reviews/","h1":"机场评测与测速：测试方法、稳定性证据和场景验收","coreQuestion":"推荐结论依据什么，测试结果能说明什么、不能说明什么？","theme":"核对品牌与证据","targetWords":"7,000–9,500 字","duty":"负责测试依据，推荐栏目负责稳定性选型。区分测试环境、端点、单多线程、中位数与P95，不把短期观测外推全年。","megaTableCols":["测试编号","评测品牌","测试项目","实测吞吐","平均延迟","丢包率(高峰/平峰)","测试端点","测试环境与版本","证据状态"],"decisionLevels":4,"topics":[{"id":"test-methodology","name":"测试环境与方法","slug":"test-methodology","url":"/reviews/test-methodology/","h1":"测试环境与方法：基线控制、测试工具与可复现统计","desc":"公开软硬件测试环境、端点配置、采样样本量与定期复测修正准则。","clusters":[{"id":"env-control-and-baseline","name":"环境控制与基线","slug":"env-control-and-baseline","url":"/reviews/test-methodology/env-control-and-baseline/","h1":"环境控制与基线：测试硬件、本地网络、客户端版本与对齐基准","coreQuestion":"为什么不同人在同一家机场测出来的速度天差地别？基线如何控制？","articles":[{"id":"art-rev-001","title":"机场测试环境说明：设备、网络、客户端与端点"},{"id":"art-rev-002","title":"测试基线与对比说明"},{"id":"art-rev-003","title":"测试条件的可重复性核对"},{"id":"art-rev-004","title":"测试工具与版本说明"},{"id":"art-rev-005","title":"测试环境记录方法"},{"id":"art-rev-006","title":"环境控制与基线完整说明"}]},{"id":"sampling-and-recheck","name":"采样统计与结果复核","slug":"sampling-and-recheck","url":"/reviews/test-methodology/sampling-and-recheck/","h1":"采样统计与结果复核：采样频率、中位数与P95指标与复测机制","coreQuestion":"为什么测速不能看单次峰值截图？为什么中位数比平均数更有参考价值？","articles":[{"id":"art-rev-007","title":"采样频率与样本量"},{"id":"art-rev-008","title":"延迟中位数与 P95 的区别"},{"id":"art-rev-009","title":"测试结果的统计口径"},{"id":"art-rev-010","title":"复测频率与结论更新"},{"id":"art-rev-011","title":"复测结果不一致时的处理"},{"id":"art-rev-012","title":"采样统计与结果复核完整说明"}]}]},{"id":"speed-and-stability","name":"速度延迟与持续稳定","slug":"speed-and-stability","url":"/reviews/speed-and-stability/","h1":"速度延迟与持续稳定：吞吐测量、高峰波动与中断记录","desc":"记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。","clusters":[{"id":"throughput-and-latency","name":"吞吐与响应测量","slug":"throughput-and-latency","url":"/reviews/speed-and-stability/throughput-and-latency/","h1":"吞吐与响应测量：单线程多线程测速、端点选择与持续速率","coreQuestion":"Speedtest跑满千兆，为什么实际看网页依然转圈？怎样科学测量吞吐？","articles":[{"id":"art-rev-013","title":"机场下载速度测试方法：单位与方向"},{"id":"art-rev-014","title":"单线程与多线程测速的区别"},{"id":"art-rev-015","title":"测速端点选择与影响"},{"id":"art-rev-016","title":"峰值速度与持续速度的区别"},{"id":"art-rev-017","title":"测速结果的解读与局限"},{"id":"art-rev-018","title":"吞吐与响应测量完整指南"}]},{"id":"peak-fluctuation-outage","name":"高峰波动与中断记录","slug":"peak-fluctuation-outage","url":"/reviews/speed-and-stability/peak-fluctuation-outage/","h1":"高峰波动与中断记录：晚高峰成功率、断流频率与故障恢复窗口","coreQuestion":"平时很好用一到晚上就断流？如何通过连续观测记录量化高峰可用性？","articles":[{"id":"art-rev-019","title":"机场可用性如何测量：成功标准与观察窗口"},{"id":"art-rev-020","title":"连接成功率与失败次数的统计方法"},{"id":"art-rev-021","title":"断连与重连的观察记录"},{"id":"art-rev-022","title":"恢复时间的测量方法"},{"id":"art-rev-023","title":"短期观测不外推全年：观察范围说明"},{"id":"art-rev-024","title":"高峰波动与中断记录完整说明"}]}]},{"id":"real-scenario-verification","name":"真实应用场景核验","slug":"real-scenario-verification","url":"/reviews/real-scenario-verification/","h1":"真实应用场景核验：AI生产力、大文件传输与高码率视频播放","desc":"超越单纯合成测试，针对ChatGPT、Claude长文本生成及YouTube 4K连续播放实测验收。","clusters":[{"id":"ai-verification-method","name":"AI能力验证方法","slug":"ai-verification-method","url":"/reviews/real-scenario-verification/ai-verification-method/","h1":"AI能力验证方法：对话流式传输、API长连接与编程插件实测","coreQuestion":"怎样检验一个机场节点是否真正稳定支持AI对话、长流式输出与API调用？","articles":[{"id":"art-rev-025","title":"网页浏览任务测试方法"},{"id":"art-rev-026","title":"文件传输任务测试方法"},{"id":"art-rev-027","title":"AI 工具任务测试方法"},{"id":"art-rev-028","title":"AI 编程连接测试方法"},{"id":"art-rev-029","title":"多任务并行测试方法"},{"id":"art-rev-030","title":"AI能力验证方法完整说明"}]},{"id":"video-verification-method","name":"视频播放验证方法","slug":"video-verification-method","url":"/reviews/real-scenario-verification/video-verification-method/","h1":"视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对","coreQuestion":"如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？","articles":[{"id":"art-rev-031","title":"视频播放任务测试方法"},{"id":"art-rev-032","title":"4K 播放的网络要求"},{"id":"art-rev-033","title":"视频画质的判断方法"},{"id":"art-rev-034","title":"卡顿排查方法"},{"id":"art-rev-035","title":"视频观看体验的验证"},{"id":"art-rev-036","title":"视频播放验证方法完整说明"}]}]}]};
+const topic = {"id":"real-scenario-verification","name":"真实应用场景核验","slug":"real-scenario-verification","url":"/reviews/real-scenario-verification/","h1":"真实应用场景核验：AI生产力、大文件传输与高码率视频播放","desc":"超越单纯合成测试，针对ChatGPT、Claude长文本生成及YouTube 4K连续播放实测验收。","clusters":[{"id":"ai-verification-method","name":"AI能力验证方法","slug":"ai-verification-method","url":"/reviews/real-scenario-verification/ai-verification-method/","h1":"AI能力验证方法：对话流式传输、API长连接与编程插件实测","coreQuestion":"怎样检验一个机场节点是否真正稳定支持AI对话、长流式输出与API调用？","articles":[{"id":"art-rev-025","title":"网页浏览任务测试方法"},{"id":"art-rev-026","title":"文件传输任务测试方法"},{"id":"art-rev-027","title":"AI 工具任务测试方法"},{"id":"art-rev-028","title":"AI 编程连接测试方法"},{"id":"art-rev-029","title":"多任务并行测试方法"},{"id":"art-rev-030","title":"AI能力验证方法完整说明"}]},{"id":"video-verification-method","name":"视频播放验证方法","slug":"video-verification-method","url":"/reviews/real-scenario-verification/video-verification-method/","h1":"视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对","coreQuestion":"如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？","articles":[{"id":"art-rev-031","title":"视频播放任务测试方法"},{"id":"art-rev-032","title":"4K 播放的网络要求"},{"id":"art-rev-033","title":"视频画质的判断方法"},{"id":"art-rev-034","title":"卡顿排查方法"},{"id":"art-rev-035","title":"视频观看体验的验证"},{"id":"art-rev-036","title":"视频播放验证方法完整说明"}]}]};
+const cluster = {"id":"video-verification-method","name":"视频播放验证方法","slug":"video-verification-method","url":"/reviews/real-scenario-verification/video-verification-method/","h1":"视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对","coreQuestion":"如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？","articles":[{"id":"art-rev-031","title":"视频播放任务测试方法"},{"id":"art-rev-032","title":"4K 播放的网络要求"},{"id":"art-rev-033","title":"视频画质的判断方法"},{"id":"art-rev-034","title":"卡顿排查方法"},{"id":"art-rev-035","title":"视频观看体验的验证"},{"id":"art-rev-036","title":"视频播放验证方法完整说明"}]};
+---
+
+<BaseLayout
+  title="视频播放验证方法：视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对 - 机场wiki指南"
+  description="如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/reviews/real-scenario-verification/video-verification-method/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场评测", url: "/reviews/" },
+    { name: "真实应用场景核验", url: "/reviews/real-scenario-verification/" },
+    { name: "视频播放验证方法", url: "/reviews/real-scenario-verification/video-verification-method/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/reviews/real-scenario-verification/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：真实应用场景核验
+      </a>
+      <a href="/reviews/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：机场评测 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

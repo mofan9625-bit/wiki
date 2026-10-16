@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "隐私说明与数据安全声明";
+const pageDesc = "零日志原则、本地分析、Cookies 使用及数据安全说明。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p>「机场wiki指南」为纯静态托管站点：</p><ul><li>我们不提供用户注册，不收集任何用户个人身份信息与密码凭据。</li><li>本站不记录访问者的具体 IP 浏览日志。</li><li>本站采用纯静态 Pagefind 客户端检索，搜索关键词完全在您的浏览器本地内存中执行匹配，不上传服务器。</li></ul>
+    </div>
+  </div>
+</BaseLayout>

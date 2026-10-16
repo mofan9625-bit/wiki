@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"plans","name":"套餐对比","slug":"plans","url":"/plans/","h1":"机场套餐对比：付款周期、流量计量与总成本计算","coreQuestion":"这些套餐的价格和规则，应该怎样放在同一个口径下比较？","theme":"比较购买条件","targetWords":"7,000–9,500 字","duty":"比较单位是具体套餐，而不是只列品牌最低价。横向打通周期、倍率、有效期与升降级退款规则。","megaTableCols":["套餐全称","所属品牌","实际付款金额","计费周期","流量额度","流量重置方式","倍率区间","设备并发限制","核验状态"],"decisionLevels":4,"topics":[{"id":"billing-cycles","name":"付款周期与流量包","slug":"billing-cycles","url":"/plans/billing-cycles/","h1":"付款周期与流量包：月付季付年付与不限时按量规则","desc":"比较各计费周期的灵活性与实际总额，解析不限时流量包与账户有效期的法律约束。","clusters":[{"id":"cycle-comparison","name":"月付季付与年付","slug":"cycle-comparison","url":"/plans/billing-cycles/cycle-comparison/","h1":"月付季付与年付：支出模型、周期灵活性与匹配原则","coreQuestion":"月付、季付、年付该怎么比？怎样平衡资金占用与折扣力度？","articles":[{"id":"art-plan-001","title":"月付、季付、年付的对比方法"},{"id":"art-plan-002","title":"不同付款周期的总支出计算"},{"id":"art-plan-003","title":"付款周期与使用频率匹配"},{"id":"art-plan-004","title":"付款周期与灵活性的取舍"},{"id":"art-plan-005","title":"付款周期选择决策框架"},{"id":"art-plan-006","title":"月付、季付与年付完整对比"}]},{"id":"non-expiring-and-metered","name":"不限时与按量规则","slug":"non-expiring-and-metered","url":"/plans/billing-cycles/non-expiring-and-metered/","h1":"不限时与按量规则：流量与账户有效期分离、叠加与补购","coreQuestion":"所谓不限时流量包真的永远不过期吗？多个流量包叠加后如何扣费？","articles":[{"id":"art-plan-007","title":"不限时机场套餐是什么意思？流量有效期与账户有效期需要分开看"},{"id":"art-plan-008","title":"按量付费机场怎样计算每GB成本？加入倍率与附加费用的比较方法"},{"id":"art-plan-009","title":"不限时流量包与月付套餐的盈亏平衡点怎么算？"},{"id":"art-plan-010","title":"多个不限时流量包叠加后先扣哪一份？购买前核对消耗顺序"},{"id":"art-plan-011","title":"机场流量包有到期日还算不限时吗？识别宣传名称与实际规则"},{"id":"art-plan-012","title":"流量包用完后补购还是改月付？根据后续用量重新计算"}]}]},{"id":"metering-and-limits","name":"流量计量与使用限制","slug":"metering-and-limits","url":"/plans/metering-and-limits/","h1":"流量计量与使用限制：倍率机制、重置周期与并发限制","desc":"详细核对GB与GiB口径、单向与双向扣费、设备连接上限与限速规则。","clusters":[{"id":"rate-multiplier-and-units","name":"额度单位与流量倍率","slug":"rate-multiplier-and-units","url":"/plans/metering-and-limits/rate-multiplier-and-units/","h1":"额度单位与流量倍率：上下行计费、重置日与耗尽熔断","coreQuestion":"为什么看了一个10GB视频却扣了30GB流量？如何核验节点倍率？","articles":[{"id":"art-plan-013","title":"流量计量口径说明：原始单位与统计方式"},{"id":"art-plan-014","title":"流量倍率的应用与影响"},{"id":"art-plan-015","title":"上下行计费的差异"},{"id":"art-plan-016","title":"流量重置周期的说明"},{"id":"art-plan-017","title":"流量耗尽后的处理规则"},{"id":"art-plan-018","title":"额度单位与流量倍率完整对比"}]},{"id":"speed-limit-concurrency","name":"限速并发与设备规则","slug":"speed-limit-concurrency","url":"/plans/metering-and-limits/speed-limit-concurrency/","h1":"限速并发与设备规则：连接数、带宽峰值与多端限制","coreQuestion":"套餐标明不限设备，为什么宿舍多几个人连就频繁断线？","articles":[{"id":"art-plan-019","title":"客户端兼容性对比"},{"id":"art-plan-020","title":"协议支持对比"},{"id":"art-plan-021","title":"设备数量限制对比"},{"id":"art-plan-022","title":"并发连接限制对比"},{"id":"art-plan-023","title":"附加功能对比"},{"id":"art-plan-024","title":"限速并发与设备规则完整说明"}]}]},{"id":"plan-management","name":"套餐变更与权益管理","slug":"plan-management","url":"/plans/plan-management/","h1":"套餐变更与权益管理：补差价升级、续费及余额处置","desc":"规范升级降级折算方法、未到期退款申请与废弃账号余额处置流程。","clusters":[{"id":"upgrade-downgrade-diff","name":"升级降级与补差价","slug":"upgrade-downgrade-diff","url":"/plans/plan-management/upgrade-downgrade-diff/","h1":"升级降级与补差价：生效时间、折算规则与流量重置","coreQuestion":"月中流量不够用了，补差价升级套餐是立即生效还是下月生效？","articles":[{"id":"art-plan-025","title":"套餐升级方法与注意事项"},{"id":"art-plan-026","title":"套餐降级方法与限制"},{"id":"art-plan-027","title":"升级降级的补差价计算"},{"id":"art-plan-028","title":"套餐变更的生效时间"},{"id":"art-plan-029","title":"套餐变更的影响范围"},{"id":"art-plan-030","title":"升级降级完整说明"}]},{"id":"renewal-stop-balance","name":"续费停止与余额处置","slug":"renewal-stop-balance","url":"/plans/plan-management/renewal-stop-balance/","h1":"续费停止与余额处置：到期停机、退款核验与剩余资产清算","coreQuestion":"不再使用该机场后，账户里的充值余额能不能原路提现退款？","articles":[{"id":"art-plan-031","title":"套餐续费方法"},{"id":"art-plan-032","title":"套餐停止使用流程"},{"id":"art-plan-033","title":"余额与流量处置规则"},{"id":"art-plan-034","title":"退款政策核对"},{"id":"art-plan-035","title":"续费与停止的影响说明"},{"id":"art-plan-036","title":"续费停止与余额处置完整说明"}]}]}]};
+const topic = {"id":"plan-management","name":"套餐变更与权益管理","slug":"plan-management","url":"/plans/plan-management/","h1":"套餐变更与权益管理：补差价升级、续费及余额处置","desc":"规范升级降级折算方法、未到期退款申请与废弃账号余额处置流程。","clusters":[{"id":"upgrade-downgrade-diff","name":"升级降级与补差价","slug":"upgrade-downgrade-diff","url":"/plans/plan-management/upgrade-downgrade-diff/","h1":"升级降级与补差价：生效时间、折算规则与流量重置","coreQuestion":"月中流量不够用了，补差价升级套餐是立即生效还是下月生效？","articles":[{"id":"art-plan-025","title":"套餐升级方法与注意事项"},{"id":"art-plan-026","title":"套餐降级方法与限制"},{"id":"art-plan-027","title":"升级降级的补差价计算"},{"id":"art-plan-028","title":"套餐变更的生效时间"},{"id":"art-plan-029","title":"套餐变更的影响范围"},{"id":"art-plan-030","title":"升级降级完整说明"}]},{"id":"renewal-stop-balance","name":"续费停止与余额处置","slug":"renewal-stop-balance","url":"/plans/plan-management/renewal-stop-balance/","h1":"续费停止与余额处置：到期停机、退款核验与剩余资产清算","coreQuestion":"不再使用该机场后，账户里的充值余额能不能原路提现退款？","articles":[{"id":"art-plan-031","title":"套餐续费方法"},{"id":"art-plan-032","title":"套餐停止使用流程"},{"id":"art-plan-033","title":"余额与流量处置规则"},{"id":"art-plan-034","title":"退款政策核对"},{"id":"art-plan-035","title":"续费与停止的影响说明"},{"id":"art-plan-036","title":"续费停止与余额处置完整说明"}]}]};
+const topicArticles = [{"id":"art-plan-025","title":"套餐升级方法与注意事项","clusterName":"升级降级与补差价"},{"id":"art-plan-026","title":"套餐降级方法与限制","clusterName":"升级降级与补差价"},{"id":"art-plan-027","title":"升级降级的补差价计算","clusterName":"升级降级与补差价"},{"id":"art-plan-028","title":"套餐变更的生效时间","clusterName":"升级降级与补差价"},{"id":"art-plan-029","title":"套餐变更的影响范围","clusterName":"升级降级与补差价"},{"id":"art-plan-030","title":"升级降级完整说明","clusterName":"升级降级与补差价"},{"id":"art-plan-031","title":"套餐续费方法","clusterName":"续费停止与余额处置"},{"id":"art-plan-032","title":"套餐停止使用流程","clusterName":"续费停止与余额处置"},{"id":"art-plan-033","title":"余额与流量处置规则","clusterName":"续费停止与余额处置"},{"id":"art-plan-034","title":"退款政策核对","clusterName":"续费停止与余额处置"},{"id":"art-plan-035","title":"续费与停止的影响说明","clusterName":"续费停止与余额处置"},{"id":"art-plan-036","title":"续费停止与余额处置完整说明","clusterName":"续费停止与余额处置"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「升级降级与补差价」着重解决基础选型与前置决策；子集群「续费停止与余额处置」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="套餐变更与权益管理：套餐变更与权益管理：补差价升级、续费及余额处置 - 机场wiki指南"
+  description="规范升级降级折算方法、未到期退款申请与废弃账号余额处置流程。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/plans/plan-management/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "套餐对比", url: "/plans/" },
+    { name: "套餐变更与权益管理", url: "/plans/plan-management/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：套餐对比 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        套餐变更与权益管理：补差价升级、续费及余额处置
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        规范升级降级折算方法、未到期退款申请与废弃账号余额处置流程。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="套餐变更与权益管理 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

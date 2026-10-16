@@ -1,0 +1,320 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BrandCard from "@/components/BrandCard.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import ComparisonTable from "@/components/ComparisonTable.astro";
+import DecisionTree from "@/components/DecisionTree.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import servicesData from "@/data/services.json";
+import { PILLARS_CONFIG } from "../../data_catalog.mjs";
+
+const targetTopBrands = [
+  { id: "yunjiexian", rank: 1, isPrimary: true, reason: "2024年稳定运营，全IEPL专线，低预算首选主力方案" },
+  { id: "dalaoyun", rank: 2, isPrimary: false, reason: "超低预算IEPL专线，高性价比备用首选" },
+  { id: "huanqiuti", rank: 3, isPrimary: false, reason: "经济型轻度专线服务，高性价比备用方案" },
+  { id: "liulianyun", rank: 4, isPrimary: false, reason: "超经济专线中继，轻量备用高性价比之选" },
+  { id: "shandianshu", rank: 5, isPrimary: false, reason: "轻量级低资费专线服务，5.6元/月极致入门备用" },
+  { id: "shenxing", rank: 6, isPrimary: false, reason: "平价大容量IEPL专线，120GB月配额高性价比备用" }
+];
+
+const featuredBrands = targetTopBrands.map((target) => {
+  const brandObj = servicesData.find((b: any) => b.id === target.id) || {};
+  return {
+    ...brandObj,
+    rank: target.rank,
+    isPrimaryRecommendation: target.isPrimary,
+    featuredReason: target.reason
+  };
+});
+
+const megaHeaders = [
+  "品牌名称",
+  "综合定位",
+  "最低月付",
+  "入门套餐规格",
+  "线路通道",
+  "协议支持",
+  "核心优势",
+  "限制与须知",
+  "官网直达"
+];
+
+// Top 6 brands in exact requested order
+const allOrderedBrands = featuredBrands;
+
+const megaRows = allOrderedBrands.map((b: any, index: number) => {
+  const isTop1 = b.id === "yunjiexian" || index === 0;
+  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
+    ? b.registerUrl
+    : `/airports/${b.id}/`;
+
+  return [
+    b.name,
+    isTop1 ? "★ 首选主力专线" : "高性价比备用",
+    b.minPayment ? `${b.minPayment} 元/月` : "待核验",
+    b.entryPlan || "轻量入门版",
+    b.lineType,
+    b.protocols,
+    b.highlights ? b.highlights[0] : "高速接入",
+    b.limitations && b.limitations.length > 0 ? b.limitations[0] : "遵守服务协议",
+    {
+      text: isTop1 ? "★ 主推入口" : "官网通道",
+      url: targetUrl,
+      isPrimary: isTop1
+    }
+  ];
+});
+
+const homeFaqs = [
+  { q: "机场wiki指南是做什么的？和一般的推荐博客有什么区别？", a: "本站是以机场选型为核心的独立第三方中文知识库。我们坚决摒弃广告竞价排序，所有推荐均由品牌公开资料、真实晚高峰测速、套餐总额演算、多端配置教程和底层网络原理支撑，并对所有推广返佣关系透明披露。" },
+  { q: "站内推荐的机场会不会跑路？如何防范风险？", a: "任何商业网络服务均无法保证永久不跑路。本站核心防御原则是：新手坚决优先月付或按量购买，绝不贪图便宜盲目充值多年；同时建立主力专线加平价备用的双节点冗余策略。" },
+  { q: "为什么云界线被列为本站首选主推方案？", a: "云界线自2024年稳定运营，采用全IEPL企业内网专线与VLESS现代化协议，折算月付仅约5.6元起，在极低预算门槛的同时保障了晚高峰抗波动能力，在性价比与稳定性上综合评分位居首位。" },
+  { q: "免费机场和付费机场有什么本质区别？", a: "免费公益资源通常存在服务器带宽拥挤、无可用率SLA保证、协议较老易受干扰，且部分公开订阅存在DNS污染与中间人嗅探隐患。付费服务则购买了独享骨干内网专线带宽与技术运维支持。" },
+  { q: "访问ChatGPT或Claude需要什么样的机场支持？", a: "AI工具风控极其严格，机房广播IP容易遭遇Access Denied拦截。需要选用配备纯净原生机房IP、低丢包专线，且未被OpenAI大面积封禁网段的节点服务。" },
+  { q: "看Netflix或YouTube 4K对机场有什么要求？", a: "观看4K高码率视频要求持续下行吞吐稳定在25Mbps以上，且晚高峰丢包率需低于1%。Netflix非自制剧播放还需要出口IP具备当地原生住宅或商用双ISP家宽判定。" },
+  { q: "电脑和手机分别推荐使用什么客户端？", a: "Windows推荐Clash Verge Rev或v2rayN；macOS推荐Clash Verge Rev；Android推荐FlClash或v2rayNG；iOS推荐Shadowrocket（小火箭）。本站客户端教程均提供官方正版验证来源。" },
+  { q: "遇到连上节点却打不开网页怎么排查？", a: "请进入本站「网络排障」栏目，通常为本机系统代理注册表死锁、TUN虚拟网卡权限冲突或DNS污染导致。按照我们的六步排障决策树通常可在3分钟内自愈恢复。" },
+  { q: "本站引用的价格和优惠码多久核验一次？", a: "编辑部建立每月例行核验与突发变动3日复核机制。所有优惠码均标注最后实测生效日期与折后实际节省金额，失效代码定期归档公示。" },
+  { q: "本站是否提供节点订阅销售？", a: "否。本站为纯粹的内容知识库与选型指南，不销售任何节点，不运营任何代理服务器，与任何服务商无股权或雇佣隶属关系。" }
+];
+
+const homeDecisionTree = `[ 用户选型核心需求分流 ]
+  │
+  ├── 1. 办公核心主力 / AI开发 / 4K影音 / 追求极致省心
+  │     ├── 需要高稳定专线 + 低预算门槛 ─────────> 首选：云界线 (IEPL专线 + VLESS)
+  │     └── 高并发多设备家庭全家桶 ────────────────> 考虑：神行加速 / 闪电鼠
+  │
+  ├── 2. 严格控制预算 / 偶尔查资料 / 备用应急节点
+  │     ├── 月预算在 5–8 元区间 ──────────────────> 方案：大佬云 / 环球梯 / 榴莲云
+  │     └── 每年仅使用几次，拒绝月租空耗 ─────────> 方案：按量付费流量包
+  │
+  └── 3. 遇到连接故障 / 软件下载 / 原理求知
+        ├── 客户端下载与订阅导入 ─────────────────> 查阅：客户端教程 (/clients/)
+        ├── 连不上 / 订阅报错 / 节点超时 ─────────> 查阅：网络排障 (/troubleshooting/)
+        └── 搞懂专线/协议/延迟与丢包原理 ─────────> 查阅：机场百科 (/wiki/)`;
+
+const homeItemListSchema = {
+  "@type": "ItemList",
+  "name": "2026核心推荐机场精选榜单",
+  "description": "基于稳定性、线路类型、协议支持及性价比精选的推荐服务商有序榜单",
+  "itemListOrder": "https://schema.org/ItemListOrderAscending",
+  "numberOfItems": 6,
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position": 1,
+      "name": "云界线",
+      "url": "https://jichangwiki.cc/airports/yunjiexian/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 2,
+      "name": "大佬云",
+      "url": "https://jichangwiki.cc/airports/dalaoyun/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 3,
+      "name": "环球梯",
+      "url": "https://jichangwiki.cc/airports/huanqiuti/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 4,
+      "name": "榴莲云",
+      "url": "https://jichangwiki.cc/airports/liulianyun/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 5,
+      "name": "闪电鼠",
+      "url": "https://jichangwiki.cc/airports/shandianshu/"
+    },
+    {
+      "@type": "ListItem",
+      "position": 6,
+      "name": "神行加速",
+      "url": "https://jichangwiki.cc/airports/shenxing/"
+    }
+  ]
+};
+
+const homeFAQSchema = {
+  "@type": "FAQPage",
+  "mainEntity": homeFaqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.q,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.a
+    }
+  }))
+};
+
+const homeJsonLd = {
+  "@graph": [homeItemListSchema, homeFAQSchema]
+};
+---
+
+<BaseLayout
+  title="机场wiki指南：以机场选型为核心的中文知识库与评测中心"
+  description="机场wiki指南（jichangwiki.cc）是独立的第三方机场选购与使用指南，基于6 家核心品牌公开资料、真实测速、套餐精算、客户端教程与网络原理，为您提供科学透明的选型决策支撑。"
+  canonicalUrl="https://jichangwiki.cc/"
+  jsonLd={homeJsonLd}
+>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-slate-50 via-white to-white border-b border-slate-100 pt-12 pb-16">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl">
+        <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-4">
+          <span class="w-2 h-2 rounded-full bg-blue-600 animate-pulse"></span>
+          <span>独立第三方中文知识库 · 2026 最新核验版</span>
+        </div>
+        <h1 class="text-3xl sm:text-5xl font-extrabold text-slate-900 tracking-tight leading-tight mb-6">
+          以机场选型为核心，<br />
+          用资料、计算与证据支撑选择
+        </h1>
+        <p class="text-lg sm:text-xl text-slate-600 leading-relaxed mb-8">
+          提出需求 → 找到候选机场 → 比较套餐与使用条件 → 查阅证据 → 购买并使用 → 解决问题 → 理解背后的原理。拒绝虚假竞价排名，坚持真实事实。
+        </p>
+
+        <!-- Quick Jump Pillars -->
+        <div class="flex flex-wrap gap-2.5">
+          <a href="/recommend/" class="px-4 py-2.5 rounded-lg bg-blue-600 text-white font-semibold text-sm hover:bg-blue-700 shadow-sm transition-all">
+            机场推荐榜单 →
+          </a>
+          <a href="/cheap/" class="px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-semibold text-sm hover:border-slate-300 hover:bg-slate-50 transition-all">
+            平价与低预算方案
+          </a>
+          <a href="/ai/" class="px-4 py-2.5 rounded-lg bg-white border border-slate-200 text-slate-700 font-semibold text-sm hover:border-slate-300 hover:bg-slate-50 transition-all">
+            AI 专用选型
+          </a>
+          <a href="/sitemap/" class="px-4 py-2.5 rounded-lg bg-slate-100 text-slate-700 font-semibold text-sm hover:bg-slate-200 transition-all">
+            全站地图 (553 节点)
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <!-- Commercial Transparency Banner -->
+    <CommercialDisclosure />
+
+    <!-- Section 1: Quick Choice Matrix & Featured Brands -->
+    <section class="my-12">
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-6 pb-3 border-b border-slate-200">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-blue-600">快速决策首选</span>
+          <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-1">
+            已核验候选机场与主推方案
+          </h2>
+        </div>
+        <a href="/recommend/" class="text-sm font-semibold text-blue-600 hover:underline mt-2 sm:mt-0">
+          查看 6 家核心品牌对比大盘 →
+        </a>
+      </div>
+
+      <!-- Grid of top 6 verified brands -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featuredBrands.map((b: any) => (
+          <BrandCard
+            brand={b}
+            featuredReason={b.featuredReason}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 2: Decision Tree -->
+    <section class="my-12">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">选型快速决策树</h2>
+      <p class="text-sm text-slate-500 mb-4">按预算、主力任务及网络故障多维分支快速对齐合适路径：</p>
+      <DecisionTree treeText={homeDecisionTree} />
+    </section>
+
+    <!-- Section 3: Mega Comparison Table -->
+    <section class="my-12">
+      <div class="flex items-center justify-between mb-2">
+        <h2 class="text-2xl font-bold text-slate-900">核心品牌综合参数大盘</h2>
+        <a href="/plans/" class="text-sm font-semibold text-blue-600 hover:underline">
+          套餐精算详情 →
+        </a>
+      </div>
+      <p class="text-sm text-slate-500 mb-4">严格记录价格币种、专线属性及真实限制，未知值绝不以0填充：</p>
+      <ComparisonTable
+        headers={megaHeaders}
+        rows={megaRows}
+        caption="核心主流服务商横向对照表 (2026 核验)"
+      />
+    </section>
+
+    <!-- Section 4: 12 Pillar Hubs Directory Cards -->
+    <section class="my-16">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <h2 class="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
+          12 个一级专业栏目知识库
+        </h2>
+        <p class="text-sm sm:text-base text-slate-500 mt-2">
+          每个一级栏目均为独立长篇 Pillar Hub，涵盖巨幅对比表、ASCII 决策树、机制原理解析与 FAQ 矩阵。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {PILLARS_CONFIG.map((p, idx) => (
+          <div class="card flex flex-col justify-between hover:border-blue-500 hover:shadow-md transition-all">
+            <div>
+              <div class="flex items-center justify-between mb-2">
+                <span class="text-xs font-mono font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded">
+                  栏目 0{idx + 1}
+                </span>
+                <span class="text-xs text-slate-400 font-medium">36 篇文章</span>
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-1">
+                <a href={p.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                  {p.name}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-4">
+                {p.h1}
+              </p>
+            </div>
+            <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-xs font-semibold text-blue-600">
+              <a href={p.url} class="hover:underline flex items-center space-x-1">
+                <span>进入主入口 (≥7000字)</span>
+                <span>→</span>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- Section 5: Long-form Systematic Analysis Article -->
+    <section class="my-16 bg-slate-50 rounded-2xl p-6 sm:p-10 border border-slate-200">
+      <div class="article-content max-w-none">
+        <h2>选型长文深度展开：如何建立科学的机场决策模型</h2>
+        <p>
+          在当今跨境网络使用环境中，用户常面临大量信息不对称：网络充斥着充值返佣驱动的虚假排行榜、夸大承诺的“不限速不限量”宣传，以及频发的跑路事件。要建立稳定可靠的网络环境，必须从底层逻辑厘清核心要素。
+        </p>
+        <h3>一、六类内容职责严谨区分</h3>
+        <p>
+          在「机场wiki指南」中，我们严格划分六类内容职责，杜绝跨界混淆：选购型页面（推荐、便宜、免费）负责直接给出候选机场与适合人群；用途型页面（AI、流媒体）负责工具风控与画质要求；购买条件页面（套餐、优惠码）精算实际支出与倍率；证据型页面（评测、大全）记录测试采样与档案；使用型页面（客户端、排障）解决正常连接与故障自愈；技术型页面（百科）阐释底层协议与网络原理。
+        </p>
+        <h3>二、月付与年付的资金安全分水岭</h3>
+        <p>
+          许多机场提供年付打五折甚至三折的优惠，折算下来每月极低。但必须清醒认识到：年付是将一整年的服务风险完全提前预付。对于新用户而言，服务质量是否满足晚高峰、是否与本地运营商（电信/联通/移动）匹配，必须经过至少一个完整自然月的真实高频检验。只有在通过关键业务验收、且具备承受预付资金损失心理预期的前提下，年付折扣才具有实际经济意义。
+        </p>
+        <h3>三、专线与公网直连的抗波动差异</h3>
+        <p>
+          许多低价服务采用普通公网直连或普通中转，晚高峰国际出口拥堵时丢包率迅速飙升至20%以上，导致网页转圈甚至完全断连。而优质IEPL或IPLC企业内网专线通过陆地物理光缆或内网隧道点对点直达海外机房，不经过公网国际审查节点，晚高峰丢包率通常稳定在1%以内，这是保障ChatGPT长时间对话与视频流流畅的根本物理基础。
+        </p>
+      </div>
+    </section>
+
+    <!-- Section 6: Homepage FAQs -->
+    <section class="my-12">
+      <FAQAccordion faqs={homeFaqs} title="机场选型通用常见疑问 (FAQ)" />
+    </section>
+  </div>
+</BaseLayout>

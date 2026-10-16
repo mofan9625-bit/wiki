@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"troubleshooting","name":"网络排障","slug":"troubleshooting","url":"/troubleshooting/","h1":"机场网络排障：订阅失败、连接超时与应用异常处理指南","coreQuestion":"问题发生在哪一层，接下来应该检查什么？","theme":"完成使用","targetWords":"7,000–9,500 字","duty":"严禁把所有问题归结为换一家机场。操作包含条件、步骤、预期结果、异常解释与回滚。定位从订阅、解析、系统、链路到具体应用。","megaTableCols":["故障现象","可能原因层级","首要排查步骤","验证与恢复标准","常见错误代码","回滚操作","关联排障文档"],"decisionLevels":4,"topics":[{"id":"subscription-issues","name":"订阅获取与格式错误","slug":"subscription-issues","url":"/troubleshooting/subscription-issues/","h1":"订阅获取与格式错误：HTTP 403/404报错、更新超时与YAML解析失败","desc":"解决订阅下载中断、证书报错、配置格式不符合Clash标准及节点列表为空故障。","clusters":[{"id":"sub-url-access-failure","name":"订阅地址访问失败","slug":"sub-url-access-failure","url":"/troubleshooting/subscription-issues/sub-url-access-failure/","h1":"订阅地址访问失败：更新超时、403 Forbidden、404 Not Found排查","coreQuestion":"订阅更新报错403或连接超时，为什么浏览器能打开而客户端却不行？","articles":[{"id":"art-trb-001","title":"订阅更新失败怎么办"},{"id":"art-trb-002","title":"订阅返回 403 处理"},{"id":"art-trb-003","title":"订阅返回 404 处理"},{"id":"art-trb-004","title":"订阅下载超时处理"},{"id":"art-trb-005","title":"浏览器能打开但客户端失败"},{"id":"art-trb-006","title":"订阅地址访问失败完整说明"}]},{"id":"sub-parse-and-auth","name":"格式解析与配置认证","slug":"sub-parse-and-auth","url":"/troubleshooting/subscription-issues/sub-parse-and-auth/","h1":"格式解析与配置认证：YAML语法错误、协议不支持与节点过滤异常","coreQuestion":"订阅成功拉取但节点列表空空如也，或者提示YAML invalid怎么办？","articles":[{"id":"art-trb-007","title":"YAML 语法错误处理"},{"id":"art-trb-008","title":"订阅解析失败处理"},{"id":"art-trb-009","title":"协议不支持处理"},{"id":"art-trb-010","title":"节点被过滤处理"},{"id":"art-trb-011","title":"配置被覆盖处理"},{"id":"art-trb-012","title":"格式解析与配置认证完整说明"}]}]},{"id":"connection-failure","name":"连接失败与本地接管","slug":"connection-failure","url":"/troubleshooting/connection-failure/","h1":"连接失败与本地接管：系统代理残留、TUN启动崩溃与节点握手超时","desc":"排查Windows/macOS注册表代理死锁、权限不足、端口占用及节点无法握手重置。","clusters":[{"id":"system-proxy-conflicts","name":"系统代理与本机冲突","slug":"system-proxy-conflicts","url":"/troubleshooting/connection-failure/system-proxy-conflicts/","h1":"系统代理与本机冲突：系统代理不生效、TUN启动失败与清理死锁残留","coreQuestion":"软件关了之后电脑彻底打不开任何网页了，怎么彻底清理残留代理？","articles":[{"id":"art-trb-013","title":"系统代理不生效排查"},{"id":"art-trb-014","title":"TUN 模式启动失败处理"},{"id":"art-trb-015","title":"系统网络异常处理"},{"id":"art-trb-016","title":"系统代理残留清理"},{"id":"art-trb-017","title":"权限问题处理"},{"id":"art-trb-018","title":"系统代理与本机冲突完整说明"}]},{"id":"node-link-and-handshake","name":"节点链路与握手异常","slug":"node-link-and-handshake","url":"/troubleshooting/connection-failure/node-link-and-handshake/","h1":"节点链路与握手异常：全部节点超时、认证失败与TCP握手重置排查","coreQuestion":"点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？","articles":[{"id":"art-trb-019","title":"全部节点超时排查"},{"id":"art-trb-020","title":"部分节点不可用排查"},{"id":"art-trb-021","title":"节点握手失败处理"},{"id":"art-trb-022","title":"连接被重置处理"},{"id":"art-trb-023","title":"节点认证失败处理"},{"id":"art-trb-024","title":"节点链路与握手异常完整说明"}]}]},{"id":"speed-and-app-issues","name":"速度下降与应用异常","slug":"speed-and-app-issues","url":"/troubleshooting/speed-and-app-issues/","h1":"速度下降与应用异常：严重卡顿、特定网页打不开与特定软件连不上","desc":"诊断浏览器能上网但其他应用连不上、特定流媒体/AI工具提示受限的深度排障。","clusters":[{"id":"speed-and-buffering","name":"速度与缓冲问题","slug":"speed-and-buffering","url":"/troubleshooting/speed-and-app-issues/speed-and-buffering/","h1":"速度与缓冲问题：连接速度断崖式下跌、下载慢与视频转圈卡顿","coreQuestion":"以前看视频飞快最近突然几百KB卡死，如何定位是节点被限速还是本地瓶颈？","articles":[{"id":"art-trb-025","title":"连接速度慢的原因分析"},{"id":"art-trb-026","title":"速度波动观察方法"},{"id":"art-trb-027","title":"视频卡顿排查"},{"id":"art-trb-028","title":"下载速度慢排查"},{"id":"art-trb-029","title":"速度优化的合理做法"},{"id":"art-trb-030","title":"速度与缓冲问题完整说明"}]},{"id":"browser-and-app-anomaly","name":"浏览器与特定程序异常","slug":"browser-and-app-anomaly","url":"/troubleshooting/speed-and-app-issues/browser-and-app-anomaly/","h1":"浏览器与特定程序异常：浏览器可达但软件不走代理、AI与视频专线报错","coreQuestion":"Chrome浏览器正常翻墙，为什么Telegram、Steam或Discord客户端死活连不上？","articles":[{"id":"art-trb-031","title":"特定网站无法访问"},{"id":"art-trb-032","title":"特定应用无法连接"},{"id":"art-trb-033","title":"AI 工具连接异常"},{"id":"art-trb-034","title":"视频平台连接异常"},{"id":"art-trb-035","title":"浏览器能上网但其他软件不能"},{"id":"art-trb-036","title":"浏览器与特定程序异常完整说明"}]}]}]};
+const topic = {"id":"connection-failure","name":"连接失败与本地接管","slug":"connection-failure","url":"/troubleshooting/connection-failure/","h1":"连接失败与本地接管：系统代理残留、TUN启动崩溃与节点握手超时","desc":"排查Windows/macOS注册表代理死锁、权限不足、端口占用及节点无法握手重置。","clusters":[{"id":"system-proxy-conflicts","name":"系统代理与本机冲突","slug":"system-proxy-conflicts","url":"/troubleshooting/connection-failure/system-proxy-conflicts/","h1":"系统代理与本机冲突：系统代理不生效、TUN启动失败与清理死锁残留","coreQuestion":"软件关了之后电脑彻底打不开任何网页了，怎么彻底清理残留代理？","articles":[{"id":"art-trb-013","title":"系统代理不生效排查"},{"id":"art-trb-014","title":"TUN 模式启动失败处理"},{"id":"art-trb-015","title":"系统网络异常处理"},{"id":"art-trb-016","title":"系统代理残留清理"},{"id":"art-trb-017","title":"权限问题处理"},{"id":"art-trb-018","title":"系统代理与本机冲突完整说明"}]},{"id":"node-link-and-handshake","name":"节点链路与握手异常","slug":"node-link-and-handshake","url":"/troubleshooting/connection-failure/node-link-and-handshake/","h1":"节点链路与握手异常：全部节点超时、认证失败与TCP握手重置排查","coreQuestion":"点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？","articles":[{"id":"art-trb-019","title":"全部节点超时排查"},{"id":"art-trb-020","title":"部分节点不可用排查"},{"id":"art-trb-021","title":"节点握手失败处理"},{"id":"art-trb-022","title":"连接被重置处理"},{"id":"art-trb-023","title":"节点认证失败处理"},{"id":"art-trb-024","title":"节点链路与握手异常完整说明"}]}]};
+const cluster = {"id":"node-link-and-handshake","name":"节点链路与握手异常","slug":"node-link-and-handshake","url":"/troubleshooting/connection-failure/node-link-and-handshake/","h1":"节点链路与握手异常：全部节点超时、认证失败与TCP握手重置排查","coreQuestion":"点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？","articles":[{"id":"art-trb-019","title":"全部节点超时排查"},{"id":"art-trb-020","title":"部分节点不可用排查"},{"id":"art-trb-021","title":"节点握手失败处理"},{"id":"art-trb-022","title":"连接被重置处理"},{"id":"art-trb-023","title":"节点认证失败处理"},{"id":"art-trb-024","title":"节点链路与握手异常完整说明"}]};
+---
+
+<BaseLayout
+  title="节点链路与握手异常：节点链路与握手异常：全部节点超时、认证失败与TCP握手重置排查 - 机场wiki指南"
+  description="点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/troubleshooting/connection-failure/node-link-and-handshake/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "网络排障", url: "/troubleshooting/" },
+    { name: "连接失败与本地接管", url: "/troubleshooting/connection-failure/" },
+    { name: "节点链路与握手异常", url: "/troubleshooting/connection-failure/node-link-and-handshake/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        节点链路与握手异常：全部节点超时、认证失败与TCP握手重置排查
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“点测试延迟全部显示Timeout超时，到底是本地网络问题还是机场挂了？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/troubleshooting/connection-failure/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：连接失败与本地接管
+      </a>
+      <a href="/troubleshooting/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：网络排障 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

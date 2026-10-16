@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"clients","name":"客户端教程","slug":"clients","url":"/clients/","h1":"代理客户端下载与机场教程：设备选择、订阅导入和配置维护","coreQuestion":"下载什么软件，怎么配置，后续如何维护？","theme":"完成使用","targetWords":"7,000–9,500 字","duty":"承接软件下载与正常配置维护。不单独建上网教程。严禁虚构版本与第三方镜像，按项目核验来源。","megaTableCols":["客户端名称","适用系统","官方下载渠道","支持协议","TUN虚拟网卡","规则分流能力","推荐程度","教程直达"],"decisionLevels":4,"topics":[{"id":"selection-and-download","name":"客户端选择与下载","slug":"selection-and-download","url":"/clients/selection-and-download/","h1":"客户端选择与下载：Windows/macOS/Linux/Android/iOS官方正版来源","desc":"盘点Clash Verge Rev、v2rayN、FlClash、Shadowrocket等软件真实发布渠道与避坑。","clusters":[{"id":"desktop-clients","name":"桌面系统客户端","slug":"desktop-clients","url":"/clients/selection-and-download/desktop-clients/","h1":"桌面系统客户端：Clash Verge Rev、v2rayN与macOS/Linux适配指南","coreQuestion":"电脑上该装哪个客户端？如何避开带病毒或加料的第三方二次打包版本？","articles":[{"id":"art-cli-001","title":"Clash Verge Rev Windows 使用"},{"id":"art-cli-002","title":"v2rayN 使用说明"},{"id":"art-cli-003","title":"Windows 客户端下载来源"},{"id":"art-cli-004","title":"Clash Verge Rev macOS 使用"},{"id":"art-cli-005","title":"Linux 客户端说明"},{"id":"art-cli-006","title":"桌面系统客户端完整指南"}]},{"id":"mobile-clients","name":"手机与平板客户端","slug":"mobile-clients","url":"/clients/selection-and-download/mobile-clients/","h1":"手机与平板客户端：Android主流工具、iPhone小火箭与跨移动平台选择","coreQuestion":"安卓和苹果手机上各推荐什么客户端？iOS小火箭如何安全下载？","articles":[{"id":"art-cli-007","title":"Android 客户端有哪些"},{"id":"art-cli-008","title":"FlClash Android 使用"},{"id":"art-cli-009","title":"v2rayNG 使用说明"},{"id":"art-cli-010","title":"iPhone 客户端有哪些"},{"id":"art-cli-011","title":"Shadowrocket 使用说明"},{"id":"art-cli-012","title":"手机与平板客户端完整指南"}]}]},{"id":"import-and-rules","name":"首次导入与规则配置","slug":"import-and-rules","url":"/clients/import-and-rules/","h1":"首次导入与规则配置：订阅链接格式、分流模式、DNS与TUN接管","desc":"从URL一键导入订阅，详解规则、全局与直连模式差异，配置系统接管与抗污染DNS。","clusters":[{"id":"subscription-and-connection","name":"订阅与首次连接","slug":"subscription-and-connection","url":"/clients/import-and-rules/subscription-and-connection/","h1":"订阅与首次连接：订阅链接结构、YAML配置解析与一键导入","coreQuestion":"拿到订阅链接后怎么放进软件？为什么复制进去提示格式不支持？","articles":[{"id":"art-cli-013","title":"订阅格式说明"},{"id":"art-cli-014","title":"YAML 配置结构"},{"id":"art-cli-015","title":"订阅链接与配置文件关系"},{"id":"art-cli-016","title":"订阅导入方法"},{"id":"art-cli-017","title":"首次连接步骤"},{"id":"art-cli-018","title":"订阅与首次连接完整说明"}]},{"id":"rules-dns-tun","name":"规则DNS与接管设置","slug":"rules-dns-tun","url":"/clients/import-and-rules/rules-dns-tun/","h1":"规则DNS与接管设置：分流规则、TUN全局模式与防DNS泄露","coreQuestion":"规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？","articles":[{"id":"art-cli-019","title":"规则模式说明"},{"id":"art-cli-020","title":"全局模式说明"},{"id":"art-cli-021","title":"直连模式说明"},{"id":"art-cli-022","title":"DNS 设置说明"},{"id":"art-cli-023","title":"TUN 模式说明"},{"id":"art-cli-024","title":"规则DNS与接管设置完整说明"}]}]},{"id":"maintenance-and-advanced","name":"配置维护与进阶接入","slug":"maintenance-and-advanced","url":"/clients/maintenance-and-advanced/","h1":"配置维护与进阶接入：版本平滑升级、规则备份、终端及Git代理","desc":"规范客户端数据备份迁移，为开发环境、终端命令行及软路由提供进阶接管方案。","clusters":[{"id":"update-backup-migration","name":"更新备份与迁移","slug":"update-backup-migration","url":"/clients/maintenance-and-advanced/update-backup-migration/","h1":"更新备份与迁移：客户端版本升级、自定义分流规则备份与跨设备同步","coreQuestion":"软件升级后自定义规则被冲掉怎么办？换新电脑如何一键迁移配置？","articles":[{"id":"art-cli-025","title":"客户端升级方法"},{"id":"art-cli-026","title":"客户端降级方法"},{"id":"art-cli-027","title":"客户端配置备份"},{"id":"art-cli-028","title":"客户端配置恢复"},{"id":"art-cli-029","title":"客户端配置迁移"},{"id":"art-cli-030","title":"更新备份与迁移完整说明"}]},{"id":"router-and-dev-env","name":"路由与开发环境接入","slug":"router-and-dev-env","url":"/clients/maintenance-and-advanced/router-and-dev-env/","h1":"路由与开发环境接入：OpenWrt接入、终端Bash/Git/Pip代理配置","coreQuestion":"如何在VS Code终端、Git Clone及Python Pip安装时正确走上代理？","articles":[{"id":"art-cli-031","title":"路由器接入说明"},{"id":"art-cli-032","title":"开发环境代理配置"},{"id":"art-cli-033","title":"终端与命令行代理"},{"id":"art-cli-034","title":"包管理器代理配置"},{"id":"art-cli-035","title":"Git 代理配置"},{"id":"art-cli-036","title":"路由与开发环境接入完整说明"}]}]}]};
+const topic = {"id":"import-and-rules","name":"首次导入与规则配置","slug":"import-and-rules","url":"/clients/import-and-rules/","h1":"首次导入与规则配置：订阅链接格式、分流模式、DNS与TUN接管","desc":"从URL一键导入订阅，详解规则、全局与直连模式差异，配置系统接管与抗污染DNS。","clusters":[{"id":"subscription-and-connection","name":"订阅与首次连接","slug":"subscription-and-connection","url":"/clients/import-and-rules/subscription-and-connection/","h1":"订阅与首次连接：订阅链接结构、YAML配置解析与一键导入","coreQuestion":"拿到订阅链接后怎么放进软件？为什么复制进去提示格式不支持？","articles":[{"id":"art-cli-013","title":"订阅格式说明"},{"id":"art-cli-014","title":"YAML 配置结构"},{"id":"art-cli-015","title":"订阅链接与配置文件关系"},{"id":"art-cli-016","title":"订阅导入方法"},{"id":"art-cli-017","title":"首次连接步骤"},{"id":"art-cli-018","title":"订阅与首次连接完整说明"}]},{"id":"rules-dns-tun","name":"规则DNS与接管设置","slug":"rules-dns-tun","url":"/clients/import-and-rules/rules-dns-tun/","h1":"规则DNS与接管设置：分流规则、TUN全局模式与防DNS泄露","coreQuestion":"规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？","articles":[{"id":"art-cli-019","title":"规则模式说明"},{"id":"art-cli-020","title":"全局模式说明"},{"id":"art-cli-021","title":"直连模式说明"},{"id":"art-cli-022","title":"DNS 设置说明"},{"id":"art-cli-023","title":"TUN 模式说明"},{"id":"art-cli-024","title":"规则DNS与接管设置完整说明"}]}]};
+const cluster = {"id":"rules-dns-tun","name":"规则DNS与接管设置","slug":"rules-dns-tun","url":"/clients/import-and-rules/rules-dns-tun/","h1":"规则DNS与接管设置：分流规则、TUN全局模式与防DNS泄露","coreQuestion":"规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？","articles":[{"id":"art-cli-019","title":"规则模式说明"},{"id":"art-cli-020","title":"全局模式说明"},{"id":"art-cli-021","title":"直连模式说明"},{"id":"art-cli-022","title":"DNS 设置说明"},{"id":"art-cli-023","title":"TUN 模式说明"},{"id":"art-cli-024","title":"规则DNS与接管设置完整说明"}]};
+---
+
+<BaseLayout
+  title="规则DNS与接管设置：规则DNS与接管设置：分流规则、TUN全局模式与防DNS泄露 - 机场wiki指南"
+  description="规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/clients/import-and-rules/rules-dns-tun/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "客户端教程", url: "/clients/" },
+    { name: "首次导入与规则配置", url: "/clients/import-and-rules/" },
+    { name: "规则DNS与接管设置", url: "/clients/import-and-rules/rules-dns-tun/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        规则DNS与接管设置：分流规则、TUN全局模式与防DNS泄露
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“规则模式和全局模式有什么区别？国内网站如何保持直连不耗流量？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/clients/import-and-rules/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：首次导入与规则配置
+      </a>
+      <a href="/clients/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：客户端教程 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

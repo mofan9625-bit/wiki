@@ -1,0 +1,224 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { PILLARS_CONFIG, STATIC_PAGES } from "../../data_catalog.mjs";
+import servicesData from "@/data/services.json";
+
+const totalArticles = 432;
+const totalClusters = 72;
+const totalTopics = 36;
+const totalPillars = 12;
+const totalNodes = 1 + totalPillars + totalTopics + totalClusters + totalArticles;
+---
+
+<BaseLayout
+  title="网站完整地图 (553 节点导航全貌) - 机场wiki指南"
+  description="机场wiki指南全站层级地图：汇集首页、12个一级栏目、36个二级专题、72个三级内容集群与432篇独立SEO文章的完整可访问索引树。"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "网站地图", url: "/sitemap/" },
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header Hero -->
+    <div class="mb-10 text-center max-w-3xl mx-auto">
+      <span class="inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        全站架构导航全景
+      </span>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+        网站完整地图与内容拓扑
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 leading-relaxed">
+        本页面汇集「机场wiki指南」规划的全部 553 个内容节点、6 家核心品牌档案与公共支持页面。遵循清晰的五层蜂巢式层级设计。
+      </p>
+
+      <!-- Statistical Pills -->
+      <div class="flex flex-wrap justify-center gap-2 sm:gap-4 mt-6">
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-blue-600 font-mono">{totalNodes}</div>
+          <div class="text-xs text-slate-500 font-medium">规划内容节点</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-slate-800 font-mono">{totalPillars}</div>
+          <div class="text-xs text-slate-500 font-medium">一级栏目</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-slate-800 font-mono">{totalTopics}</div>
+          <div class="text-xs text-slate-500 font-medium">二级专题</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-slate-800 font-mono">{totalClusters}</div>
+          <div class="text-xs text-slate-500 font-medium">三级集群</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-slate-800 font-mono">{totalArticles}</div>
+          <div class="text-xs text-slate-500 font-medium">独立文章</div>
+        </div>
+        <div class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-center">
+          <div class="text-xl font-bold text-purple-600 font-mono">{servicesData.length}</div>
+          <div class="text-xs text-slate-500 font-medium">品牌档案</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick XML Links -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-sm">
+      <div class="flex items-center space-x-2 text-blue-900">
+        <svg width="20" height="20" style="max-width:20px;max-height:20px;display:inline-block;" class="w-5 h-5 text-blue-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
+        </svg>
+        <span>
+          <strong>搜索引擎 XML 地图已就绪：</strong>
+          包含自动生成的标准 Sitemap 索引协议文件。
+        </span>
+      </div>
+      <div class="flex items-center space-x-3 shrink-0">
+        <a href="/sitemap.xml" class="font-mono text-xs bg-white text-blue-700 border border-blue-300 px-3 py-1.5 rounded-lg hover:bg-blue-600 hover:text-white transition-colors" target="_blank">
+          /sitemap.xml
+        </a>
+        <a href="/sitemap-index.xml" class="font-mono text-xs bg-white text-blue-700 border border-blue-300 px-3 py-1.5 rounded-lg hover:bg-blue-600 hover:text-white transition-colors" target="_blank">
+          /sitemap-index.xml
+        </a>
+        <a href="/robots.txt" class="font-mono text-xs bg-white text-slate-700 border border-slate-300 px-3 py-1.5 rounded-lg hover:bg-slate-800 hover:text-white transition-colors" target="_blank">
+          /robots.txt
+        </a>
+      </div>
+    </div>
+
+    <!-- The 12 Pillars Full Content Tree -->
+    <div class="space-y-8">
+      {PILLARS_CONFIG.map((pillar, pIdx) => (
+        <section class="rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+          <!-- Pillar Header -->
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-slate-100 gap-2 mb-6">
+            <div>
+              <div class="flex items-center space-x-2.5">
+                <span class="text-xs font-mono font-bold px-2 py-0.5 rounded bg-blue-100 text-blue-800">
+                  栏目 0{pIdx + 1}
+                </span>
+                <h2 class="text-2xl font-bold text-slate-900 m-0">
+                  <a href={pillar.url} class="hover:text-blue-600 transition-colors no-underline">
+                    {pillar.name}
+                  </a>
+                </h2>
+              </div>
+              <p class="text-sm text-slate-500 mt-1">
+                {pillar.h1}
+              </p>
+            </div>
+            <a
+              href={pillar.url}
+              class="inline-flex items-center space-x-1 text-sm font-semibold text-blue-600 hover:text-blue-700 py-1.5 px-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0"
+            >
+              <span>浏览主入口 (≥7000字)</span>
+              <span>→</span>
+            </a>
+          </div>
+
+          <!-- Topics Grid -->
+          <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+            {pillar.topics.map((topic, tIdx) => (
+              <div class="rounded-xl border border-slate-100 bg-slate-50/70 p-4 flex flex-col justify-between">
+                <div>
+                  <div class="flex items-center justify-between mb-2">
+                    <span class="text-[11px] font-mono text-slate-400 font-semibold">
+                      专题 {pIdx + 1}.{tIdx + 1}
+                    </span>
+                    <a href={topic.url} class="text-xs font-medium text-blue-600 hover:underline">
+                      专题入口 →
+                    </a>
+                  </div>
+                  <h3 class="text-base font-bold text-slate-900 mb-1">
+                    <a href={topic.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                      {topic.name}
+                    </a>
+                  </h3>
+                  <p class="text-xs text-slate-500 line-clamp-2 mb-4 leading-relaxed">
+                    {topic.desc}
+                  </p>
+
+                  <!-- Clusters & Articles -->
+                  <div class="space-y-4">
+                    {topic.clusters.map((cluster) => (
+                      <div class="bg-white rounded-lg p-3 border border-slate-200/80">
+                        <div class="flex items-center justify-between mb-2">
+                          <span class="text-xs font-bold text-slate-800">
+                            <a href={cluster.url} class="hover:text-blue-600 transition-colors no-underline">
+                              {cluster.name}
+                            </a>
+                          </span>
+                          <span class="text-[10px] text-slate-400 font-mono">6 篇文章</span>
+                        </div>
+                        <ul class="space-y-1 text-xs text-slate-600">
+                          {cluster.articles.map((art) => (
+                            <li class="flex items-start space-x-1.5 truncate">
+                              <span class="text-blue-500 shrink-0">·</span>
+                              <a
+                                href={`/articles/${art.id}/`}
+                                class="hover:text-blue-600 truncate transition-colors"
+                                title={art.title}
+                              >
+                                {art.title}
+                              </a>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+
+    <!-- 6 Brands Archive Index -->
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-white p-6 sm:p-8 shadow-sm">
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900 m-0">6 家核心品牌档案索引</h2>
+          <p class="text-sm text-slate-500 mt-1">每个品牌对应唯一实体档案页，聚合官方公告、套餐实测与合规直达通道</p>
+        </div>
+        <a href="/airports/" class="text-sm font-semibold text-blue-600 hover:underline">
+          查阅机场大全大盘 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-3">
+        {servicesData.map((b: any) => (
+          <a
+            href={`/airports/${b.id}/`}
+            class={`p-3 rounded-xl border text-center transition-all ${
+              b.isPrimaryRecommendation
+                ? 'border-blue-400 bg-blue-50/50 shadow-sm'
+                : 'border-slate-200 bg-slate-50/50 hover:border-slate-300 hover:bg-white'
+            }`}
+          >
+            <div class="text-xs font-mono font-bold text-slate-400">#{b.rank}</div>
+            <div class="text-sm font-bold text-slate-900 mt-0.5 truncate">{b.name}</div>
+            <div class="text-[11px] text-slate-500 mt-1">
+              {b.minPayment ? `${b.minPayment}元/月` : '待核验'}
+            </div>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <!-- Static Policy Pages -->
+    <section class="mt-12 rounded-2xl border border-slate-200 bg-slate-50 p-6 sm:p-8">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">站务支持与合规披露页面</h2>
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 text-sm">
+        {STATIC_PAGES.map((s) => (
+          <a
+            href={s.url}
+            class="p-3 bg-white border border-slate-200 rounded-xl hover:border-blue-400 hover:text-blue-600 transition-colors"
+          >
+            <div class="font-bold text-slate-900">{s.title}</div>
+            <div class="text-xs text-slate-500 mt-1 truncate">{s.desc}</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

@@ -1,0 +1,170 @@
+[
+  {
+    "source": "每月预算不超过 10 元怎么选机场",
+    "sourceSlug": "art-cheap-001",
+    "target": "月付、季付和年付比较",
+    "targetSlug": "art-plan-001",
+    "reason": "统一实际付款周期，避免宣传月均价与实付金额混淆"
+  },
+  {
+    "source": "按量付费每 GB 成本计算",
+    "sourceSlug": "art-plan-008",
+    "target": "流量倍率说明",
+    "targetSlug": "art-plan-014",
+    "reason": "解释公式中的关键倍率参数，防范隐藏计费"
+  },
+  {
+    "source": "稳定机场怎么选",
+    "sourceSlug": "art-rec-025",
+    "target": "晚高峰测试方法",
+    "targetSlug": "art-rev-019",
+    "reason": "查看稳定性结论的测试采样依据与观察窗口"
+  },
+  {
+    "source": "AI API 请求超时与限流区别",
+    "sourceSlug": "art-ai-019",
+    "target": "AI 工具网络错误排查",
+    "targetSlug": "art-trb-033",
+    "reason": "进入特定工具排查流程定位问题层级"
+  },
+  {
+    "source": "电视机场接入方式",
+    "sourceSlug": "art-stm-031",
+    "target": "路由器使用前准备",
+    "targetSlug": "art-cli-031",
+    "reason": "完成家庭大屏与网络网关接入落地方案"
+  },
+  {
+    "source": "免费流量不够用",
+    "sourceSlug": "art-free-029",
+    "target": "小流量机场选型",
+    "targetSlug": "art-cheap-007",
+    "reason": "在确有付费需求时寻找低门槛替代方案"
+  },
+  {
+    "source": "AI 对话的数据可见范围",
+    "sourceSlug": "art-ai-034",
+    "target": "TLS 保护边界",
+    "targetSlug": "art-wik-019",
+    "reason": "从底层加密原理理解网络服务商的数据可见性"
+  },
+  {
+    "source": "官网更换域名",
+    "sourceSlug": "art-air-004",
+    "target": "订阅地址变更排查",
+    "targetSlug": "art-trb-001",
+    "reason": "检查入口域名变更对订阅更新与配置的影响"
+  },
+  {
+    "source": "第一次买机场怎么选",
+    "sourceSlug": "art-rec-001",
+    "target": "桌面系统客户端使用",
+    "targetSlug": "art-cli-001",
+    "reason": "完成新购后快速跳转至客户端下载与导入指南"
+  },
+  {
+    "source": "换机场前要确认什么",
+    "sourceSlug": "art-rec-008",
+    "target": "客户端配置备份与迁移",
+    "targetSlug": "art-cli-027",
+    "reason": "在更换前备份既有节点、自定义规则与路由策略"
+  },
+  {
+    "source": "主用加备用机场怎么搭配",
+    "sourceSlug": "art-rec-009",
+    "target": "偶尔使用的机场怎么选",
+    "targetSlug": "art-cheap-013",
+    "reason": "为备用节点匹配按量计费或低维护成本的轻量套餐"
+  },
+  {
+    "source": "机场到期后换一家还是续费",
+    "sourceSlug": "art-rec-007",
+    "target": "续费停止与余额处置",
+    "targetSlug": "art-plan-031",
+    "reason": "核对服务条款中关于到期未续费的账号保留与处置规则"
+  },
+  {
+    "source": "免费机场资源有哪些类型",
+    "sourceSlug": "art-free-001",
+    "target": "机场服务是什么：组成与角色",
+    "targetSlug": "art-wik-001",
+    "reason": "从节点、订阅与入口架构理解免费资源的成本与限制"
+  },
+  {
+    "source": "公开分享的免费订阅安全吗",
+    "sourceSlug": "art-free-004",
+    "target": "DNS IP与数据可见性",
+    "targetSlug": "art-wik-031",
+    "reason": "评估公开订阅中的证书伪造、DNS污染与流量嗅探风险"
+  },
+  {
+    "source": "小流量套餐的适用场景",
+    "sourceSlug": "art-cheap-008",
+    "target": "ChatGPT 网页版网络要求",
+    "targetSlug": "art-ai-002",
+    "reason": "文字对话类生产力任务与轻量小流量套餐高度契合"
+  },
+  {
+    "source": "不限时机场套餐是什么意思",
+    "sourceSlug": "art-plan-007",
+    "target": "云界线品牌档案",
+    "targetSlug": "brand-yunjiexian",
+    "reason": "查看目前主流支持永久不限时套餐的代表性品牌资料"
+  },
+  {
+    "source": "ChatGPT 用什么机场",
+    "sourceSlug": "art-ai-001",
+    "target": "原生 IP 与广播 IP",
+    "targetSlug": "art-wik-034",
+    "reason": "理解OpenAI对机房广播IP与纯净原生IP的风控差异"
+  },
+  {
+    "source": "Claude 用什么机场",
+    "sourceSlug": "art-ai-003",
+    "target": "AI 工具地区支持核对方法",
+    "targetSlug": "art-ai-031",
+    "reason": "排查因节点出口地区受限导致账号被封禁或拦截的问题"
+  },
+  {
+    "source": "Cursor 与 GitHub Copilot 网络配置",
+    "sourceSlug": "art-ai-014",
+    "target": "终端与命令行代理",
+    "targetSlug": "art-cli-033",
+    "reason": "为IDE底层终端及Git命令配置同步的代理环境变量"
+  },
+  {
+    "source": "Netflix 用什么机场",
+    "sourceSlug": "art-stm-001",
+    "target": "流媒体机场推荐大盘",
+    "targetSlug": "pillar-streaming",
+    "reason": "查看经过实测解锁Netflix全区片库的品牌与套餐汇总"
+  },
+  {
+    "source": "YouTube 用什么机场",
+    "sourceSlug": "art-stm-009",
+    "target": "吞吐与响应测量指南",
+    "targetSlug": "art-rev-018",
+    "reason": "了解4K/8K视频流对单线程突发带宽与缓存的测试指标"
+  },
+  {
+    "source": "Clash Verge Rev Windows 使用",
+    "sourceSlug": "art-cli-001",
+    "target": "TUN 模式启动失败处理",
+    "targetSlug": "art-trb-014",
+    "reason": "处理Windows系统下虚拟网卡驱动未安装或权限受限异常"
+  },
+  {
+    "source": "全部节点超时排查",
+    "sourceSlug": "art-trb-019",
+    "target": "系统代理残留清理",
+    "targetSlug": "art-trb-016",
+    "reason": "排除由于上次客户端异常退出导致的系统注册表代理死锁"
+  },
+  {
+    "source": "TCP与UDP在代理连接中有什么区别",
+    "sourceSlug": "art-wik-013",
+    "target": "QUIC与UDP是什么关系",
+    "targetSlug": "art-wik-014",
+    "reason": "进一步厘清基于UDP的现代传输协议与传统UDP应用的区别"
+  }
+]

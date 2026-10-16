@@ -1,0 +1,129 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import DataStatusBadge from "@/components/DataStatusBadge.astro";
+import servicesData from "@/data/services.json";
+
+export async function getStaticPaths() {
+  return servicesData.map((brand: any) => ({
+    params: { brand: brand.id },
+    props: { brand },
+  }));
+}
+
+const { brand } = Astro.props;
+---
+
+<BaseLayout
+  title={`${brand.name} 品牌档案与服务资料核验 - 机场wiki指南`}
+  description={`${brand.name} 品牌官方资料核验、套餐资费、节点线路、协议支持、优缺点评测与合规直达通道。`}
+  canonicalUrl={`https://jichangwiki.cc/airports/${brand.id}/`}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场大全", url: "/airports/" },
+    { name: brand.name, url: `/airports/${brand.id}/` },
+  ]}
+>
+  <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Brand Header -->
+    <div class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 shadow-sm mb-8">
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-6 border-b border-slate-100">
+        <div>
+          <div class="flex items-center space-x-3 mb-2">
+            <span class="text-sm font-mono font-bold px-2.5 py-0.5 rounded bg-slate-100 text-slate-700">
+              Rank #{brand.rank}
+            </span>
+            <h1 class="text-2xl sm:text-3xl font-extrabold text-slate-900 m-0">
+              {brand.name} 品牌档案
+            </h1>
+            <DataStatusBadge status={brand.dataStatus || "vendor"} />
+          </div>
+          <p class="text-sm text-slate-500">
+            官方资料核验基准：2026-10 · 独立第三方档案
+          </p>
+        </div>
+
+        <div class="flex items-center space-x-3">
+          <a
+            href={brand.registerUrl}
+            target="_blank"
+            rel="nofollow sponsored noopener"
+            class="px-5 py-2.5 rounded-xl font-bold text-sm bg-blue-600 hover:bg-blue-700 text-white shadow-sm transition-all"
+          >
+            直达官网注册通道 →
+          </a>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-6 text-sm">
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <span class="text-xs text-slate-400 block font-medium">创办运营年限</span>
+          <span class="text-base font-bold text-slate-800 font-mono mt-0.5 block">{brand.since} 年至今</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <span class="text-xs text-slate-400 block font-medium">入门最低月付</span>
+          <span class="text-base font-bold text-blue-600 font-mono mt-0.5 block">
+            {brand.minPayment ? `${brand.minPayment} 元/月` : '待核验'}
+          </span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <span class="text-xs text-slate-400 block font-medium">线路架构通道</span>
+          <span class="text-base font-bold text-slate-800 font-mono mt-0.5 block truncate">{brand.lineType}</span>
+        </div>
+        <div class="bg-slate-50 p-3 rounded-xl border border-slate-100">
+          <span class="text-xs text-slate-400 block font-medium">主要协议支持</span>
+          <span class="text-base font-bold text-slate-800 font-mono mt-0.5 block">{brand.protocols}</span>
+        </div>
+      </div>
+    </div>
+
+    <CommercialDisclosure />
+
+    <!-- Brand Detailed Data -->
+    <div class="space-y-8 my-8">
+      <!-- Section 1: Entry Plan & Pricing -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-3">入门套餐与计费规格</h2>
+        <div class="bg-slate-50 rounded-xl p-4 border border-slate-100 flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2">
+          <div>
+            <div class="text-sm font-bold text-slate-900">{brand.entryPlan || '常规基础套餐'}</div>
+            <div class="text-xs text-slate-500 mt-0.5">支持常规周期订阅与按需升级</div>
+          </div>
+          {brand.promoCode && (
+            <div class="flex items-center space-x-2">
+              <span class="text-xs text-slate-400">核验可用优惠码：</span>
+              <span class="text-xs font-mono font-bold bg-amber-100 text-amber-900 px-2.5 py-1 rounded-lg">
+                {brand.promoCode}
+              </span>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <!-- Section 2: Vendor Claims vs Independent Verification -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-3">品牌方声称与实测比对</h2>
+        <div class="space-y-3 text-sm text-slate-600">
+          {brand.vendorClaims && brand.vendorClaims.map((claim: string) => (
+            <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100 flex items-start space-x-2">
+              <span class="text-purple-600 font-bold shrink-0">·</span>
+              <span>{claim}</span>
+            </div>
+          ))}
+          <p class="text-xs text-slate-400 pt-2">
+            * 标注为「品牌资料显示」之内容取自品牌官网公告或客服说明，尚未完成独立长期自动化测速采样者保持待核验状态。
+          </p>
+        </div>
+      </div>
+
+      <!-- Section 3: Compliance & Affiliate Disclosure -->
+      <div class="bg-white rounded-2xl border border-slate-200 p-6 shadow-sm">
+        <h2 class="text-xl font-bold text-slate-900 mb-2">免责与商业合作透明度说明</h2>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          本站与 {brand.name} 无股权、人员或雇佣关系。若您通过本页面提供的外链注册购买，本站可能会获得少额技术推荐返佣，但这完全不会增加您的订单实付金额。所得返佣全额用于覆盖本站服务器托管与持续测速节点成本。
+        </p>
+      </div>
+    </div>
+  </div>
+</BaseLayout>

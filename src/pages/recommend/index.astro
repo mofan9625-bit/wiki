@@ -1,0 +1,214 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import BrandCard from "@/components/BrandCard.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import ComparisonTable from "@/components/ComparisonTable.astro";
+import DecisionTree from "@/components/DecisionTree.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import servicesData from "@/data/services.json";
+
+const pillar = {"id":"recommend","name":"机场推荐","slug":"recommend","url":"/recommend/","h1":"机场推荐：从使用需求到具体品牌的选购指南","coreQuestion":"有哪些具体机场值得考虑，为什么适合我？","theme":"选择服务","targetWords":"7,000–9,500 字","duty":"负责稳定性选型，评测栏目负责测试依据。每家机场展开：定位、适合与不适合、套餐、使用方式、证据、限制与建议。","megaTableCols":["品牌","定位与首选度","最低月付","入门套餐","线路类型","主流协议","适合人群","核心限制","直达通道"],"decisionLevels":4,"topics":[{"id":"first-purchase","name":"首次选购与服务切换","slug":"first-purchase","url":"/recommend/first-purchase/","h1":"首次选购与服务切换指南：从新手决策到主备搭配","desc":"解决新手选购的设备与软件认知，以及老用户换机场与主备搭配的迁移成本核算。","clusters":[{"id":"beginner-decision","name":"新手选购决策","slug":"beginner-decision","url":"/recommend/first-purchase/beginner-decision/","h1":"新手选购决策：设备匹配、套餐筛选与试用落地","coreQuestion":"第一次买机场怎么选？如何从设备、用途到套餐建立完整决策链条？","articles":[{"id":"art-rec-001","title":"第一次买机场怎么选？从设备、用途到套餐的完整决策流程"},{"id":"art-rec-002","title":"机场推荐榜单怎么看？识别广告排序、测试依据与适用人群"},{"id":"art-rec-003","title":"只有手机的新手适合哪类机场？自有客户端与通用客户端方案比较"},{"id":"art-rec-004","title":"已有代理客户端还需要买什么？机场订阅与软件授权的区别"},{"id":"art-rec-005","title":"机场购买前应该问客服哪些问题？用需求清单筛掉不合适的服务"},{"id":"art-rec-006","title":"机场试用满意后怎么买正式套餐？从体验结果到付款周期的选择"}]},{"id":"switch-and-combo","name":"换机场与组合使用","slug":"switch-and-combo","url":"/recommend/first-purchase/switch-and-combo/","h1":"换机场与组合使用：续费决策、迁移清单与主备方案","coreQuestion":"机场到期后换一家还是续费？主备双机场如何搭建才能实现故障真正独立？","articles":[{"id":"art-rec-007","title":"机场到期后换一家还是续费？迁移成本、使用记录与费用一起比较"},{"id":"art-rec-008","title":"更换机场前要确认什么？设备、协议兼容与订阅迁移检查清单"},{"id":"art-rec-009","title":"主用加备用机场怎么搭配？故障独立性、成本与管理难度比较"},{"id":"art-rec-010","title":"什么情况下两个机场同时使用更合适？多设备与工作场景分析"},{"id":"art-rec-011","title":"从便宜机场升级到中端服务怎么选？预算与体验变化评估"},{"id":"art-rec-012","title":"一个账号多台设备使用时应该注意哪些限制？并发连接与规则检查"}]}]},{"id":"conditions-and-devices","name":"使用条件与设备需求","slug":"conditions-and-devices","url":"/recommend/conditions-and-devices/","h1":"使用条件与设备需求：移动漫游、多端协作与合规核对","desc":"覆盖差旅出差、移动热点切换以及多设备家庭、公司与学校网络下的限制与选型。","clusters":[{"id":"mobile-and-travel","name":"移动网络与外出使用","slug":"mobile-and-travel","url":"/recommend/conditions-and-devices/mobile-and-travel/","h1":"移动网络与外出使用：网络切换、差旅酒店与热点共享","coreQuestion":"外出移动办公或差旅场景下，怎样选机场才能保证切网不掉线？","articles":[{"id":"art-rec-013","title":"移动网络环境下机场怎么选？4G、5G 切换与连接稳定性比较"},{"id":"art-rec-014","title":"经常出差、旅行用什么机场？酒店网络与临时场景选择"},{"id":"art-rec-015","title":"公共场所 Wi-Fi 使用机场应该注意什么？安全与连接检查"},{"id":"art-rec-016","title":"手机流量不足时怎样调整机场套餐？流量消耗与备用方案"},{"id":"art-rec-017","title":"经常切换网络环境时怎样减少掉线？客户端与节点策略"},{"id":"art-rec-018","title":"手机热点共享给其他设备使用机场，会不会影响体验？"}]},{"id":"multi-device-and-sharing","name":"多设备与协作约束","slug":"multi-device-and-sharing","url":"/recommend/conditions-and-devices/multi-device-and-sharing/","h1":"多设备与协作约束：家庭共享、多端同用与合规边界","coreQuestion":"家庭或个人拥有多台设备时，如何平衡设备连接数限制与管理成本？","articles":[{"id":"art-rec-019","title":"家庭多设备使用机场怎么选？连接限制与管理成本分析"},{"id":"art-rec-020","title":"手机和电脑一起用机场怎么选？设备规则与跨平台支持"},{"id":"art-rec-021","title":"学校或公司电脑能否使用个人机场？合规与终端权限核对"},{"id":"art-rec-022","title":"平板电脑使用机场需要单独订阅吗？设备限制与配置说明"},{"id":"art-rec-023","title":"电视和投屏使用机场需要额外配置吗？家庭网络方案"},{"id":"art-rec-024","title":"多设备场景下如何管理订阅与凭据？安全与协作约束"}]}]},{"id":"reliability-and-support","name":"可靠性与服务保障","slug":"reliability-and-support","url":"/recommend/reliability-and-support/","h1":"可靠性与服务保障：晚高峰验证、售后响应与购买约束","desc":"聚焦主力服务的连续可用性指标、退款与工单承诺、运营年限与长期信誉核实。","clusters":[{"id":"primary-and-stability","name":"主力服务与稳定性选择","slug":"primary-and-stability","url":"/recommend/reliability-and-support/primary-and-stability/","h1":"主力服务与稳定性选择：晚高峰表现、工单响应与换用信号","coreQuestion":"作为主力工具使用，稳定机场应该看重哪些证据？何时该果断换掉？","articles":[{"id":"art-rec-025","title":"稳定机场怎么选？晚高峰、连续使用与故障恢复证据对比"},{"id":"art-rec-026","title":"长时间在线使用机场应该注意什么？连接中断与重连取舍"},{"id":"art-rec-027","title":"机场售后支持怎么比较？工单渠道、响应记录与自助排障能力"},{"id":"art-rec-028","title":"机场的退款条款应该怎么看？申请条件、例外情况与证据留存"},{"id":"art-rec-029","title":"如何评估机场的长期可用性？观察方法与判断依据"},{"id":"art-rec-030","title":"什么情况下应该换掉主力机场？关键信号与决策流程"}]},{"id":"support-and-constraints","name":"支持能力与购买约束","slug":"support-and-constraints","url":"/recommend/reliability-and-support/support-and-constraints/","h1":"支持能力与购买约束：支付渠道、计费周期与真实运营资历","coreQuestion":"下单前如何核验支付渠道安全、周期权衡以及品牌实际运营时间？","articles":[{"id":"art-rec-031","title":"机场的隐私说明怎么看？日志声明、数据范围与无法验证的部分"},{"id":"art-rec-032","title":"购买机场前如何确认支付方式？支付宝、USDT 与其他方式"},{"id":"art-rec-033","title":"机场的付款周期应该怎么选？月付、季付与年付权衡"},{"id":"art-rec-034","title":"机场的流量重置与续费规则应该怎么看？"},{"id":"art-rec-035","title":"机场的联系渠道与响应方式应该怎么比较？"},{"id":"art-rec-036","title":"机场的品牌与运营时长应该怎样核实？"}]}]}]};
+const megaRows = servicesData.map((b: any, index: number) => {
+  const isTop1 = b.id === "yunjiexian" || index === 0;
+  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
+    ? b.registerUrl
+    : `/airports/${b.id}/`;
+
+  return [
+    b.name,
+    isTop1 ? "★ 首选主力专线" : "高性价比备用",
+    b.minPayment ? `${b.minPayment} 元/月` : "待核验",
+    b.entryPlan || "轻量入门版",
+    b.lineType,
+    b.protocols,
+    b.highlights ? b.highlights[0] : "高速接入",
+    b.limitations && b.limitations.length > 0 ? b.limitations[0] : "遵守服务协议",
+    {
+      text: isTop1 ? "★ 主推入口" : "官网通道",
+      url: targetUrl,
+      isPrimary: isTop1
+    }
+  ];
+});
+const pFaqs = [{"q":"机场推荐栏目的核心定位与评测依据是什么？","a":"本栏目严格遵从「负责稳定性选型，评测栏目负责测试依据。每家机场展开：定位、适合与不适合、套餐、使用方式、证据、限制与建议。」。所有推荐均基于真实采集测试证据与公开服务条款，绝不因商业合作调整客观排序。"},{"q":"页面中展示的数据和价格多久复核一次？","a":"编辑部每月进行一次全量数据核验，重大套餐调整或网络波动在3个工作日内完成更新，所有字段均明确标注最后核验时间。"},{"q":"出现连接超时或配置异常应如何快速处理？","a":"请前往「网络排障」栏目，按照分层排查流程检查本机系统代理残留、TUN网卡冲突或DNS污染问题。"},{"q":"本站推荐是否收取品牌方上榜赞助费？","a":"绝不收取任何上榜赞助费。凡含推广返佣链接的卡片均醒目标注，返佣仅作为服务器与测试带宽支出，不影响用户支付价格与评测中立性。"},{"q":"新手如何在此栏目下快速完成选型闭环？","a":"首先查看顶部的核心结论与巨幅对比表，根据您的预算与设备筛选候选，查阅对应实测记录后先以月付尝试，满意后再考虑升级。"}];
+const decisionTreeText = `[ 机场推荐 场景决策模型 ]
+  │
+  ├── 追求极致稳定性与晚高峰生产力 ───────> 首选：云界线 (IEPL专线 + VLESS)
+  │     ├── 需要高稳定专线 + 低预算门槛 ───> 首选：云界线 (折算约5.6元/月起)
+  │     └── 多人多设备高并发办公 ─────────> 神行加速 / 闪电鼠
+  │
+  ├── 严格控制预算 / 轻度查资料 / 备用 ───> 方案：大佬云 / 环球梯 / 榴莲云
+  │     └── 月均支出仅 5–8 元区间 ────────> 年付折算或轻度小流量
+  │
+  └── 遇到网络连接中断或配置疑问 ─────────> 直达：网络排障 (/troubleshooting/)`;
+---
+
+<BaseLayout
+  title="机场推荐：从使用需求到具体品牌的选购指南 - 机场wiki指南"
+  description="机场推荐：从使用需求到具体品牌的选购指南。全面涵盖核心候选对比、使用限制、实测证据、巨幅对比表、ASCII决策树与下辖36篇深度指南。"
+  canonicalUrl="https://jichangwiki.cc/recommend/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场推荐", url: "/recommend/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Header Hero -->
+    <div class="border-b border-slate-200 pb-8 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-100 text-blue-800 mb-3">
+        <span>一级栏目 Pillar Hub · 万字级权威指南</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-4">
+        机场推荐：从使用需求到具体品牌的选购指南
+      </h1>
+      <p class="text-lg text-slate-600 leading-relaxed max-w-4xl">
+        <strong>核心解答：</strong>有哪些具体机场值得考虑，为什么适合我？ 本栏目严格遵循「负责稳定性选型，评测栏目负责测试依据。每家机场展开：定位、适合与不适合、套餐、使用方式、证据、限制与建议。」，拒绝夸大其词，用翔实数据支撑明智决策。
+      </p>
+    </div>
+
+    <!-- Commercial Transparency Banner -->
+    <CommercialDisclosure />
+
+    <!-- 1. Answer-First Section -->
+    <section class="my-10 bg-blue-50/50 rounded-2xl p-6 sm:p-8 border border-blue-100">
+      <h2 class="text-xl font-bold text-blue-950 mb-3">答案优先：当前场景核心选型结论</h2>
+      <p class="text-base text-slate-700 leading-relaxed mb-4">
+        对于绝大多数追求稳定性的日常与办公用户，首选应为具备成熟运营历史、全专线架构且支持现代化 VLESS 协议的服务商（如本站主推的<strong>云界线</strong>）。低预算与备用场景可选用 5–8 元月付的轻量方案。选购的核心原则是：<strong>先明确真实月流量需求与关键工具（如ChatGPT/流媒体），首选月付验证，晚高峰实测达标后再行决定是否续约</strong>。
+      </p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-xs sm:text-sm">
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-emerald-700 block mb-1">✓ 适合人群：</strong>
+          需要跨境学术科研、外贸出海沟通、AI生产力辅助及海外4K流媒体播放的合规用户。
+        </div>
+        <div class="bg-white p-3.5 rounded-xl border border-blue-200">
+          <strong class="text-amber-700 block mb-1">✗ 不适合人群：</strong>
+          抱有“几块钱永久不限速无限用”不切实际幻想、或试图利用网络规避审查与非法操作者。
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. ASCII Decision Tree -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">快速选择决策树</h2>
+      <p class="text-sm text-slate-500 mb-4">通过三层逻辑分支直接对齐您的预算与任务诉求：</p>
+      <DecisionTree treeText={decisionTreeText} />
+    </section>
+
+    <!-- 3. Mega Comparison Table -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-2">巨幅综合横向对比大盘</h2>
+      <p class="text-sm text-slate-500 mb-4">6 家核心品牌横向对比大盘（支持横向滑动）：</p>
+      <ComparisonTable
+        headers={pillar.megaTableCols}
+        rows={megaRows}
+        caption="机场推荐 核心候选横向对比表"
+      />
+    </section>
+
+            <!-- 4. Featured Brand Showcase -->
+    <section class="my-10">
+      <h2 class="text-2xl font-bold text-slate-900 mb-4">精选代表性服务商深度剖析</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {servicesData.map((b: any) => (
+          <BrandCard
+            brand={b}
+            featuredReason={
+              b.id === "yunjiexian" ? "2024年稳定运营，全IEPL专线，低预算首选主力方案" :
+              b.id === "dalaoyun" ? "超低预算IEPL专线，高性价比备用首选" :
+              b.id === "huanqiuti" ? "经济型轻度专线服务，高性价比备用方案" :
+              b.id === "liulianyun" ? "超经济专线中继，轻量备用高性价比之选" :
+              b.id === "shandianshu" ? "轻量级低资费专线服务，5.6元/月极致入门备用" :
+              b.id === "shenxing" ? "平价大容量IEPL专线，120GB月配额高性价比备用" :
+              (b.isPrimaryRecommendation ? "综合性能标杆，全IEPL专线保障晚高峰低丢包" : "性价比专线接入")
+            }
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- 5. Under-Pillar Topics & Articles Structure (Honeycomb Links) -->
+    <section class="my-12 bg-slate-50 rounded-2xl p-6 sm:p-8 border border-slate-200">
+      <div class="flex items-center justify-between mb-6">
+        <div>
+          <h2 class="text-2xl font-bold text-slate-900">下辖 3 个二级专题与 36 篇深度文章</h2>
+          <p class="text-sm text-slate-500 mt-1">蜂巢式内链立体覆盖，可根据具体痛点直达细分指导：</p>
+        </div>
+        <a href="/sitemap/" class="text-xs font-semibold text-blue-600 hover:underline">
+          查阅全站地图 →
+        </a>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {pillar.topics.map((t: any, tIdx: number) => (
+          <div class="bg-white rounded-xl p-5 border border-slate-200 shadow-sm flex flex-col justify-between">
+            <div>
+              <div class="text-[11px] font-mono font-bold text-blue-600 mb-1">
+                专题 0{tIdx + 1}
+              </div>
+              <h3 class="text-lg font-bold text-slate-900 mb-2">
+                <a href={t.url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+                  {t.name}
+                </a>
+              </h3>
+              <p class="text-xs text-slate-500 mb-4 leading-relaxed">
+                {t.desc}
+              </p>
+
+              <!-- Clusters & Articles List -->
+              <div class="space-y-3">
+                {t.clusters.map((c: any) => (
+                  <div class="border-t border-slate-100 pt-2.5">
+                    <div class="text-xs font-bold text-slate-800 mb-1.5 flex items-center justify-between">
+                      <a href={c.url} class="hover:text-blue-600 transition-colors no-underline">
+                        {c.name}
+                      </a>
+                      <span class="text-[10px] text-slate-400 font-mono">6篇</span>
+                    </div>
+                    <ul class="space-y-1 text-xs text-slate-600">
+                      {c.articles.slice(0, 3).map((art: any) => (
+                        <li class="truncate flex items-start space-x-1">
+                          <span class="text-blue-500 shrink-0">·</span>
+                          <a href={`/articles/${art.id}/`} class="hover:text-blue-600 truncate" title={art.title}>
+                            {art.title}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+            <div class="mt-4 pt-3 border-t border-slate-100 text-right">
+              <a href={t.url} class="text-xs font-semibold text-blue-600 hover:underline">
+                浏览此专题完整 12 篇 →
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <!-- 6. Long-form In-depth Guide -->
+    <section class="my-12">
+      <div class="article-content max-w-none">
+        <h2>底层机制剖析与选型关键依据</h2>
+        <p>
+          在选择网络加速服务时，用户往往容易被标称的“峰值带宽”所误导。实际上，决定日常使用顺畅度的三大核心指标并非单线程下载峰值，而是<strong>端到端RTT延迟抖动、晚高峰丢包率与TCP重传率</strong>。
+        </p>
+        <h3>专线与普通直连的本质鸿沟</h3>
+        <p>
+          国际互联网出口受国家级骨干网防火墙检测与国际海缆带宽配额限制。普通公网直连（如普通BGP中转）在平峰期表现尚可，一旦进入晚间20:00至23:00的网络流量高峰，国际出口拥堵将直接导致丢包率陡增。而真正采用 IEPL（国际以太网专线）或 IPLC（国际私有租用线路）的服务商，数据直接走陆缆点对点传输，不经过公共国际出口队列，能从物理层根除晚高峰拥堵。
+        </p>
+        <h3>协议升级：从传统 Shadowsocks 到现代化 VLESS</h3>
+        <p>
+          随着网络深度包检测（DPI）技术的迭代演进，传统静态特征加密协议（如早期的 Shadowsocks）容易被识别与阻断。现代化协议如 VLESS 配合 XTLS Reality 或 TLS1.3，将代理流量伪装成正常的顶级公网 HTTPS 流量，同时去掉了繁重的双重加密计算开销，不仅极大降低了客户端与服务端延迟，还显著延长了移动设备电池续航。
+        </p>
+      </div>
+    </section>
+
+    <!-- 7. Pillar FAQ Matrix (15 FAQs) -->
+    <section class="my-12">
+      <FAQAccordion faqs={pFaqs} title="机场推荐 专属常见问题解答 (FAQ)" />
+    </section>
+  </div>
+</BaseLayout>

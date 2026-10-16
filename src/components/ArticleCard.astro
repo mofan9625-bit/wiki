@@ -1,0 +1,39 @@
+---
+interface Props {
+  id: string;
+  title: string;
+  summary?: string;
+  url: string;
+  clusterName?: string;
+  publishedAt?: string;
+}
+
+const { id, title, summary, url, clusterName, publishedAt } = Astro.props;
+---
+
+<div class="card flex flex-col justify-between hover:border-blue-400 transition-all">
+  <div>
+    {clusterName && (
+      <div class="text-[11px] font-bold uppercase tracking-wider text-blue-600 mb-1.5">
+        {clusterName}
+      </div>
+    )}
+    <h4 class="text-base font-bold text-slate-900 leading-snug mb-2 group">
+      <a href={url} class="text-slate-900 hover:text-blue-600 transition-colors no-underline">
+        {title}
+      </a>
+    </h4>
+    {summary && (
+      <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
+        {summary}
+      </p>
+    )}
+  </div>
+  <div class="pt-3 border-t border-slate-100 flex items-center justify-between text-[11px] text-slate-400">
+    <span class="font-mono">ID: {id}</span>
+    <a href={url} class="font-semibold text-blue-600 hover:underline flex items-center space-x-1">
+      <span>查阅全文</span>
+      <span>→</span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "商业合作与推广透明度披露";
+const pageDesc = "推广链接说明、返佣机制与中立客观性保障。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p>为保证本站测试宽带、服务器托管与编辑维护的持续运营，部分指向机场官网的链接包含推广返佣代码（Affiliate Link）。我们郑重声明：</p><ul><li>通过推广链接购买<strong>绝不会增加您的实际支付金额</strong>。</li><li>所有推广链接严格添加 <code>rel="nofollow sponsored noopener"</code> 标记。</li><li>推广关系绝不影响客观评测结论与实际排名。</li><li>所有涉及商业推广的位置均醒目提示。</li></ul>
+    </div>
+  </div>
+</BaseLayout>

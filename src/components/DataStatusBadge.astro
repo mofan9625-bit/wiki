@@ -1,0 +1,26 @@
+---
+interface Props {
+  status: "measured" | "vendor" | "unverified" | string;
+  label?: string;
+}
+
+const { status, label } = Astro.props;
+
+let badgeClass = "bg-slate-100 text-slate-600 border-slate-200";
+let text = label || "待核验";
+
+if (status === "measured") {
+  badgeClass = "bg-blue-50 text-blue-700 border-blue-200";
+  text = label || "实测数据";
+} else if (status === "vendor") {
+  badgeClass = "bg-purple-50 text-purple-700 border-purple-200";
+  text = label || "品牌资料显示";
+} else if (status === "unverified") {
+  badgeClass = "bg-amber-50 text-amber-700 border-amber-200";
+  text = label || "待核验";
+}
+---
+
+<span class={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-medium border ${badgeClass}`}>
+  {text}
+</span>

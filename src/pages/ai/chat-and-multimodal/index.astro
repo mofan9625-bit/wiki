@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"ai","name":"AI机场","slug":"ai","url":"/ai/","h1":"AI机场推荐：对话、多模态与AI编程的网络选型指南","coreQuestion":"针对我的 AI 工具和任务，应该怎样选择机场及使用方式？","theme":"按用途选择","targetWords":"7,000–9,500 字","duty":"每条记录注明工具、功能、网页/API、账号前提、地区条件和测试时间。不简化为单个支持AI标签。","megaTableCols":["品牌","ChatGPT支持度","Claude支持度","API直连/流式支持","Cursor/Copilot支持","节点纯净度/原生IP","最低月付","直达通道"],"decisionLevels":4,"topics":[{"id":"chat-and-multimodal","name":"AI对话与多模态需求","slug":"chat-and-multimodal","url":"/ai/chat-and-multimodal/","h1":"AI对话与多模态需求：ChatGPT、Claude、Gemini选型与音视频多模态","desc":"覆盖Web对话界面风控、地区要求、超大文件上传及实时语音低延迟连接需求。","clusters":[{"id":"web-chat-selection","name":"网页对话服务选型","slug":"web-chat-selection","url":"/ai/chat-and-multimodal/web-chat-selection/","h1":"网页对话服务选型：ChatGPT/Claude/Gemini节点要求与地区限制","coreQuestion":"访问ChatGPT频繁出现Access Denied或Cloudflare死循环验证，该怎么选节点？","articles":[{"id":"art-ai-001","title":"ChatGPT 用什么机场？网页访问与任务核验"},{"id":"art-ai-002","title":"ChatGPT 网页版网络要求：延迟与稳定性"},{"id":"art-ai-003","title":"Claude 用什么机场？地区与账号条件"},{"id":"art-ai-004","title":"Gemini 使用条件与地区限制"},{"id":"art-ai-005","title":"Claude 与 Gemini 的网络差异"},{"id":"art-ai-006","title":"网页对话服务选型完整说明"}]},{"id":"file-voice-multimodal","name":"文件语音与多模态","slug":"file-voice-multimodal","url":"/ai/chat-and-multimodal/file-voice-multimodal/","h1":"文件语音与多模态：文档分析上传、语音对话与多模态持续输出","coreQuestion":"上传几百页PDF给AI分析或使用语音模式实时通话，需要机场具备哪些条件？","articles":[{"id":"art-ai-007","title":"AI 文件上传的网络要求"},{"id":"art-ai-008","title":"AI 语音功能的网络要求"},{"id":"art-ai-009","title":"AI 多模态任务的网络要求"},{"id":"art-ai-010","title":"AI 多模态任务的稳定性要求"},{"id":"art-ai-011","title":"AI 多模态场景的机场选择"},{"id":"art-ai-012","title":"文件语音与多模态完整说明"}]}]},{"id":"coding-and-dev","name":"AI编程与开发连接","slug":"coding-and-dev","url":"/ai/coding-and-dev/","h1":"AI编程与开发连接：Cursor、Copilot、API调用与长流式传输","desc":"解决开发者在IDE内使用AI补全、代码生成及商业API高频调用时的断流难题。","clusters":[{"id":"ai-coding-tools","name":"AI编程工具方案","slug":"ai-coding-tools","url":"/ai/coding-and-dev/ai-coding-tools/","h1":"AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化","coreQuestion":"写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？","articles":[{"id":"art-ai-013","title":"AI 编程工具网络要求"},{"id":"art-ai-014","title":"Cursor 与 GitHub Copilot 网络配置"},{"id":"art-ai-015","title":"AI 编程连接异常排查"},{"id":"art-ai-016","title":"AI 编程延迟与稳定性"},{"id":"art-ai-017","title":"AI 编程工具的机场选择"},{"id":"art-ai-018","title":"AI编程工具方案完整说明"}]},{"id":"api-and-streaming-requests","name":"API与流式请求","slug":"api-and-streaming-requests","url":"/ai/coding-and-dev/api-and-streaming-requests/","h1":"API与流式请求：OpenAI/Anthropic API长连接、频次限制与吞吐保障","coreQuestion":"开发调试API时如何避免代理端关闭长连接（SSE流式）导致响应截断？","articles":[{"id":"art-ai-019","title":"AI API 网络要求"},{"id":"art-ai-020","title":"API 与网页版网络差异"},{"id":"art-ai-021","title":"API 调用频率与带宽"},{"id":"art-ai-022","title":"流式请求的网络要求"},{"id":"art-ai-023","title":"API 场景的机场选择"},{"id":"art-ai-024","title":"API与流式请求完整说明"}]}]},{"id":"continuity-and-privacy","name":"持续办公与数据边界","slug":"continuity-and-privacy","url":"/ai/continuity-and-privacy/","h1":"持续办公与数据边界：全天候办公备用方案、风控规避与隐私合规","desc":"保障全天高强度AI辅助工作的可用性，解析IP风控封号机制与企业数据安全边界。","clusters":[{"id":"continuity-and-backup","name":"工作连续性与备用","slug":"continuity-and-backup","url":"/ai/continuity-and-privacy/continuity-and-backup/","h1":"工作连续性与备用：多工具共用、长期办公专线与自动容灾切换","coreQuestion":"重度依赖AI工作的日常中，如何构建两家互不影响的容灾节点方案？","articles":[{"id":"art-ai-025","title":"多 AI 工具共用的网络环境"},{"id":"art-ai-026","title":"AI 长期办公的网络要求"},{"id":"art-ai-027","title":"AI 多工具切换的稳定性"},{"id":"art-ai-028","title":"AI 长期办公的机场选择"},{"id":"art-ai-029","title":"备用方案设计"},{"id":"art-ai-030","title":"工作连续性与备用完整说明"}]},{"id":"collaboration-privacy-constraints","name":"协作与隐私约束","slug":"collaboration-privacy-constraints","url":"/ai/continuity-and-privacy/collaboration-privacy-constraints/","h1":"协作与隐私约束：账号风控核查、数据传输可见性与合规建议","coreQuestion":"多人共用节点或机场是否会导致AI账号被连带封禁？数据隐私如何确保？","articles":[{"id":"art-ai-031","title":"AI 工具地区支持核对方法"},{"id":"art-ai-032","title":"AI 账号资格判断"},{"id":"art-ai-033","title":"网络可达与功能可用的区别"},{"id":"art-ai-034","title":"AI 数据的可见边界"},{"id":"art-ai-035","title":"账号关联与安全提示"},{"id":"art-ai-036","title":"协作与隐私约束完整说明"}]}]}]};
+const topic = {"id":"chat-and-multimodal","name":"AI对话与多模态需求","slug":"chat-and-multimodal","url":"/ai/chat-and-multimodal/","h1":"AI对话与多模态需求：ChatGPT、Claude、Gemini选型与音视频多模态","desc":"覆盖Web对话界面风控、地区要求、超大文件上传及实时语音低延迟连接需求。","clusters":[{"id":"web-chat-selection","name":"网页对话服务选型","slug":"web-chat-selection","url":"/ai/chat-and-multimodal/web-chat-selection/","h1":"网页对话服务选型：ChatGPT/Claude/Gemini节点要求与地区限制","coreQuestion":"访问ChatGPT频繁出现Access Denied或Cloudflare死循环验证，该怎么选节点？","articles":[{"id":"art-ai-001","title":"ChatGPT 用什么机场？网页访问与任务核验"},{"id":"art-ai-002","title":"ChatGPT 网页版网络要求：延迟与稳定性"},{"id":"art-ai-003","title":"Claude 用什么机场？地区与账号条件"},{"id":"art-ai-004","title":"Gemini 使用条件与地区限制"},{"id":"art-ai-005","title":"Claude 与 Gemini 的网络差异"},{"id":"art-ai-006","title":"网页对话服务选型完整说明"}]},{"id":"file-voice-multimodal","name":"文件语音与多模态","slug":"file-voice-multimodal","url":"/ai/chat-and-multimodal/file-voice-multimodal/","h1":"文件语音与多模态：文档分析上传、语音对话与多模态持续输出","coreQuestion":"上传几百页PDF给AI分析或使用语音模式实时通话，需要机场具备哪些条件？","articles":[{"id":"art-ai-007","title":"AI 文件上传的网络要求"},{"id":"art-ai-008","title":"AI 语音功能的网络要求"},{"id":"art-ai-009","title":"AI 多模态任务的网络要求"},{"id":"art-ai-010","title":"AI 多模态任务的稳定性要求"},{"id":"art-ai-011","title":"AI 多模态场景的机场选择"},{"id":"art-ai-012","title":"文件语音与多模态完整说明"}]}]};
+const topicArticles = [{"id":"art-ai-001","title":"ChatGPT 用什么机场？网页访问与任务核验","clusterName":"网页对话服务选型"},{"id":"art-ai-002","title":"ChatGPT 网页版网络要求：延迟与稳定性","clusterName":"网页对话服务选型"},{"id":"art-ai-003","title":"Claude 用什么机场？地区与账号条件","clusterName":"网页对话服务选型"},{"id":"art-ai-004","title":"Gemini 使用条件与地区限制","clusterName":"网页对话服务选型"},{"id":"art-ai-005","title":"Claude 与 Gemini 的网络差异","clusterName":"网页对话服务选型"},{"id":"art-ai-006","title":"网页对话服务选型完整说明","clusterName":"网页对话服务选型"},{"id":"art-ai-007","title":"AI 文件上传的网络要求","clusterName":"文件语音与多模态"},{"id":"art-ai-008","title":"AI 语音功能的网络要求","clusterName":"文件语音与多模态"},{"id":"art-ai-009","title":"AI 多模态任务的网络要求","clusterName":"文件语音与多模态"},{"id":"art-ai-010","title":"AI 多模态任务的稳定性要求","clusterName":"文件语音与多模态"},{"id":"art-ai-011","title":"AI 多模态场景的机场选择","clusterName":"文件语音与多模态"},{"id":"art-ai-012","title":"文件语音与多模态完整说明","clusterName":"文件语音与多模态"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「网页对话服务选型」着重解决基础选型与前置决策；子集群「文件语音与多模态」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="AI对话与多模态需求：AI对话与多模态需求：ChatGPT、Claude、Gemini选型与音视频多模态 - 机场wiki指南"
+  description="覆盖Web对话界面风控、地区要求、超大文件上传及实时语音低延迟连接需求。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/ai/chat-and-multimodal/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "AI机场", url: "/ai/" },
+    { name: "AI对话与多模态需求", url: "/ai/chat-and-multimodal/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：AI机场 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        AI对话与多模态需求：ChatGPT、Claude、Gemini选型与音视频多模态
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        覆盖Web对话界面风控、地区要求、超大文件上传及实时语音低延迟连接需求。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="AI对话与多模态需求 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

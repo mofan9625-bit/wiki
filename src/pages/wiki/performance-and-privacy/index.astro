@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"wiki","name":"机场百科","slug":"wiki","url":"/wiki/","h1":"机场百科：线路、协议、网络指标与隐私边界知识体系","coreQuestion":"哪些概念和技术机制，会真正影响机场选择与使用？","theme":"理解技术","targetWords":"7,000–9,500 字","duty":"引用标准和技术规范，拒绝粗暴宣传语。严谨解释IPLC/IEPL、TCP/UDP/QUIC、TLS、分片MTU及数据边界。","megaTableCols":["技术术语/协议","层级分类","工作机制","相比传统优势","核心局限/风险","对日常体验影响","规范文档引用","相关条目"],"decisionLevels":4,"topics":[{"id":"service-and-lines","name":"服务结构与线路实体","slug":"service-and-lines","url":"/wiki/service-and-lines/","h1":"服务结构与线路实体：入口出口拓扑、IPLC/IEPL专线与中转直连","desc":"建立机场通信拓扑模型，界定客户端、订阅中心、中继入口、出口机房等实体关系。","clusters":[{"id":"nodes-and-clients-relation","name":"订阅节点与客户端","slug":"nodes-and-clients-relation","url":"/wiki/service-and-lines/nodes-and-clients-relation/","h1":"订阅节点与客户端：服务拓扑、订阅下发通信流程与角色定义","coreQuestion":"从点击网页链接到数据包跨洋到达目标服务器，中间经历了哪些实体？","articles":[{"id":"art-wik-001","title":"机场服务是什么：组成与角色"},{"id":"art-wik-002","title":"客户端、订阅与节点的关系"},{"id":"art-wik-003","title":"服务组成概念图"},{"id":"art-wik-004","title":"服务实体的角色说明"},{"id":"art-wik-005","title":"订阅与节点的通信流程"},{"id":"art-wik-006","title":"订阅节点与客户端完整说明"}]},{"id":"entry-exit-and-line-tags","name":"入口出口与线路标签","slug":"entry-exit-and-line-tags","url":"/wiki/service-and-lines/entry-exit-and-line-tags/","h1":"入口出口与线路标签：IEPL内网专线、IPLC物理专线与普通BGP中转","coreQuestion":"商家宣传的IPLC与IEPL专线到底有什么区别？专线为什么不怕晚高峰？","articles":[{"id":"art-wik-007","title":"IEPL 专线说明"},{"id":"art-wik-008","title":"IPLC 专线说明"},{"id":"art-wik-009","title":"中转与直连的区别"},{"id":"art-wik-010","title":"线路类型的实际影响"},{"id":"art-wik-011","title":"线路标签与实际观测的区别"},{"id":"art-wik-012","title":"入口出口与线路标签完整说明"}]}]},{"id":"protocols-and-security","name":"传输协议与安全机制","slug":"protocols-and-security","url":"/wiki/protocols-and-security/","h1":"传输协议与安全机制：TCP/UDP/QUIC、TLS握手与VLESS/Trojan协议分层","desc":"依据IETF RFC深入解析网络丢包重传、QUIC多路复用以及现代轻量协议加密机制。","clusters":[{"id":"tcp-udp-and-quic","name":"TCP UDP与QUIC","slug":"tcp-udp-and-quic","url":"/wiki/protocols-and-security/tcp-udp-and-quic/","h1":"TCP UDP与QUIC：可靠传输、重传拥塞控制、多路复用与MTU分片","coreQuestion":"QUIC是基于UDP的，为什么不能把UDP协议都当成同一种体验？丢包时TCP怎样工作？","articles":[{"id":"art-wik-013","title":"TCP与UDP在代理连接中有什么区别？可靠传输、时延与应用需求解析"},{"id":"art-wik-014","title":"QUIC与UDP是什么关系？为什么不能把UDP协议都当作同一种体验"},{"id":"art-wik-015","title":"网络丢包时TCP连接会怎样变化？理解重传、拥塞控制与吞吐下降"},{"id":"art-wik-016","title":"QUIC的多路复用如何工作？与连接切换和应用传输有什么关系"},{"id":"art-wik-017","title":"长连接与短连接有什么区别？为什么网页浏览和持续输出需要不同观察指标"},{"id":"art-wik-018","title":"MTU与分片会怎样影响代理连接？从数据包大小理解异常与性能边界"}]},{"id":"tls-and-proxy-layers","name":"TLS与代理协议层次","slug":"tls-and-proxy-layers","url":"/wiki/protocols-and-security/tls-and-proxy-layers/","h1":"TLS与代理协议层次：TLS加密握手、VLESS、Trojan与Shadowsocks演进","coreQuestion":"VLESS协议为什么比传统VMess更轻快？Trojan的伪装原理是什么？","articles":[{"id":"art-wik-019","title":"TLS 加密基础"},{"id":"art-wik-020","title":"TLS 与代理协议的关系"},{"id":"art-wik-021","title":"VLESS 协议说明"},{"id":"art-wik-022","title":"Trojan 协议说明"},{"id":"art-wik-023","title":"Shadowsocks 协议说明"},{"id":"art-wik-024","title":"TLS与代理协议层次完整说明"}]}]},{"id":"performance-and-privacy","name":"网络性能与隐私边界","slug":"performance-and-privacy","url":"/wiki/performance-and-privacy/","h1":"网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别","desc":"厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。","clusters":[{"id":"metrics-and-meanings","name":"性能指标与测量含义","slug":"metrics-and-meanings","url":"/wiki/performance-and-privacy/metrics-and-meanings/","h1":"性能指标与测量含义：RTT延迟、抖动Jitter、丢包率与带宽吞吐差异","coreQuestion":"平时说的Ping值到底代表什么？带宽1000M为什么实际吞吐只有10M？","articles":[{"id":"art-wik-025","title":"延迟、抖动、丢包指标"},{"id":"art-wik-026","title":"带宽与吞吐的区别"},{"id":"art-wik-027","title":"峰值速度与持续速度"},{"id":"art-wik-028","title":"性能指标的测量方法"},{"id":"art-wik-029","title":"性能指标的解读"},{"id":"art-wik-030","title":"性能指标与测量含义完整说明"}]},{"id":"dns-ip-visibility","name":"DNS IP与数据可见性","slug":"dns-ip-visibility","url":"/wiki/performance-and-privacy/dns-ip-visibility/","h1":"DNS IP与数据可见性：DoH加密解析、fake-ip机制与原生/广播IP风控","coreQuestion":"机场老板能看到我浏览的网页内容和密码吗？原生IP和机房IP到底差在哪？","articles":[{"id":"art-wik-031","title":"DNS 解析流程"},{"id":"art-wik-032","title":"DNS over HTTPS 与 DNS over TLS"},{"id":"art-wik-033","title":"fake-ip 与 redir-host"},{"id":"art-wik-034","title":"原生 IP 与广播 IP"},{"id":"art-wik-035","title":"共享 IP 与独立 IP"},{"id":"art-wik-036","title":"DNS IP与数据可见性完整说明"}]}]}]};
+const topic = {"id":"performance-and-privacy","name":"网络性能与隐私边界","slug":"performance-and-privacy","url":"/wiki/performance-and-privacy/","h1":"网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别","desc":"厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。","clusters":[{"id":"metrics-and-meanings","name":"性能指标与测量含义","slug":"metrics-and-meanings","url":"/wiki/performance-and-privacy/metrics-and-meanings/","h1":"性能指标与测量含义：RTT延迟、抖动Jitter、丢包率与带宽吞吐差异","coreQuestion":"平时说的Ping值到底代表什么？带宽1000M为什么实际吞吐只有10M？","articles":[{"id":"art-wik-025","title":"延迟、抖动、丢包指标"},{"id":"art-wik-026","title":"带宽与吞吐的区别"},{"id":"art-wik-027","title":"峰值速度与持续速度"},{"id":"art-wik-028","title":"性能指标的测量方法"},{"id":"art-wik-029","title":"性能指标的解读"},{"id":"art-wik-030","title":"性能指标与测量含义完整说明"}]},{"id":"dns-ip-visibility","name":"DNS IP与数据可见性","slug":"dns-ip-visibility","url":"/wiki/performance-and-privacy/dns-ip-visibility/","h1":"DNS IP与数据可见性：DoH加密解析、fake-ip机制与原生/广播IP风控","coreQuestion":"机场老板能看到我浏览的网页内容和密码吗？原生IP和机房IP到底差在哪？","articles":[{"id":"art-wik-031","title":"DNS 解析流程"},{"id":"art-wik-032","title":"DNS over HTTPS 与 DNS over TLS"},{"id":"art-wik-033","title":"fake-ip 与 redir-host"},{"id":"art-wik-034","title":"原生 IP 与广播 IP"},{"id":"art-wik-035","title":"共享 IP 与独立 IP"},{"id":"art-wik-036","title":"DNS IP与数据可见性完整说明"}]}]};
+const topicArticles = [{"id":"art-wik-025","title":"延迟、抖动、丢包指标","clusterName":"性能指标与测量含义"},{"id":"art-wik-026","title":"带宽与吞吐的区别","clusterName":"性能指标与测量含义"},{"id":"art-wik-027","title":"峰值速度与持续速度","clusterName":"性能指标与测量含义"},{"id":"art-wik-028","title":"性能指标的测量方法","clusterName":"性能指标与测量含义"},{"id":"art-wik-029","title":"性能指标的解读","clusterName":"性能指标与测量含义"},{"id":"art-wik-030","title":"性能指标与测量含义完整说明","clusterName":"性能指标与测量含义"},{"id":"art-wik-031","title":"DNS 解析流程","clusterName":"DNS IP与数据可见性"},{"id":"art-wik-032","title":"DNS over HTTPS 与 DNS over TLS","clusterName":"DNS IP与数据可见性"},{"id":"art-wik-033","title":"fake-ip 与 redir-host","clusterName":"DNS IP与数据可见性"},{"id":"art-wik-034","title":"原生 IP 与广播 IP","clusterName":"DNS IP与数据可见性"},{"id":"art-wik-035","title":"共享 IP 与独立 IP","clusterName":"DNS IP与数据可见性"},{"id":"art-wik-036","title":"DNS IP与数据可见性完整说明","clusterName":"DNS IP与数据可见性"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「性能指标与测量含义」着重解决基础选型与前置决策；子集群「DNS IP与数据可见性」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="网络性能与隐私边界：网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别 - 机场wiki指南"
+  description="厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/wiki/performance-and-privacy/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场百科", url: "/wiki/" },
+    { name: "网络性能与隐私边界", url: "/wiki/performance-and-privacy/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：机场百科 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        网络性能与隐私边界：延迟丢包抖动测量、DoH/DoT与原生/广播IP区别
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        厘清网络指标真实物理含义，建立fake-ip分流与服务商数据可见边界的科学认知。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="网络性能与隐私边界 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

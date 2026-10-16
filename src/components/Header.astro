@@ -1,0 +1,151 @@
+---
+import { MAIN_NAV, TOPICS_DROPDOWN } from "@/data/navigation";
+
+const currentPath = Astro.url.pathname;
+---
+
+<header class="sticky top-0 z-40 w-full bg-white/95 backdrop-blur-md border-b border-slate-200 shadow-sm transition-all">
+  <!-- Compliance notification bar -->
+  <div class="bg-slate-50 border-b border-slate-100 text-xs text-slate-500 py-1 px-4 text-center">
+    <span>声明：本站为独立第三方选购指南，与任何机场品牌或网络代理软件无隶属关系。内容仅供合法合规用途。</span>
+  </div>
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-16">
+      <!-- Site Logo & Name -->
+      <div class="flex items-center space-x-3">
+        <a href="/" class="flex items-center space-x-2.5 group">
+          <div class="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-sm group-hover:bg-blue-700 transition-colors">
+            W
+          </div>
+          <div>
+            <span class="text-lg font-bold text-slate-900 tracking-tight block leading-tight group-hover:text-blue-600 transition-colors">
+              机场wiki指南
+            </span>
+            <span class="text-[11px] text-slate-400 font-medium block">jichangwiki.cc</span>
+          </div>
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <nav class="hidden md:flex items-center space-x-1 lg:space-x-2">
+        {MAIN_NAV.map((item) => {
+          const isActive = currentPath === item.url || (item.url !== "/" && currentPath.startsWith(item.url));
+          return (
+            <a
+              href={item.url}
+              class={`px-3 py-1.5 rounded-md text-[15px] font-medium transition-colors ${
+                isActive
+                  ? "text-blue-600 bg-blue-50 font-semibold"
+                  : "text-slate-700 hover:text-blue-600 hover:bg-slate-50"
+              }`}
+            >
+              {item.name}
+            </a>
+          );
+        })}
+
+        <!-- Topics Dropdown -->
+        <div class="relative group">
+          <button
+            type="button"
+            class="px-3 py-1.5 rounded-md text-[15px] font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50 flex items-center space-x-1 transition-colors"
+            id="topics-menu-button"
+            aria-expanded="false"
+            aria-haspopup="true"
+          >
+            <span>全部专题</span>
+            <svg width="16" height="16" style="max-width:16px;max-height:16px;display:inline-block;" class="w-4 h-4 transition-transform group-hover:rotate-180 text-slate-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+            </svg>
+          </button>
+
+          <!-- Dropdown Panel -->
+          <div class="absolute right-0 mt-1 w-72 rounded-xl bg-white shadow-xl border border-slate-200 p-3 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+            {TOPICS_DROPDOWN.map((group) => (
+              <div class="mb-2.5 last:mb-0">
+                <div class="text-[11px] font-bold uppercase tracking-wider text-slate-400 px-2 py-1">
+                  {group.groupName}
+                </div>
+                <div class="space-y-0.5">
+                  {group.items.map((subItem) => (
+                    <a
+                      href={subItem.url}
+                      class="block px-2.5 py-1.5 text-sm text-slate-700 hover:bg-blue-50 hover:text-blue-600 rounded-lg transition-colors font-medium"
+                    >
+                      {subItem.name}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </nav>
+
+      <!-- Right Action Items -->
+      <div class="flex items-center space-x-3">
+        <!-- Search Link Button -->
+        <a
+          href="/search/"
+          class="flex items-center space-x-1.5 px-3 py-1.5 rounded-lg border border-slate-200 bg-slate-50 text-slate-500 hover:text-blue-600 hover:border-blue-300 text-sm font-medium transition-all"
+          title="全站搜索"
+        >
+          <svg width="16" height="16" style="max-width:16px;max-height:16px;display:inline-block;" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          <span class="hidden sm:inline">搜索...</span>
+        </a>
+
+        <!-- Mobile menu toggle -->
+        <button
+          type="button"
+          id="mobile-menu-toggle"
+          class="md:hidden p-2 rounded-lg text-slate-600 hover:text-blue-600 hover:bg-slate-100"
+          aria-label="打开导航菜单"
+        >
+          <svg width="24" height="24" style="max-width:24px;max-height:24px;display:inline-block;" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Mobile Drawer Menu -->
+  <div id="mobile-menu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-6 space-y-3">
+    <div class="grid grid-cols-2 gap-2">
+      {MAIN_NAV.map((item) => (
+        <a
+          href={item.url}
+          class="px-3 py-2 rounded-lg text-sm font-medium text-slate-700 hover:bg-blue-50 hover:text-blue-600"
+        >
+          {item.name}
+        </a>
+      ))}
+    </div>
+    <div class="border-t border-slate-100 pt-3">
+      <div class="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">更多专题</div>
+      <div class="grid grid-cols-2 gap-2">
+        {TOPICS_DROPDOWN.flatMap((g) => g.items).map((item) => (
+          <a
+            href={item.url}
+            class="px-3 py-2 rounded-lg text-sm text-slate-600 hover:bg-blue-50 hover:text-blue-600"
+          >
+            {item.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggleBtn = document.getElementById("mobile-menu-toggle");
+  const mobileMenu = document.getElementById("mobile-menu");
+  if (toggleBtn && mobileMenu) {
+    toggleBtn.addEventListener("click", () => {
+      mobileMenu.classList.toggle("hidden");
+    });
+  }
+</script>

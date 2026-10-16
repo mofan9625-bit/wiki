@@ -1,0 +1,104 @@
+---
+import servicesData from "@/data/services.json";
+
+interface TableCellLink {
+  text: string;
+  url: string;
+  isPrimary?: boolean;
+}
+
+type TableCell = string | number | boolean | null | TableCellLink;
+
+interface Props {
+  headers: string[];
+  rows: Array<Array<TableCell>>;
+  caption?: string;
+}
+
+const { headers, rows, caption } = Astro.props;
+---
+
+<div class="my-6">
+  {caption && (
+    <div class="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 flex items-center space-x-1.5">
+      <svg width="14" height="14" style="max-width:14px;max-height:14px;display:inline-block;" class="w-3.5 h-3.5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-2m3 2v-4m3 4v-6m2 10H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+      </svg>
+      <span>{caption}</span>
+    </div>
+  )}
+  <div class="table-wrapper">
+    <table class="data-table m-0">
+      <thead>
+        <tr>
+          {headers.map((h) => (
+            <th>{h}</th>
+          ))}
+        </tr>
+      </thead>
+      <tbody>
+        {rows.map((row) => (
+          <tr>
+            {row.map((cell, cellIndex) => {
+              const isLinkObject = typeof cell === "object" && cell !== null && "url" in cell && "text" in cell;
+              const isDirectLinkText = typeof cell === "string" && (cell.includes("主推入口") || cell.includes("官网通道") || cell.includes("官网直达") || cell.includes("直达通道"));
+              
+              let finalLink: TableCellLink | null = null;
+              if (isLinkObject) {
+                finalLink = cell as TableCellLink;
+              } else if (isDirectLinkText) {
+                const brandMatch = servicesData.find((b: any) => b.name === row[0]);
+                const fallbackUrl = brandMatch?.registerUrl || (brandMatch ? `/airports/${brandMatch.id}/` : "#");
+                finalLink = {
+                  text: cell as string,
+                  url: fallbackUrl,
+                  isPrimary: (cell as string).includes("★")
+                };
+              }
+
+              const isBrandCol = (cellIndex === 0 && (headers[0] === "品牌名称" || headers[0] === "品牌" || headers[0] === "服务商")) && typeof cell === "string";
+              const brandProfile = isBrandCol ? servicesData.find((b: any) => b.name === cell || b.id === cell) : null;
+
+              const isNumeric = typeof cell === "number" || (typeof cell === "string" && /^[0-9]+(\.[0-9]+)?(\s*(元|GB|MB|Mbps|ms|%))?$/.test(cell));
+              const isUnverified = cell === "待核验" || cell === "未披露" || cell === null;
+
+              return (
+                <td class={`${isNumeric ? "numeric" : ""} ${isUnverified ? "unverified" : ""}`}>
+                  {finalLink ? (
+                    <a
+                      href={finalLink.url}
+                      target="_blank"
+                      rel="nofollow sponsored noopener"
+                      class={`inline-flex items-center space-x-1 transition-colors ${
+                        finalLink.isPrimary
+                          ? "text-blue-600 font-bold hover:text-blue-800 hover:underline"
+                          : "font-semibold text-slate-700 hover:text-blue-600 hover:underline"
+                      }`}
+                    >
+                      <span>{finalLink.text}</span>
+                      <svg width="12" height="12" style="max-width:12px;max-height:12px;display:inline-block;" class="w-3 h-3 ml-0.5 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                      </svg>
+                    </a>
+                  ) : brandProfile ? (
+                    <a href={`/airports/${brandProfile.id}/`} class="font-semibold text-slate-900 hover:text-blue-600 hover:underline">
+                      {cell}
+                    </a>
+                  ) : cell !== null && cell !== undefined ? (
+                    cell
+                  ) : (
+                    "待核验"
+                  )}
+                </td>
+              );
+            })}
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+  <div class="text-[11px] text-slate-400 mt-1 flex justify-between items-center px-1">
+    <span>* 表格支持横向滑动浏览全部指标</span>
+    <span>核验基准：2026-10 事实采样</span>
+  </div>
+</div>

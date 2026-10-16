@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"cheap","name":"便宜机场","slug":"cheap","url":"/cheap/","h1":"便宜机场推荐：低预算、小流量与长期成本选型指南","coreQuestion":"在我的预算和使用频率下，哪些机场更合适？","theme":"选择服务","targetWords":"7,000–9,500 字","duty":"负责筛选候选品牌；套餐对比负责解释计算方法。不批量建立一元、二元等机械重复页。","megaTableCols":["品牌","档位与最低月付","月付流量","折算每GB单价","线路类型","倍率机制","适合场景","主要风险与限制"],"decisionLevels":4,"topics":[{"id":"fixed-budget","name":"固定预算与入门套餐","slug":"fixed-budget","url":"/cheap/fixed-budget/","h1":"固定预算与入门套餐：5元/7元/10元档位与小流量价值","desc":"盘点5元档、7元档、10元档的真实月付与年付折算，分析50GB以下轻量套餐性价比。","clusters":[{"id":"low-monthly-fee","name":"低月付选型","slug":"low-monthly-fee","url":"/cheap/fixed-budget/low-monthly-fee/","h1":"低月付选型：5元/7元/10元各档位实际费用与品质权衡","coreQuestion":"月预算在5–10元之间，能买到哪些不跑路的稳定专线机场？","articles":[{"id":"art-cheap-001","title":"5 元档机场有哪些？实际月付金额与流量说明"},{"id":"art-cheap-002","title":"7 元档机场怎么选？低预算下的服务质量核对"},{"id":"art-cheap-003","title":"10 元档机场推荐：入门级月付对比"},{"id":"art-cheap-004","title":"低预算机场的付款周期怎么选？"},{"id":"art-cheap-005","title":"低预算机场的入门套餐比较"},{"id":"art-cheap-006","title":"低预算机场选择清单"}]},{"id":"low-traffic-value","name":"小流量价值判断","slug":"low-traffic-value","url":"/cheap/fixed-budget/low-traffic-value/","h1":"小流量价值判断：50GB以下额度适用场景与计算方法","coreQuestion":"每月用量不到50GB，买小流量套餐划算还是按量付费划算？","articles":[{"id":"art-cheap-007","title":"小流量月付机场有哪些？50GB 以下的套餐对比"},{"id":"art-cheap-008","title":"小流量套餐的适用场景：轻度使用与备用"},{"id":"art-cheap-009","title":"小流量套餐的流量计算方式"},{"id":"art-cheap-010","title":"小流量套餐的设备与客户端支持"},{"id":"art-cheap-011","title":"小流量套餐的续费与升级"},{"id":"art-cheap-012","title":"小流量套餐价值判断清单"}]}]},{"id":"low-frequency","name":"低频使用与备用预算","slug":"low-frequency","url":"/cheap/low-frequency/","h1":"低频使用与备用预算：间歇使用策略与主备预算分配","desc":"解决偶尔查资料、差旅备用等低频场景下的支出控制，规划主力与备用成本组合。","clusters":[{"id":"intermittent-use","name":"间歇使用选型","slug":"intermittent-use","url":"/cheap/low-frequency/intermittent-use/","h1":"间歇使用选型：按量付费与周期月付的盈亏分界","coreQuestion":"一年只用几次或每月仅轻度访问，如何避免为闲置周期买单？","articles":[{"id":"art-cheap-013","title":"偶尔使用的机场怎么选？按量付费与月付对比"},{"id":"art-cheap-014","title":"流量包与月付哪个更适合低频使用？"},{"id":"art-cheap-015","title":"备用服务需要多少预算？成本控制方案"},{"id":"art-cheap-016","title":"低频使用者的流量消耗估算方法"},{"id":"art-cheap-017","title":"间歇使用场景的付款周期选择"},{"id":"art-cheap-018","title":"间歇使用选型完整说明"}]},{"id":"backup-budget-allocation","name":"主备组合的预算分配","slug":"backup-budget-allocation","url":"/cheap/low-frequency/backup-budget-allocation/","h1":"主备组合的预算分配：双机场流量搭配与性价比模型","coreQuestion":"如何用总计不到25元的月均预算，配齐一套主力专线加高可用备用方案？","articles":[{"id":"art-cheap-019","title":"主力机场与备用机场的预算怎么分配？"},{"id":"art-cheap-020","title":"主备组合的流量与套餐配置"},{"id":"art-cheap-021","title":"主备服务的切换与验证"},{"id":"art-cheap-022","title":"主备组合的账号与凭据管理"},{"id":"art-cheap-023","title":"主备组合的成本收益分析"},{"id":"art-cheap-024","title":"主备组合预算分配完整说明"}]}]},{"id":"long-term-cost","name":"长期成本与性价比","slug":"long-term-cost","url":"/cheap/long-term-cost/","h1":"长期成本与性价比：每GB实付、年付折算与预付风险","desc":"拆解倍率计费陷阱，指导年付实际支出核算与价格上涨风险评估。","clusters":[{"id":"cost-effectiveness-eval","name":"综合性价比评估","slug":"cost-effectiveness-eval","url":"/cheap/long-term-cost/cost-effectiveness-eval/","h1":"综合性价比评估：真实单价核算、倍率陷阱与附加成本","coreQuestion":"宣称每GB只要一毛钱的机场，实际跑起来为什么扣费飞快？","articles":[{"id":"art-cheap-025","title":"每 GB 成本怎么算？单位与口径核对"},{"id":"art-cheap-026","title":"月均费用怎么算？年付折算与实付对比"},{"id":"art-cheap-027","title":"流量倍率对成本的影响"},{"id":"art-cheap-028","title":"附加费用与升级成本"},{"id":"art-cheap-029","title":"续费价格上涨的处理"},{"id":"art-cheap-030","title":"性价比评估完整方法"}]},{"id":"prepaid-budget","name":"长期预付与持续预算","slug":"prepaid-budget","url":"/cheap/long-term-cost/prepaid-budget/","h1":"长期预付与持续预算：年付折合、首购续费差价与跑路风险防范","coreQuestion":"年付打5折诱惑极大，普通用户在什么条件下才能放心买年付？","articles":[{"id":"art-cheap-031","title":"年付机场有哪些？折合月费的正确算法"},{"id":"art-cheap-032","title":"年付实际总支出计算：含首购与续费"},{"id":"art-cheap-033","title":"年付与月付的成本差异"},{"id":"art-cheap-034","title":"年付折扣的适用条件与限制"},{"id":"art-cheap-035","title":"年付套餐的风险评估"},{"id":"art-cheap-036","title":"长期预付与持续预算完整说明"}]}]}]};
+const topic = {"id":"low-frequency","name":"低频使用与备用预算","slug":"low-frequency","url":"/cheap/low-frequency/","h1":"低频使用与备用预算：间歇使用策略与主备预算分配","desc":"解决偶尔查资料、差旅备用等低频场景下的支出控制，规划主力与备用成本组合。","clusters":[{"id":"intermittent-use","name":"间歇使用选型","slug":"intermittent-use","url":"/cheap/low-frequency/intermittent-use/","h1":"间歇使用选型：按量付费与周期月付的盈亏分界","coreQuestion":"一年只用几次或每月仅轻度访问，如何避免为闲置周期买单？","articles":[{"id":"art-cheap-013","title":"偶尔使用的机场怎么选？按量付费与月付对比"},{"id":"art-cheap-014","title":"流量包与月付哪个更适合低频使用？"},{"id":"art-cheap-015","title":"备用服务需要多少预算？成本控制方案"},{"id":"art-cheap-016","title":"低频使用者的流量消耗估算方法"},{"id":"art-cheap-017","title":"间歇使用场景的付款周期选择"},{"id":"art-cheap-018","title":"间歇使用选型完整说明"}]},{"id":"backup-budget-allocation","name":"主备组合的预算分配","slug":"backup-budget-allocation","url":"/cheap/low-frequency/backup-budget-allocation/","h1":"主备组合的预算分配：双机场流量搭配与性价比模型","coreQuestion":"如何用总计不到25元的月均预算，配齐一套主力专线加高可用备用方案？","articles":[{"id":"art-cheap-019","title":"主力机场与备用机场的预算怎么分配？"},{"id":"art-cheap-020","title":"主备组合的流量与套餐配置"},{"id":"art-cheap-021","title":"主备服务的切换与验证"},{"id":"art-cheap-022","title":"主备组合的账号与凭据管理"},{"id":"art-cheap-023","title":"主备组合的成本收益分析"},{"id":"art-cheap-024","title":"主备组合预算分配完整说明"}]}]};
+const topicArticles = [{"id":"art-cheap-013","title":"偶尔使用的机场怎么选？按量付费与月付对比","clusterName":"间歇使用选型"},{"id":"art-cheap-014","title":"流量包与月付哪个更适合低频使用？","clusterName":"间歇使用选型"},{"id":"art-cheap-015","title":"备用服务需要多少预算？成本控制方案","clusterName":"间歇使用选型"},{"id":"art-cheap-016","title":"低频使用者的流量消耗估算方法","clusterName":"间歇使用选型"},{"id":"art-cheap-017","title":"间歇使用场景的付款周期选择","clusterName":"间歇使用选型"},{"id":"art-cheap-018","title":"间歇使用选型完整说明","clusterName":"间歇使用选型"},{"id":"art-cheap-019","title":"主力机场与备用机场的预算怎么分配？","clusterName":"主备组合的预算分配"},{"id":"art-cheap-020","title":"主备组合的流量与套餐配置","clusterName":"主备组合的预算分配"},{"id":"art-cheap-021","title":"主备服务的切换与验证","clusterName":"主备组合的预算分配"},{"id":"art-cheap-022","title":"主备组合的账号与凭据管理","clusterName":"主备组合的预算分配"},{"id":"art-cheap-023","title":"主备组合的成本收益分析","clusterName":"主备组合的预算分配"},{"id":"art-cheap-024","title":"主备组合预算分配完整说明","clusterName":"主备组合的预算分配"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「间歇使用选型」着重解决基础选型与前置决策；子集群「主备组合的预算分配」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="低频使用与备用预算：低频使用与备用预算：间歇使用策略与主备预算分配 - 机场wiki指南"
+  description="解决偶尔查资料、差旅备用等低频场景下的支出控制，规划主力与备用成本组合。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/cheap/low-frequency/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "便宜机场", url: "/cheap/" },
+    { name: "低频使用与备用预算", url: "/cheap/low-frequency/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：便宜机场 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        低频使用与备用预算：间歇使用策略与主备预算分配
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        解决偶尔查资料、差旅备用等低频场景下的支出控制，规划主力与备用成本组合。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="低频使用与备用预算 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

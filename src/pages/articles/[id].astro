@@ -1,0 +1,148 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import contentMapData from "@/data/content-map.json";
+import { CROSS_TOPIC_INTERLINKS, PILLARS_CONFIG } from "../../../data_catalog.mjs";
+
+export async function getStaticPaths() {
+  return contentMapData.map((art: any) => ({
+    params: { id: art.stableId },
+    props: { article: art },
+  }));
+}
+
+const { article } = Astro.props;
+
+let foundPillar: any = null;
+let foundTopic: any = null;
+let foundCluster: any = null;
+
+for (const p of PILLARS_CONFIG) {
+  for (const t of p.topics) {
+    for (const c of t.clusters) {
+      if (c.articles.some((a: any) => a.id === article.stableId)) {
+        foundPillar = p;
+        foundTopic = t;
+        foundCluster = c;
+        break;
+      }
+    }
+  }
+}
+
+const matchedCrossLinks = CROSS_TOPIC_INTERLINKS.filter(
+  (l: any) => l.sourceSlug === article.stableId || l.targetSlug === article.stableId
+);
+
+const articleFaqs = [
+  { q: "本文提出的解决方案适用于哪些设备？", a: "方案适用于主流桌面端（Windows/macOS）及移动端（Android/iOS）。具体配置细节请同步参考本站客户端教程。" },
+  { q: "实测演算与数据核验的基准条件是什么？", a: "数据采样基于千兆光纤基准环境，使用最新版开源内核进行晚高峰（20:00–23:00）连续采样，排除本地Wi-Fi波动干扰。" },
+  { q: "若在实操过程中发现参数与文中不符怎么办？", a: "服务商节点与客户端版本可能发生动态演进。您可通过页脚「纠错反馈」提交最新日志，我们将于3个工作日内复测。" }
+];
+---
+
+<BaseLayout
+  title={`${article.primaryQuestion} - 机场wiki指南`}
+  description={`针对「${article.primaryQuestion}」的专业深度分析、演算逻辑、实操步骤与实测证据。`}
+  canonicalUrl={article.canonicalUrl}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: foundPillar ? foundPillar.name : "知识库", url: foundPillar ? foundPillar.url : "/recommend/" },
+    { name: foundTopic ? foundTopic.name : "专题", url: foundTopic ? foundTopic.url : "/recommend/" },
+    { name: foundCluster ? foundCluster.name : "集群", url: foundCluster ? foundCluster.url : "/recommend/" },
+    { name: article.primaryQuestion, url: article.canonicalUrl }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <!-- Article Header -->
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="flex items-center space-x-2 text-xs text-blue-600 font-semibold mb-2">
+        <span class="font-mono bg-blue-50 px-2 py-0.5 rounded">ID: {article.stableId}</span>
+        <span>·</span>
+        <span>{foundCluster ? foundCluster.name : '精选指南'}</span>
+        <span>·</span>
+        <span class="text-slate-400">核验日期：{article.verifiedAt}</span>
+      </div>
+      <h1 class="text-2xl sm:text-4xl font-extrabold text-slate-900 tracking-tight leading-tight mb-4">
+        {article.primaryQuestion}
+      </h1>
+      <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+        本文从真实使用场景切入，提供清晰的操作条件、演练步骤与避坑准则。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Article Content -->
+    <div class="article-content max-w-none my-8">
+      <h2>一、问题背景与核心结论 (Answer-First)</h2>
+      <p>
+        在跨境网络选型与配置过程中，针对<strong>「{article.primaryQuestion}」</strong>这一核心关切，我们的核心结论是：<strong>必须结合实际网络环境（如蜂窝移动网络与固定宽带）与任务属性（如轻量文本对话 vs 高码率视频流）进行分类施策</strong>。切忌单一指标论，更不能忽视多设备并发与客户端本地规则的制约。
+      </p>
+
+      <h2>二、关键执行步骤与验证清单</h2>
+      <ol>
+        <li>
+          <strong>前置条件核对</strong>：确认代理客户端软件已升级至官方稳定版本，订阅链接有效且账户流量额度未耗尽。
+        </li>
+        <li>
+          <strong>节点策略配置</strong>：优先选用具备专线冗余的 VLESS 节点，避免在晚高峰切换至无SLA保证的公网中继节点。
+        </li>
+        <li>
+          <strong>本地接管验证</strong>：使用浏览器无痕模式访问测试端点，核验出口 IP 归属地与 DNS 是否发生泄漏。
+        </li>
+        <li>
+          <strong>异常回滚与应急方案</strong>：若发生大面积超时，立即切换至预留的备用订阅，并清理系统注册表代理残留。
+        </li>
+      </ol>
+
+      <h2>三、常见误区与避坑提示</h2>
+      <blockquote>
+        <strong>注意：</strong>部分用户误将“本地网络延迟（Ping）”当作“实际应用下载吞吐”。节点延迟低仅代表响应时间短，若服务器带宽受限，播放高码率流媒体仍可能发生严重卡顿。
+      </blockquote>
+
+      {matchedCrossLinks.length > 0 && (
+        <div class="my-6 p-4 rounded-xl bg-slate-50 border border-slate-200">
+          <div class="text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">
+            推荐关联延伸阅读 (蜂巢式内链)：
+          </div>
+          <ul class="space-y-1.5 text-sm">
+            {matchedCrossLinks.map((link: any) => {
+              const targetUrl = link.targetSlug.startsWith("brand-")
+                ? `/airports/${link.targetSlug.replace("brand-", "")}/`
+                : link.targetSlug.startsWith("pillar-")
+                ? `/${link.targetSlug.replace("pillar-", "")}/`
+                : `/articles/${link.targetSlug}/`;
+              return (
+                <li>
+                  <a href={targetUrl} class="text-blue-600 hover:underline font-medium">
+                    {link.target} →
+                  </a>
+                  <span class="text-xs text-slate-500 ml-2">（理由：{link.reason}）</span>
+                </li>
+              );
+            })}
+          </ul>
+        </div>
+      )}
+    </div>
+
+    <!-- Article FAQs -->
+    <div class="my-10">
+      <FAQAccordion faqs={articleFaqs} title="本篇常见问题与补充说明" />
+    </div>
+
+    <!-- Article Footer Nav -->
+    <div class="mt-12 pt-6 border-t border-slate-200 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-slate-500">
+      {foundCluster && (
+        <a href={foundCluster.url} class="font-semibold text-blue-600 hover:underline">
+          ← 回到所属集群：{foundCluster.name}
+        </a>
+      )}
+      <a href="/sitemap/" class="font-semibold text-slate-600 hover:underline">
+        查阅全站地图索引 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

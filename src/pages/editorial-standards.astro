@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "编辑规范与事实核验准则";
+const pageDesc = "内容真实性准则、术语规范与禁止夸大承诺。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p>编辑部严格执行以下规范：</p><ol><li>品牌方声称内容统一添加「品牌资料显示」前缀。</li><li>禁止生成真实节点敏感配置与规避网络审查教程。</li><li>客户端资料必须按官方项目与版本核验，标注核验日期，禁止使用第三方不明镜像。</li><li>不虚构作者资质、公司地址、评分、评价人数等结构化数据。</li></ol>
+    </div>
+  </div>
+</BaseLayout>

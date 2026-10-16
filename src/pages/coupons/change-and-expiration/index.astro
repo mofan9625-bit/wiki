@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"coupons","name":"机场优惠码","slug":"coupons","url":"/coupons/","h1":"机场优惠码：真实代码、适用条件与折后费用核算","coreQuestion":"哪些代码适用，优惠后实际支付多少？","theme":"比较购买条件","targetWords":"7,000–9,500 字","duty":"严格围绕优惠码核销，不扩充为杂乱活动新闻。提供真实代码、适用范围、核销限制与到手实付核算。","megaTableCols":["品牌","优惠代码","折扣力度","适用套餐","新老用户资格","最低消费门槛","有效期状态","最后核验时间","直达通道"],"decisionLevels":4,"topics":[{"id":"coupon-verification","name":"优惠查找与资格核对","slug":"coupon-verification","url":"/coupons/coupon-verification/","h1":"优惠查找与资格核对：代码来源、真实性核验与用户资格","desc":"核查公开促销代码与专属内部码的真伪，明确首购限制与续费使用条件。","clusters":[{"id":"code-source-and-trust","name":"代码来源与可信核验","slug":"code-source-and-trust","url":"/coupons/coupon-verification/code-source-and-trust/","h1":"代码来源与可信核验：官方公告、合作渠道与防失效筛查","coreQuestion":"网络上搜索出来的机场优惠码多数失效？如何高效获取官方可用代码？","articles":[{"id":"art-cpo-001","title":"优惠码来源说明"},{"id":"art-cpo-002","title":"优惠码真实性判断"},{"id":"art-cpo-003","title":"优惠码核验方法"},{"id":"art-cpo-004","title":"优惠码失效记录"},{"id":"art-cpo-005","title":"优惠码常见问题"},{"id":"art-cpo-006","title":"代码来源与可信核验完整说明"}]},{"id":"eligibility-and-renewal","name":"首购续费与套餐资格","slug":"eligibility-and-renewal","url":"/coupons/coupon-verification/eligibility-and-renewal/","h1":"首购续费与套餐资格：新用户专属、老用户续费与年付叠加","coreQuestion":"老用户续费能用首购折扣码吗？年付自带的折扣还能叠加优惠码吗？","articles":[{"id":"art-cpo-007","title":"首购优惠码有哪些"},{"id":"art-cpo-008","title":"试用转首购的优惠叠加"},{"id":"art-cpo-009","title":"首购与年付折扣的区别"},{"id":"art-cpo-010","title":"首购优惠码的适用条件"},{"id":"art-cpo-011","title":"续费优惠码有哪些"},{"id":"art-cpo-012","title":"首购续费与套餐资格完整说明"}]}]},{"id":"discount-calculation","name":"折后价格与结算使用","slug":"discount-calculation","url":"/coupons/discount-calculation/","h1":"折后价格与结算使用：实际节省核算、订单验证与防填错","desc":"计算7折/8折/9折后实付金额，指导结算输入位置与金额核对留存。","clusters":[{"id":"discount-and-stacking","name":"优惠折算与叠加规则","slug":"discount-and-stacking","url":"/coupons/discount-calculation/discount-and-stacking/","h1":"优惠折算与叠加规则：7折/8折/9折实际抵扣与总额影响","coreQuestion":"折扣是按原价打折还是折后价再折？怎样算清结算页面的最终支付金额？","articles":[{"id":"art-cpo-013","title":"9 折优惠的实际节省"},{"id":"art-cpo-014","title":"8 折优惠的实际节省"},{"id":"art-cpo-015","title":"7 折优惠的实际节省"},{"id":"art-cpo-016","title":"优惠码叠加规则"},{"id":"art-cpo-017","title":"优惠后实际付款金额"},{"id":"art-cpo-018","title":"优惠折算与叠加规则完整说明"}]},{"id":"checkout-and-evidence","name":"结算验证与订单证据","slug":"checkout-and-evidence","url":"/coupons/discount-calculation/checkout-and-evidence/","h1":"结算验证与订单证据：填写入口、应用提示与报错处理","coreQuestion":"输入优惠码后提示“无效”或“已达上限”怎么处理？如何截图存证？","articles":[{"id":"art-cpo-019","title":"优惠码填写位置说明"},{"id":"art-cpo-020","title":"优惠码结算确认"},{"id":"art-cpo-021","title":"优惠码无法使用的原因"},{"id":"art-cpo-022","title":"优惠码输入错误处理"},{"id":"art-cpo-023","title":"优惠码生效验证"},{"id":"art-cpo-024","title":"结算验证与订单证据完整说明"}]}]},{"id":"change-and-expiration","name":"优惠变更与失效处置","slug":"change-and-expiration","url":"/coupons/change-and-expiration/","h1":"优惠变更与失效处置：升降级影响、过期记录与日常维护","desc":"说明订单变更对既有折扣的影响，建立过期优惠标记与纠错维护机制。","clusters":[{"id":"renewal-order-change","name":"续费与订单变更优惠","slug":"renewal-order-change","url":"/coupons/change-and-expiration/renewal-order-change/","h1":"续费与订单变更优惠：套餐变更折扣延续与补差价规则","coreQuestion":"使用优惠码购买的套餐，后续升级或降级时还能继续享受原折扣吗？","articles":[{"id":"art-cpo-025","title":"续费优惠与首购优惠的差异"},{"id":"art-cpo-026","title":"续费优惠使用步骤"},{"id":"art-cpo-027","title":"续费优惠适用范围"},{"id":"art-cpo-028","title":"订单变更对优惠的影响"},{"id":"art-cpo-029","title":"优惠叠加与订单变更组合"},{"id":"art-cpo-030","title":"续费与订单变更优惠完整说明"}]},{"id":"expiration-maintenance","name":"失效原因与记录维护","slug":"expiration-maintenance","url":"/coupons/change-and-expiration/expiration-maintenance/","h1":"失效原因与记录维护：到期判定、名额限制与动态状态更新","coreQuestion":"站内如何保持优惠码的鲜活性？遇到失效代码如何反馈与纠错？","articles":[{"id":"art-cpo-031","title":"优惠码有效期判断"},{"id":"art-cpo-032","title":"优惠码失效原因"},{"id":"art-cpo-033","title":"优惠码状态更新"},{"id":"art-cpo-034","title":"优惠码失效记录"},{"id":"art-cpo-035","title":"优惠码维护方法"},{"id":"art-cpo-036","title":"失效原因与记录维护完整说明"}]}]}]};
+const topic = {"id":"change-and-expiration","name":"优惠变更与失效处置","slug":"change-and-expiration","url":"/coupons/change-and-expiration/","h1":"优惠变更与失效处置：升降级影响、过期记录与日常维护","desc":"说明订单变更对既有折扣的影响，建立过期优惠标记与纠错维护机制。","clusters":[{"id":"renewal-order-change","name":"续费与订单变更优惠","slug":"renewal-order-change","url":"/coupons/change-and-expiration/renewal-order-change/","h1":"续费与订单变更优惠：套餐变更折扣延续与补差价规则","coreQuestion":"使用优惠码购买的套餐，后续升级或降级时还能继续享受原折扣吗？","articles":[{"id":"art-cpo-025","title":"续费优惠与首购优惠的差异"},{"id":"art-cpo-026","title":"续费优惠使用步骤"},{"id":"art-cpo-027","title":"续费优惠适用范围"},{"id":"art-cpo-028","title":"订单变更对优惠的影响"},{"id":"art-cpo-029","title":"优惠叠加与订单变更组合"},{"id":"art-cpo-030","title":"续费与订单变更优惠完整说明"}]},{"id":"expiration-maintenance","name":"失效原因与记录维护","slug":"expiration-maintenance","url":"/coupons/change-and-expiration/expiration-maintenance/","h1":"失效原因与记录维护：到期判定、名额限制与动态状态更新","coreQuestion":"站内如何保持优惠码的鲜活性？遇到失效代码如何反馈与纠错？","articles":[{"id":"art-cpo-031","title":"优惠码有效期判断"},{"id":"art-cpo-032","title":"优惠码失效原因"},{"id":"art-cpo-033","title":"优惠码状态更新"},{"id":"art-cpo-034","title":"优惠码失效记录"},{"id":"art-cpo-035","title":"优惠码维护方法"},{"id":"art-cpo-036","title":"失效原因与记录维护完整说明"}]}]};
+const topicArticles = [{"id":"art-cpo-025","title":"续费优惠与首购优惠的差异","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-026","title":"续费优惠使用步骤","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-027","title":"续费优惠适用范围","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-028","title":"订单变更对优惠的影响","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-029","title":"优惠叠加与订单变更组合","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-030","title":"续费与订单变更优惠完整说明","clusterName":"续费与订单变更优惠"},{"id":"art-cpo-031","title":"优惠码有效期判断","clusterName":"失效原因与记录维护"},{"id":"art-cpo-032","title":"优惠码失效原因","clusterName":"失效原因与记录维护"},{"id":"art-cpo-033","title":"优惠码状态更新","clusterName":"失效原因与记录维护"},{"id":"art-cpo-034","title":"优惠码失效记录","clusterName":"失效原因与记录维护"},{"id":"art-cpo-035","title":"优惠码维护方法","clusterName":"失效原因与记录维护"},{"id":"art-cpo-036","title":"失效原因与记录维护完整说明","clusterName":"失效原因与记录维护"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「续费与订单变更优惠」着重解决基础选型与前置决策；子集群「失效原因与记录维护」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="优惠变更与失效处置：优惠变更与失效处置：升降级影响、过期记录与日常维护 - 机场wiki指南"
+  description="说明订单变更对既有折扣的影响，建立过期优惠标记与纠错维护机制。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/coupons/change-and-expiration/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场优惠码", url: "/coupons/" },
+    { name: "优惠变更与失效处置", url: "/coupons/change-and-expiration/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：机场优惠码 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        优惠变更与失效处置：升降级影响、过期记录与日常维护
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        说明订单变更对既有折扣的影响，建立过期优惠标记与纠错维护机制。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="优惠变更与失效处置 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>

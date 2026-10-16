@@ -1,0 +1,19 @@
+# 机场wiki指南 (jichangwiki.cc)
+
+> 核心定位：以机场选型为核心，用品牌资料、套餐计算、真实评测、使用教程和网络原理支撑选择的中文知识库。
+> 站点性质：独立第三方选购指南，与任何机场品牌无隶属关系。
+
+## 核心一级栏目
+- 机场推荐: https://jichangwiki.cc/recommend/
+- 免费机场: https://jichangwiki.cc/free/
+- 便宜机场: https://jichangwiki.cc/cheap/
+- 套餐对比: https://jichangwiki.cc/plans/
+- 机场评测: https://jichangwiki.cc/reviews/
+- 机场优惠码: https://jichangwiki.cc/coupons/
+- AI机场: https://jichangwiki.cc/ai/
+- 流媒体机场: https://jichangwiki.cc/streaming/
+- 客户端教程: https://jichangwiki.cc/clients/
+- 网络排障: https://jichangwiki.cc/troubleshooting/
+- 机场百科: https://jichangwiki.cc/wiki/
+- 机场大全: https://jichangwiki.cc/airports/
+- 网站地图: https://jichangwiki.cc/sitemap/

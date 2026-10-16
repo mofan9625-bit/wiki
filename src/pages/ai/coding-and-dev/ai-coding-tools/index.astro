@@ -1,0 +1,83 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+
+const pillar = {"id":"ai","name":"AI机场","slug":"ai","url":"/ai/","h1":"AI机场推荐：对话、多模态与AI编程的网络选型指南","coreQuestion":"针对我的 AI 工具和任务，应该怎样选择机场及使用方式？","theme":"按用途选择","targetWords":"7,000–9,500 字","duty":"每条记录注明工具、功能、网页/API、账号前提、地区条件和测试时间。不简化为单个支持AI标签。","megaTableCols":["品牌","ChatGPT支持度","Claude支持度","API直连/流式支持","Cursor/Copilot支持","节点纯净度/原生IP","最低月付","直达通道"],"decisionLevels":4,"topics":[{"id":"chat-and-multimodal","name":"AI对话与多模态需求","slug":"chat-and-multimodal","url":"/ai/chat-and-multimodal/","h1":"AI对话与多模态需求：ChatGPT、Claude、Gemini选型与音视频多模态","desc":"覆盖Web对话界面风控、地区要求、超大文件上传及实时语音低延迟连接需求。","clusters":[{"id":"web-chat-selection","name":"网页对话服务选型","slug":"web-chat-selection","url":"/ai/chat-and-multimodal/web-chat-selection/","h1":"网页对话服务选型：ChatGPT/Claude/Gemini节点要求与地区限制","coreQuestion":"访问ChatGPT频繁出现Access Denied或Cloudflare死循环验证，该怎么选节点？","articles":[{"id":"art-ai-001","title":"ChatGPT 用什么机场？网页访问与任务核验"},{"id":"art-ai-002","title":"ChatGPT 网页版网络要求：延迟与稳定性"},{"id":"art-ai-003","title":"Claude 用什么机场？地区与账号条件"},{"id":"art-ai-004","title":"Gemini 使用条件与地区限制"},{"id":"art-ai-005","title":"Claude 与 Gemini 的网络差异"},{"id":"art-ai-006","title":"网页对话服务选型完整说明"}]},{"id":"file-voice-multimodal","name":"文件语音与多模态","slug":"file-voice-multimodal","url":"/ai/chat-and-multimodal/file-voice-multimodal/","h1":"文件语音与多模态：文档分析上传、语音对话与多模态持续输出","coreQuestion":"上传几百页PDF给AI分析或使用语音模式实时通话，需要机场具备哪些条件？","articles":[{"id":"art-ai-007","title":"AI 文件上传的网络要求"},{"id":"art-ai-008","title":"AI 语音功能的网络要求"},{"id":"art-ai-009","title":"AI 多模态任务的网络要求"},{"id":"art-ai-010","title":"AI 多模态任务的稳定性要求"},{"id":"art-ai-011","title":"AI 多模态场景的机场选择"},{"id":"art-ai-012","title":"文件语音与多模态完整说明"}]}]},{"id":"coding-and-dev","name":"AI编程与开发连接","slug":"coding-and-dev","url":"/ai/coding-and-dev/","h1":"AI编程与开发连接：Cursor、Copilot、API调用与长流式传输","desc":"解决开发者在IDE内使用AI补全、代码生成及商业API高频调用时的断流难题。","clusters":[{"id":"ai-coding-tools","name":"AI编程工具方案","slug":"ai-coding-tools","url":"/ai/coding-and-dev/ai-coding-tools/","h1":"AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化","coreQuestion":"写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？","articles":[{"id":"art-ai-013","title":"AI 编程工具网络要求"},{"id":"art-ai-014","title":"Cursor 与 GitHub Copilot 网络配置"},{"id":"art-ai-015","title":"AI 编程连接异常排查"},{"id":"art-ai-016","title":"AI 编程延迟与稳定性"},{"id":"art-ai-017","title":"AI 编程工具的机场选择"},{"id":"art-ai-018","title":"AI编程工具方案完整说明"}]},{"id":"api-and-streaming-requests","name":"API与流式请求","slug":"api-and-streaming-requests","url":"/ai/coding-and-dev/api-and-streaming-requests/","h1":"API与流式请求：OpenAI/Anthropic API长连接、频次限制与吞吐保障","coreQuestion":"开发调试API时如何避免代理端关闭长连接（SSE流式）导致响应截断？","articles":[{"id":"art-ai-019","title":"AI API 网络要求"},{"id":"art-ai-020","title":"API 与网页版网络差异"},{"id":"art-ai-021","title":"API 调用频率与带宽"},{"id":"art-ai-022","title":"流式请求的网络要求"},{"id":"art-ai-023","title":"API 场景的机场选择"},{"id":"art-ai-024","title":"API与流式请求完整说明"}]}]},{"id":"continuity-and-privacy","name":"持续办公与数据边界","slug":"continuity-and-privacy","url":"/ai/continuity-and-privacy/","h1":"持续办公与数据边界：全天候办公备用方案、风控规避与隐私合规","desc":"保障全天高强度AI辅助工作的可用性，解析IP风控封号机制与企业数据安全边界。","clusters":[{"id":"continuity-and-backup","name":"工作连续性与备用","slug":"continuity-and-backup","url":"/ai/continuity-and-privacy/continuity-and-backup/","h1":"工作连续性与备用：多工具共用、长期办公专线与自动容灾切换","coreQuestion":"重度依赖AI工作的日常中，如何构建两家互不影响的容灾节点方案？","articles":[{"id":"art-ai-025","title":"多 AI 工具共用的网络环境"},{"id":"art-ai-026","title":"AI 长期办公的网络要求"},{"id":"art-ai-027","title":"AI 多工具切换的稳定性"},{"id":"art-ai-028","title":"AI 长期办公的机场选择"},{"id":"art-ai-029","title":"备用方案设计"},{"id":"art-ai-030","title":"工作连续性与备用完整说明"}]},{"id":"collaboration-privacy-constraints","name":"协作与隐私约束","slug":"collaboration-privacy-constraints","url":"/ai/continuity-and-privacy/collaboration-privacy-constraints/","h1":"协作与隐私约束：账号风控核查、数据传输可见性与合规建议","coreQuestion":"多人共用节点或机场是否会导致AI账号被连带封禁？数据隐私如何确保？","articles":[{"id":"art-ai-031","title":"AI 工具地区支持核对方法"},{"id":"art-ai-032","title":"AI 账号资格判断"},{"id":"art-ai-033","title":"网络可达与功能可用的区别"},{"id":"art-ai-034","title":"AI 数据的可见边界"},{"id":"art-ai-035","title":"账号关联与安全提示"},{"id":"art-ai-036","title":"协作与隐私约束完整说明"}]}]}]};
+const topic = {"id":"coding-and-dev","name":"AI编程与开发连接","slug":"coding-and-dev","url":"/ai/coding-and-dev/","h1":"AI编程与开发连接：Cursor、Copilot、API调用与长流式传输","desc":"解决开发者在IDE内使用AI补全、代码生成及商业API高频调用时的断流难题。","clusters":[{"id":"ai-coding-tools","name":"AI编程工具方案","slug":"ai-coding-tools","url":"/ai/coding-and-dev/ai-coding-tools/","h1":"AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化","coreQuestion":"写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？","articles":[{"id":"art-ai-013","title":"AI 编程工具网络要求"},{"id":"art-ai-014","title":"Cursor 与 GitHub Copilot 网络配置"},{"id":"art-ai-015","title":"AI 编程连接异常排查"},{"id":"art-ai-016","title":"AI 编程延迟与稳定性"},{"id":"art-ai-017","title":"AI 编程工具的机场选择"},{"id":"art-ai-018","title":"AI编程工具方案完整说明"}]},{"id":"api-and-streaming-requests","name":"API与流式请求","slug":"api-and-streaming-requests","url":"/ai/coding-and-dev/api-and-streaming-requests/","h1":"API与流式请求：OpenAI/Anthropic API长连接、频次限制与吞吐保障","coreQuestion":"开发调试API时如何避免代理端关闭长连接（SSE流式）导致响应截断？","articles":[{"id":"art-ai-019","title":"AI API 网络要求"},{"id":"art-ai-020","title":"API 与网页版网络差异"},{"id":"art-ai-021","title":"API 调用频率与带宽"},{"id":"art-ai-022","title":"流式请求的网络要求"},{"id":"art-ai-023","title":"API 场景的机场选择"},{"id":"art-ai-024","title":"API与流式请求完整说明"}]}]};
+const cluster = {"id":"ai-coding-tools","name":"AI编程工具方案","slug":"ai-coding-tools","url":"/ai/coding-and-dev/ai-coding-tools/","h1":"AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化","coreQuestion":"写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？","articles":[{"id":"art-ai-013","title":"AI 编程工具网络要求"},{"id":"art-ai-014","title":"Cursor 与 GitHub Copilot 网络配置"},{"id":"art-ai-015","title":"AI 编程连接异常排查"},{"id":"art-ai-016","title":"AI 编程延迟与稳定性"},{"id":"art-ai-017","title":"AI 编程工具的机场选择"},{"id":"art-ai-018","title":"AI编程工具方案完整说明"}]};
+---
+
+<BaseLayout
+  title="AI编程工具方案：AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化 - 机场wiki指南"
+  description="写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？ 针对此场景提供核心总解、实操案例与6篇精选文章推荐阅读顺序。"
+  canonicalUrl="https://jichangwiki.cc/ai/coding-and-dev/ai-coding-tools/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "AI机场", url: "/ai/" },
+    { name: "AI编程与开发连接", url: "/ai/coding-and-dev/" },
+    { name: "AI编程工具方案", url: "/ai/coding-and-dev/ai-coding-tools/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-blue-50 text-blue-700 mb-2">
+        <span>三级内容集群</span>
+      </div>
+      <h1 class="text-3xl font-extrabold text-slate-900 tracking-tight mb-3">
+        AI编程工具方案：Cursor、GitHub Copilot连接配置与断连优化
+      </h1>
+      <p class="text-base text-slate-600 max-w-3xl leading-relaxed">
+        <strong>核心聚焦：</strong>写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Answer-First Core Summary -->
+    <section class="my-8 bg-blue-50/60 rounded-2xl p-6 border border-blue-100">
+      <h2 class="text-lg font-bold text-blue-950 mb-2">场景核心总解 (Answer-First)</h2>
+      <p class="text-sm text-slate-700 leading-relaxed">
+        面对“写代码时Cursor突然无法联机或生成中断，如何排查并挑选适合编程的节点？”，核心原则是首先量化使用者的硬性约束条件（如预算上限、设备操作系统种类、并发连接限制及核心任务类型）。在明确前置条件后，按照以下推荐阅读顺序逐篇查阅细分实操指南，避免陷入由于片面追求低价或盲目听信营销导致的频繁掉线与退款纠纷。
+      </p>
+    </section>
+
+    <!-- Reading Order & 6 Articles -->
+    <section class="my-10">
+      <h2 class="text-xl font-bold text-slate-900 mb-4">推荐最佳阅读与操作顺序 (共 6 篇)</h2>
+      <div class="space-y-4">
+        {cluster.articles.map((art: any, idx: number) => (
+          <div class="card p-4 flex flex-col sm:flex-row sm:items-center justify-between gap-3 hover:border-blue-400">
+            <div class="flex items-start space-x-3">
+              <span class="w-6 h-6 rounded-full bg-blue-600 text-white font-bold text-xs flex items-center justify-center shrink-0 mt-0.5">
+                {idx + 1}
+              </span>
+              <div>
+                <h3 class="text-base font-bold text-slate-900 m-0">
+                  <a href={`/articles/${art.id}/`} class="text-slate-900 hover:text-blue-600 no-underline">
+                    {art.title}
+                  </a>
+                </h3>
+                <span class="text-xs text-slate-400 font-mono mt-0.5 block">稳定文章 ID: {art.id}</span>
+              </div>
+            </div>
+            <a
+              href={`/articles/${art.id}/`}
+              class="text-xs font-semibold text-blue-600 hover:text-blue-700 px-3 py-1.5 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors shrink-0 self-end sm:self-center"
+            >
+              查阅全文 →
+            </a>
+          </div>
+        ))}
+      </div>
+    </section>
+
+    <div class="mt-12 pt-6 border-t border-slate-200 flex items-center justify-between text-xs text-slate-500">
+      <a href="/ai/coding-and-dev/" class="font-semibold text-blue-600 hover:underline">
+        ← 返回二级专题：AI编程与开发连接
+      </a>
+      <a href="/ai/" class="font-semibold text-slate-600 hover:underline">
+        回溯一级栏目：AI机场 →
+      </a>
+    </div>
+  </div>
+</BaseLayout>

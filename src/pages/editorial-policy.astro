@@ -1,0 +1,23 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+
+const pageTitle = "评测方法与基线规范";
+const pageDesc = "实测环境控制、样本采集、数据核验与局限性披露。";
+---
+
+<BaseLayout
+  title={`${pageTitle} - 机场wiki指南`}
+  description={pageDesc}
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: pageTitle, url: Astro.url.pathname }
+  ]}
+>
+  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+    <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
+    <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
+    <div class="article-content max-w-none">
+      <p>我们的所有测速与稳定性评测均遵从可复现性原则：</p><ul><li>统一基线环境：采用纯净千兆光纤网络测试基准，排除本地无线电磁干扰。</li><li>多时间窗口采样：区分平峰期与晚高峰（20:00–23:00）连续观测。</li><li>统计指标科学化：重点采纳延迟中位数（Median）与P95丢包率，拒绝依赖单次测速峰值截图。</li><li>未知值保持未知：对于未实测数据如实标注「待核验」，绝不以0或“支持”凭空捏造。</li></ul>
+    </div>
+  </div>
+</BaseLayout>

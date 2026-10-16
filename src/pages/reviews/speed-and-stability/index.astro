@@ -1,0 +1,87 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import CommercialDisclosure from "@/components/CommercialDisclosure.astro";
+import FAQAccordion from "@/components/FAQAccordion.astro";
+import ArticleCard from "@/components/ArticleCard.astro";
+
+const pillar = {"id":"reviews","name":"机场评测","slug":"reviews","url":"/reviews/","h1":"机场评测与测速：测试方法、稳定性证据和场景验收","coreQuestion":"推荐结论依据什么，测试结果能说明什么、不能说明什么？","theme":"核对品牌与证据","targetWords":"7,000–9,500 字","duty":"负责测试依据，推荐栏目负责稳定性选型。区分测试环境、端点、单多线程、中位数与P95，不把短期观测外推全年。","megaTableCols":["测试编号","评测品牌","测试项目","实测吞吐","平均延迟","丢包率(高峰/平峰)","测试端点","测试环境与版本","证据状态"],"decisionLevels":4,"topics":[{"id":"test-methodology","name":"测试环境与方法","slug":"test-methodology","url":"/reviews/test-methodology/","h1":"测试环境与方法：基线控制、测试工具与可复现统计","desc":"公开软硬件测试环境、端点配置、采样样本量与定期复测修正准则。","clusters":[{"id":"env-control-and-baseline","name":"环境控制与基线","slug":"env-control-and-baseline","url":"/reviews/test-methodology/env-control-and-baseline/","h1":"环境控制与基线：测试硬件、本地网络、客户端版本与对齐基准","coreQuestion":"为什么不同人在同一家机场测出来的速度天差地别？基线如何控制？","articles":[{"id":"art-rev-001","title":"机场测试环境说明：设备、网络、客户端与端点"},{"id":"art-rev-002","title":"测试基线与对比说明"},{"id":"art-rev-003","title":"测试条件的可重复性核对"},{"id":"art-rev-004","title":"测试工具与版本说明"},{"id":"art-rev-005","title":"测试环境记录方法"},{"id":"art-rev-006","title":"环境控制与基线完整说明"}]},{"id":"sampling-and-recheck","name":"采样统计与结果复核","slug":"sampling-and-recheck","url":"/reviews/test-methodology/sampling-and-recheck/","h1":"采样统计与结果复核：采样频率、中位数与P95指标与复测机制","coreQuestion":"为什么测速不能看单次峰值截图？为什么中位数比平均数更有参考价值？","articles":[{"id":"art-rev-007","title":"采样频率与样本量"},{"id":"art-rev-008","title":"延迟中位数与 P95 的区别"},{"id":"art-rev-009","title":"测试结果的统计口径"},{"id":"art-rev-010","title":"复测频率与结论更新"},{"id":"art-rev-011","title":"复测结果不一致时的处理"},{"id":"art-rev-012","title":"采样统计与结果复核完整说明"}]}]},{"id":"speed-and-stability","name":"速度延迟与持续稳定","slug":"speed-and-stability","url":"/reviews/speed-and-stability/","h1":"速度延迟与持续稳定：吞吐测量、高峰波动与中断记录","desc":"记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。","clusters":[{"id":"throughput-and-latency","name":"吞吐与响应测量","slug":"throughput-and-latency","url":"/reviews/speed-and-stability/throughput-and-latency/","h1":"吞吐与响应测量：单线程多线程测速、端点选择与持续速率","coreQuestion":"Speedtest跑满千兆，为什么实际看网页依然转圈？怎样科学测量吞吐？","articles":[{"id":"art-rev-013","title":"机场下载速度测试方法：单位与方向"},{"id":"art-rev-014","title":"单线程与多线程测速的区别"},{"id":"art-rev-015","title":"测速端点选择与影响"},{"id":"art-rev-016","title":"峰值速度与持续速度的区别"},{"id":"art-rev-017","title":"测速结果的解读与局限"},{"id":"art-rev-018","title":"吞吐与响应测量完整指南"}]},{"id":"peak-fluctuation-outage","name":"高峰波动与中断记录","slug":"peak-fluctuation-outage","url":"/reviews/speed-and-stability/peak-fluctuation-outage/","h1":"高峰波动与中断记录：晚高峰成功率、断流频率与故障恢复窗口","coreQuestion":"平时很好用一到晚上就断流？如何通过连续观测记录量化高峰可用性？","articles":[{"id":"art-rev-019","title":"机场可用性如何测量：成功标准与观察窗口"},{"id":"art-rev-020","title":"连接成功率与失败次数的统计方法"},{"id":"art-rev-021","title":"断连与重连的观察记录"},{"id":"art-rev-022","title":"恢复时间的测量方法"},{"id":"art-rev-023","title":"短期观测不外推全年：观察范围说明"},{"id":"art-rev-024","title":"高峰波动与中断记录完整说明"}]}]},{"id":"real-scenario-verification","name":"真实应用场景核验","slug":"real-scenario-verification","url":"/reviews/real-scenario-verification/","h1":"真实应用场景核验：AI生产力、大文件传输与高码率视频播放","desc":"超越单纯合成测试，针对ChatGPT、Claude长文本生成及YouTube 4K连续播放实测验收。","clusters":[{"id":"ai-verification-method","name":"AI能力验证方法","slug":"ai-verification-method","url":"/reviews/real-scenario-verification/ai-verification-method/","h1":"AI能力验证方法：对话流式传输、API长连接与编程插件实测","coreQuestion":"怎样检验一个机场节点是否真正稳定支持AI对话、长流式输出与API调用？","articles":[{"id":"art-rev-025","title":"网页浏览任务测试方法"},{"id":"art-rev-026","title":"文件传输任务测试方法"},{"id":"art-rev-027","title":"AI 工具任务测试方法"},{"id":"art-rev-028","title":"AI 编程连接测试方法"},{"id":"art-rev-029","title":"多任务并行测试方法"},{"id":"art-rev-030","title":"AI能力验证方法完整说明"}]},{"id":"video-verification-method","name":"视频播放验证方法","slug":"video-verification-method","url":"/reviews/real-scenario-verification/video-verification-method/","h1":"视频播放验证方法：4K缓冲时间、掉帧率统计与流媒体风控核对","coreQuestion":"如何验证机场看4K视频不卡顿？缓冲时间与加载断点如何记录？","articles":[{"id":"art-rev-031","title":"视频播放任务测试方法"},{"id":"art-rev-032","title":"4K 播放的网络要求"},{"id":"art-rev-033","title":"视频画质的判断方法"},{"id":"art-rev-034","title":"卡顿排查方法"},{"id":"art-rev-035","title":"视频观看体验的验证"},{"id":"art-rev-036","title":"视频播放验证方法完整说明"}]}]}]};
+const topic = {"id":"speed-and-stability","name":"速度延迟与持续稳定","slug":"speed-and-stability","url":"/reviews/speed-and-stability/","h1":"速度延迟与持续稳定：吞吐测量、高峰波动与中断记录","desc":"记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。","clusters":[{"id":"throughput-and-latency","name":"吞吐与响应测量","slug":"throughput-and-latency","url":"/reviews/speed-and-stability/throughput-and-latency/","h1":"吞吐与响应测量：单线程多线程测速、端点选择与持续速率","coreQuestion":"Speedtest跑满千兆，为什么实际看网页依然转圈？怎样科学测量吞吐？","articles":[{"id":"art-rev-013","title":"机场下载速度测试方法：单位与方向"},{"id":"art-rev-014","title":"单线程与多线程测速的区别"},{"id":"art-rev-015","title":"测速端点选择与影响"},{"id":"art-rev-016","title":"峰值速度与持续速度的区别"},{"id":"art-rev-017","title":"测速结果的解读与局限"},{"id":"art-rev-018","title":"吞吐与响应测量完整指南"}]},{"id":"peak-fluctuation-outage","name":"高峰波动与中断记录","slug":"peak-fluctuation-outage","url":"/reviews/speed-and-stability/peak-fluctuation-outage/","h1":"高峰波动与中断记录：晚高峰成功率、断流频率与故障恢复窗口","coreQuestion":"平时很好用一到晚上就断流？如何通过连续观测记录量化高峰可用性？","articles":[{"id":"art-rev-019","title":"机场可用性如何测量：成功标准与观察窗口"},{"id":"art-rev-020","title":"连接成功率与失败次数的统计方法"},{"id":"art-rev-021","title":"断连与重连的观察记录"},{"id":"art-rev-022","title":"恢复时间的测量方法"},{"id":"art-rev-023","title":"短期观测不外推全年：观察范围说明"},{"id":"art-rev-024","title":"高峰波动与中断记录完整说明"}]}]};
+const topicArticles = [{"id":"art-rev-013","title":"机场下载速度测试方法：单位与方向","clusterName":"吞吐与响应测量"},{"id":"art-rev-014","title":"单线程与多线程测速的区别","clusterName":"吞吐与响应测量"},{"id":"art-rev-015","title":"测速端点选择与影响","clusterName":"吞吐与响应测量"},{"id":"art-rev-016","title":"峰值速度与持续速度的区别","clusterName":"吞吐与响应测量"},{"id":"art-rev-017","title":"测速结果的解读与局限","clusterName":"吞吐与响应测量"},{"id":"art-rev-018","title":"吞吐与响应测量完整指南","clusterName":"吞吐与响应测量"},{"id":"art-rev-019","title":"机场可用性如何测量：成功标准与观察窗口","clusterName":"高峰波动与中断记录"},{"id":"art-rev-020","title":"连接成功率与失败次数的统计方法","clusterName":"高峰波动与中断记录"},{"id":"art-rev-021","title":"断连与重连的观察记录","clusterName":"高峰波动与中断记录"},{"id":"art-rev-022","title":"恢复时间的测量方法","clusterName":"高峰波动与中断记录"},{"id":"art-rev-023","title":"短期观测不外推全年：观察范围说明","clusterName":"高峰波动与中断记录"},{"id":"art-rev-024","title":"高峰波动与中断记录完整说明","clusterName":"高峰波动与中断记录"}];
+const topicFaqs = [{"q":"本专题下的两个子集群分别解决什么问题？","a":"子集群「吞吐与响应测量」着重解决基础选型与前置决策；子集群「高峰波动与中断记录」解决进阶配置与主备协同，二者构成完整方案闭环。"},{"q":"阅读本专题文章需要按顺序看吗？","a":"建议先阅读各子集群的核心总解，随后根据您当前遇到的具体阻碍（如换机场、移动网络或多端协作）查阅对应文章。"},{"q":"专题推荐结论与具体文章冲突时以什么为准？","a":"专题提供宏观场景判断，具体文章针对具体任务给出微观演算。所有数据均受统一的实测基线核验支撑。"}];
+---
+
+<BaseLayout
+  title="速度延迟与持续稳定：速度延迟与持续稳定：吞吐测量、高峰波动与中断记录 - 机场wiki指南"
+  description="记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。 涵盖两个子集群与12篇精选实测文章。"
+  canonicalUrl="https://jichangwiki.cc/reviews/speed-and-stability/"
+  breadcrumbs={[
+    { name: "首页", url: "/" },
+    { name: "机场评测", url: "/reviews/" },
+    { name: "速度延迟与持续稳定", url: "/reviews/speed-and-stability/" }
+  ]}
+>
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+    <div class="border-b border-slate-200 pb-6 mb-8">
+      <div class="inline-flex items-center space-x-2 px-3 py-1 rounded-full text-xs font-semibold bg-slate-100 text-slate-800 mb-3">
+        <span>所属栏目：机场评测 · 二级专题</span>
+      </div>
+      <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mb-3">
+        速度延迟与持续稳定：吞吐测量、高峰波动与中断记录
+      </h1>
+      <p class="text-base sm:text-lg text-slate-600 max-w-3xl leading-relaxed">
+        记录单线程与多线程吞吐、晚20:00–23:00高峰丢包与连接中断恢复时长。
+      </p>
+    </div>
+
+    <CommercialDisclosure compact={true} />
+
+    <!-- Two Clusters Overview -->
+    <section class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+      {topic.clusters.map((c: any, cIdx: number) => (
+        <div class="card p-6 bg-slate-50 border-slate-200">
+          <div class="text-xs font-bold font-mono text-blue-600 mb-1">
+            子集群 0{cIdx + 1}
+          </div>
+          <h2 class="text-xl font-bold text-slate-900 mb-2">
+            <a href={c.url} class="text-slate-900 hover:text-blue-600 no-underline">
+              {c.name}
+            </a>
+          </h2>
+          <p class="text-xs text-slate-600 mb-4 leading-relaxed">
+            <strong>主问题：</strong>{c.coreQuestion}
+          </p>
+          <a
+            href={c.url}
+            class="text-xs font-semibold text-blue-600 hover:underline inline-flex items-center space-x-1"
+          >
+            <span>进入集群总解与阅读顺序</span>
+            <span>→</span>
+          </a>
+        </div>
+      ))}
+    </section>
+
+    <!-- 12 Articles Grid -->
+    <section class="my-10">
+      <div class="flex items-center justify-between mb-4 pb-2 border-b border-slate-200">
+        <h2 class="text-xl font-bold text-slate-900">本专题下辖全部 12 篇发布文章</h2>
+        <span class="text-xs text-slate-400">稳定 ID 映射 · 无字面重复</span>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+        {topicArticles.map((a: any) => (
+          <ArticleCard
+            id={a.id}
+            title={a.title}
+            url={`/articles/${a.id}/`}
+            clusterName={a.clusterName}
+          />
+        ))}
+      </div>
+    </section>
+
+    <!-- Topic FAQs -->
+    <section class="my-10">
+      <FAQAccordion faqs={topicFaqs} title="速度延迟与持续稳定 专题常见疑问" />
+    </section>
+  </div>
+</BaseLayout>
