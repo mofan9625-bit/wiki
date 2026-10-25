@@ -6,7 +6,8 @@
     "dev": "astro dev --host 127.0.0.1 --port 4321",
     "build": "astro build && pagefind --site dist && node scripts/normalize-offline-preview.mjs",
     "preview": "astro preview --host 127.0.0.1 --port 4321",
-    "check": "node scripts/validate-content.mjs && node scripts/check-links.mjs && node scripts/check-seo.mjs && node scripts/check-typography.mjs && node scripts/check-pillar-hub.mjs && node scripts/check-content-map.mjs && node scripts/audit-brand-links.mjs"
+    "check": "node scripts/validate-content.mjs && node scripts/check-links.mjs && node scripts/check-seo.mjs && node scripts/check-typography.mjs && node scripts/check-pillar-hub.mjs && node scripts/check-content-map.mjs && node scripts/audit-brand-links.mjs",
+    "indexnow:submit": "node scripts/submit-indexnow.mjs"
   },
   "dependencies": {
     "@astrojs/mdx": "^3.1.8",
