@@ -18,8 +18,8 @@ function walk(dir) {
         walk(fullPath);
       }
     } else if (entry.isFile() && entry.name.endsWith(".html")) {
-      // Exclude utility helper or 404 pages
-      if (entry.name === "offline_preview.html" || entry.name === "404.html") {
+      // Exclude utility helper, 404, or 301 redirect pages
+      if (entry.name === "offline_preview.html" || entry.name === "404.html" || entry.name === "go.html" || fullPath.includes(path.sep + "go" + path.sep)) {
         continue;
       }
       pagesAudited++;

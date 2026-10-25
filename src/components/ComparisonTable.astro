@@ -48,7 +48,7 @@ const { headers, rows, caption } = Astro.props;
                 finalLink = cell as TableCellLink;
               } else if (isDirectLinkText) {
                 const brandMatch = servicesData.find((b: any) => b.name === row[0]);
-                const fallbackUrl = brandMatch?.registerUrl || (brandMatch ? `/airports/${brandMatch.id}/` : "#");
+                const fallbackUrl = brandMatch ? `/go.html?id=${brandMatch.id}` : "#";
                 finalLink = {
                   text: cell as string,
                   url: fallbackUrl,
@@ -68,7 +68,7 @@ const { headers, rows, caption } = Astro.props;
                     <a
                       href={finalLink.url}
                       target="_blank"
-                      rel="nofollow sponsored noopener"
+                      rel="nofollow sponsored noopener noreferrer"
                       class={`inline-flex items-center space-x-1 transition-colors ${
                         finalLink.isPrimary
                           ? "text-blue-600 font-bold hover:text-blue-800 hover:underline"

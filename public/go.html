@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive, nosnippet">
+  <meta http-equiv="X-Robots-Tag" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer-when-downgrade">
+  <title>安全跳转中 - 机场wiki指南</title>
+  <meta name="description" content="正在安全跳转到官方服务页面，请稍候...">
+  <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+  <style id="core-theme-css">
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background: #f8fafc;
+      color: #0f172a;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .redirect-card {
+      background: #ffffff;
+      border: 1px solid #e2e8f0;
+      border-radius: 16px;
+      box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+      max-width: 480px;
+      width: 100%;
+      padding: 36px 28px;
+      text-align: center;
+    }
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid #e2e8f0;
+      border-top-color: #2563eb;
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin: 0 auto 24px auto;
+    }
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    h1 {
+      font-size: 20px;
+      font-weight: 700;
+      color: #0f172a;
+      margin-bottom: 8px;
+    }
+    p {
+      font-size: 14px;
+      color: #64748b;
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .brand-target {
+      display: inline-block;
+      font-weight: 600;
+      color: #2563eb;
+      background: #eff6ff;
+      padding: 4px 12px;
+      border-radius: 6px;
+      margin-bottom: 16px;
+    }
+    .manual-btn {
+      display: inline-block;
+      width: 100%;
+      background: #2563eb;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 600;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 10px;
+      transition: background 0.15s ease;
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+    }
+    .manual-btn:hover {
+      background: #1d4ed8;
+    }
+    .meta-note {
+      font-size: 12px;
+      color: #94a3b8;
+      margin-top: 20px;
+      line-height: 1.5;
+    }
+    .back-home {
+      display: inline-block;
+      margin-top: 16px;
+      font-size: 13px;
+      color: #64748b;
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <main class="redirect-card">
+    <div class="spinner" aria-hidden="true"></div>
+    <h1>正在安全跳转中...</h1>
+    <div id="brand-badge" class="brand-target" style="display: none;"></div>
+    <p id="desc-text">正在为您跳转至服务商官方通道，本站严格遵循合规审计，请稍候...</p>
+    
+    <a id="manual-link" href="/" class="manual-btn" rel="nofollow sponsored noopener noreferrer">
+      点击直接进入官方通道 →
+    </a>
+
+    <div class="meta-note">
+      安全合规提示：本通道具备 301 隔离保护与 nofollow 标头防护
+    </div>
+    <a href="/" class="back-home">返回机场wiki指南首页</a>
+  </main>
+
+  <script>
+    (function() {
+      const REDIRECT_MAP = {
+        "yunjiexian": "https://9625mofan01.yunjiexianaff.com/#/?code=OOYhSj0L",
+        "dalaoyun": "https://mofanvip01.dalaoyunaff.com/#/?code=QT2rqp5V",
+        "huanqiuti": "https://mofanvip01.huanqiutiaff.com/#/?code=l7oLmjVU",
+        "liulianyun": "https://mofan88.liulianyunaff.com/#/?code=ETsQBSuR",
+        "shandianshu": "https://mofanvip01.shandianshuaff.com/#/?code=a3GAQAXg",
+        "shenxing": "https://vipmofan01.shenxingaff.com/#/?code=nn4ohwnK"
+      };
+
+      const BRAND_NAMES = {
+        "yunjiexian": "云界线",
+        "dalaoyun": "大佬云",
+        "huanqiuti": "环球梯",
+        "liulianyun": "榴莲云",
+        "shandianshu": "闪电鼠",
+        "shenxing": "神行加速"
+      };
+
+      // 提取 id 参数
+      const params = new URLSearchParams(window.location.search);
+      let brandId = (params.get("id") || "").toLowerCase().trim();
+
+      // 如果未通过 search 参数传递，尝试从 pathname 中匹配 (/go/xxx)
+      if (!brandId) {
+        const pathParts = window.location.pathname.split("/").filter(Boolean);
+        const goIdx = pathParts.indexOf("go");
+        if (goIdx !== -1 && pathParts[goIdx + 1]) {
+          brandId = pathParts[goIdx + 1].toLowerCase().replace(/\.html$/, "");
+        }
+      }
+
+      const targetUrl = REDIRECT_MAP[brandId];
+      const manualLink = document.getElementById("manual-link");
+      const brandBadge = document.getElementById("brand-badge");
+      const descText = document.getElementById("desc-text");
+
+      if (targetUrl) {
+        const brandName = BRAND_NAMES[brandId] || brandId;
+        if (brandBadge) {
+          brandBadge.textContent = "目标服务商：" + brandName;
+          brandBadge.style.display = "inline-block";
+        }
+        if (descText) {
+          descText.textContent = "正在为您安全直达「" + brandName + "」官方服务页面，若未自动跳转请点击下方按钮。";
+        }
+        if (manualLink) {
+          manualLink.href = targetUrl;
+          manualLink.textContent = "立即前往 " + brandName + " 官网 →";
+        }
+
+        // 立即执行替换跳转，避免污染浏览器历史记录
+        try {
+          window.location.replace(targetUrl);
+        } catch (e) {
+          window.location.href = targetUrl;
+        }
+      } else {
+        if (descText) {
+          descText.textContent = "未指定目标服务商或服务商参数无效，将在 2 秒后返回首页。";
+        }
+        if (manualLink) {
+          manualLink.href = "/";
+          manualLink.textContent = "返回机场wiki指南首页";
+        }
+        setTimeout(function() {
+          window.location.replace("/");
+        }, 2000);
+      }
+    })();
+  </script>
+</body>
+</html>

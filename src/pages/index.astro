@@ -44,9 +44,7 @@ const allOrderedBrands = featuredBrands;
 
 const megaRows = allOrderedBrands.map((b: any, index: number) => {
   const isTop1 = b.id === "yunjiexian" || index === 0;
-  const targetUrl = b.registerUrl && b.registerUrl.startsWith("http")
-    ? b.registerUrl
-    : `/airports/${b.id}/`;
+  const targetUrl = `/go.html?id=${b.id}`;
 
   return [
     b.name,

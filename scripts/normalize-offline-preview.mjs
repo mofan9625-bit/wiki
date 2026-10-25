@@ -71,8 +71,8 @@ function transformHtml(content, depth) {
     `href="${prefix}pagefind/$1"`
   );
   content = content.replace(
-    /href="\/(sitemap\.xml|sitemap-index\.xml|sitemap-0\.xml|robots\.txt|404\.html)"/g,
-    `href="${prefix}$1"`
+    /href="\/(sitemap\.xml|sitemap-index\.xml|sitemap-0\.xml|robots\.txt|404\.html|go\.html)(\?[^"]*)?"/g,
+    `href="${prefix}$1$2"`
   );
 
   // D. 转换站内超链接 (保护 canonical, og:url, JSON-LD, external links, #, mailto)
