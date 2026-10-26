@@ -1,28 +1,18 @@
 User-agent: *
 Allow: /
 Disallow: /draft/
-Disallow: /go/
-Disallow: /go.html
 
 User-agent: Googlebot
 Allow: /
-Disallow: /go/
-Disallow: /go.html
 
 User-agent: Bingbot
 Allow: /
-Disallow: /go/
-Disallow: /go.html
 
 User-agent: OAI-SearchBot
 Allow: /
-Disallow: /go/
-Disallow: /go.html
 
 User-agent: PerplexityBot
 Allow: /
-Disallow: /go/
-Disallow: /go.html
 
 Sitemap: https://jichangwiki.cc/sitemap.xml
 Sitemap: https://jichangwiki.cc/sitemap-index.xml

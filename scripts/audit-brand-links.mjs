@@ -40,8 +40,8 @@ const robotsPath = fs.existsSync(path.join(distDir, "robots.txt"))
   : path.resolve("robots.txt");
 if (fs.existsSync(robotsPath)) {
   const robotsContent = fs.readFileSync(robotsPath, "utf-8");
-  if (!robotsContent.includes("Disallow: /go/") || !robotsContent.includes("Disallow: /go.html")) {
-    brandErrors.push("robots.txt 未正确配置对 /go/ 与 /go.html 的爬虫屏蔽规则");
+  if (robotsContent.includes("Disallow: /go") || robotsContent.includes("Disallow: /go/")) {
+    brandErrors.push("robots.txt 严禁拦截 /go 路径，避免触发 Bing Blocked by robots.txt 错误");
   }
 } else {
   brandErrors.push("缺失 robots.txt 文件");

@@ -42,8 +42,8 @@ function scanHtmlDirectory(dir) {
       const content = fs.readFileSync(fullPath, 'utf-8');
       const relPath = path.relative('.', fullPath).replace(/\\/g, '/');
 
-      // Skip offline redirect stub from strict SEO checks
-      const isRedirectStub = entry.name === 'offline_preview.html';
+      // Skip offline preview and /go/ redirect stubs from content SEO canonical checks
+      const isRedirectStub = entry.name === 'offline_preview.html' || entry.name === 'go.html' || relPath.startsWith('go/') || relPath.startsWith('public/go/');
 
       // 1. Check banned brands
       for (const b of bannedBrandNames) {

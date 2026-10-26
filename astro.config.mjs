@@ -9,7 +9,12 @@ export default defineConfig({
   integrations: [
     mdx(),
     tailwind(),
-    sitemap({ filter: (page) => !page.includes("/draft/") }),
+    sitemap({
+      filter: (page) =>
+        !page.includes("/draft/") &&
+        !page.includes("/go/") &&
+        !page.includes("/go.html"),
+    }),
   ],
   build: { format: "directory" },
 });
