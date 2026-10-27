@@ -212,8 +212,13 @@ if (!fs.existsSync('robots.txt')) {
   const hasGooglebot = robotsTxt.includes('Googlebot');
   const hasAllowAll = robotsTxt.includes('User-agent: *') && robotsTxt.includes('Allow: /');
   const hasSitemap = robotsTxt.includes('Sitemap: https://jichangwiki.cc/sitemap.xml');
+  const hasDisallowCdnCgi = robotsTxt.includes('Disallow: /cdn-cgi/');
   console.log(` - robots.txt 搜索引擎与 AI 抓取规则: ${hasBingbot && hasGooglebot && hasAllowAll ? "✅ 允许正常抓取 (Googlebot/Bingbot/Perplexity/OAI)" : "❌ 抓取规则不完整"}`);
+  console.log(` - robots.txt Cloudflare 内部路径屏蔽: ${hasDisallowCdnCgi ? "✅ 已成功拦截 Disallow: /cdn-cgi/ (杜绝 4xx 误报)" : "❌ 缺少 Disallow: /cdn-cgi/"}`);
   console.log(` - robots.txt 站点地图指向: ${hasSitemap ? "✅ 正确指向 /sitemap.xml" : "❌ 缺少 sitemap 指向"}`);
+  if (!hasDisallowCdnCgi) {
+    sitemapErrors.push("robots.txt 缺少 Disallow: /cdn-cgi/，可能导致 Bingbot 误抓 Cloudflare 内部保护路由产生 4xx 错误");
+  }
 }
 
 console.log("\n================================================================================");
