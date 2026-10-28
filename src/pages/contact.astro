@@ -17,7 +17,20 @@ const pageDesc = "读者勘误、数据失效反馈通道与响应承诺。";
     <h1 class="text-3xl font-extrabold text-slate-900 mb-4">{pageTitle}</h1>
     <p class="text-base text-slate-500 mb-8 pb-4 border-b border-slate-100">{pageDesc}</p>
     <div class="article-content max-w-none">
-      <p>若您在浏览本站过程中发现任何失效链接、套餐资费变动、测试数据差异或错别字，欢迎向我们反馈：</p><div class="p-4 bg-slate-50 rounded-xl border border-slate-200 my-4 text-sm"><p><strong>官方反馈邮箱</strong>：<!--email_off--><a href="mailto:mingxiaoxin1314@gmail.com" rel="nofollow" class="text-blue-600 hover:underline">mingxiaoxin1314@gmail.com</a><!--/email_off--></p><p class="text-xs text-slate-500 mt-1">请附带相关页面 URL 及您的实测截图或日志，我们将在3个工作日内复核并公示变更记录。</p></div>
+      <p>若您在浏览本站过程中发现任何失效链接、套餐资费变动、测试数据差异或错别字，欢迎向我们反馈：</p>
+      <div class="p-5 bg-slate-50 rounded-xl border border-slate-200 my-5 text-sm">
+        <div class="flex flex-wrap items-center justify-between gap-3">
+          <div class="flex items-center space-x-2">
+            <span class="font-semibold text-slate-700">官方反馈邮箱：</span>
+            <code class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-800 font-mono text-sm select-all">mingxiaoxin1314 [at] gmail.com</code>
+          </div>
+          <button type="button" onclick="navigator.clipboard.writeText('mingxiaoxin1314' + '@' + 'gmail.com').then(()=>{const b=this;const o=b.innerText;b.innerText='已复制！';b.classList.add('bg-emerald-600','text-white');setTimeout(()=>{b.innerText=o;b.classList.remove('bg-emerald-600','text-white')},2000)})" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg text-xs font-medium border border-blue-200 transition-colors cursor-pointer">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+            <span>一键复制完整邮箱</span>
+          </button>
+        </div>
+        <p class="text-xs text-slate-500 mt-2.5">请附带相关页面 URL 及您的实测截图或日志，我们将在3个工作日内复核并公示变更记录。</p>
+      </div>
     </div>
   </div>
 </BaseLayout>

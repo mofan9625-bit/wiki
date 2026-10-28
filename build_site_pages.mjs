@@ -33,7 +33,7 @@ const megaRows = servicesData.slice(0, 10).map((b: any) => [
   b.entryPlan || "轻量入门版",
   b.lineType,
   b.protocols,
-  b.highlights ? b.highlights[0] : "高速接�const homeFaqs = [
+  b.highlights ? b.highlights[0] : "高速接�const homeFaqs = [
   { q: "机场wiki指南是做什么的？和一般的推荐博客有什么区别？", a: "本站是以机场选型为核心的独立第三方中文知识库。我们坚决摒弃广告竞价排序，所有推荐均由品牌公开资料、真实晚高峰测速、套餐总额演算、多端配置教程和底层网络原理支撑，并对所有推广返佣关系透明披露。" },
   { q: "站内推荐的机场会不会跑路？如何防范风险？", a: "任何商业网络服务均无法保证永久不跑路。本站核心防御原则是：新手坚决优先月付或按量购买，绝不贪图便宜盲目充值多年；同时建立主力专线加平价备用的双节点冗余策略。" },
   { q: "为什么云界线被列为本站首选主推方案？", a: "云界线采用全IEPL企业内网专线与VLESS现代化协议，提供年付约5.6元/月低门槛高性价比套餐，在晚高峰抗波动能力与连接稳定性上综合表现优异。" },
@@ -59,7 +59,7 @@ const homeDecisionTree = `[ 用户选型核心需求分流 ]
   └── 3. 遇到连接故障 / 软件下载 / 原理求知
         ├── 客户端下载与订阅导入 ─────────────────> 查阅：客户端教程 (/clients/)
         ├── 连不上 / 订阅报错 / 节点超时 ─────────> 查阅：网络排障 (/troubleshooting/)
-        └── 搞懂专线/协议/延迟与丢包原理 ─────────> 查阅：机场百科 (/wiki/)`;��求？", a: "观看4K高码率视频要求持续下行吞吐稳定在25Mbps以上，且晚高峰丢包率需低于1%。Netflix非自制剧播放还需要出口IP具备当地原生住宅或商用双ISP家宽判定。" },
+        └── 搞懂专线/协议/延迟与丢包原理 ─────────> 查阅：机场百科 (/wiki/)`;��求？", a: "观看4K高码率视频要求持续下行吞吐稳定在25Mbps以上，且晚高峰丢包率需低于1%。Netflix非自制剧播放还需要出口IP具备当地原生住宅或商用双ISP家宽判定。" },
   { q: "电脑和手机分别推荐使用什么客户端？", a: "Windows推荐Clash Verge Rev或v2rayN；macOS推荐Clash Verge Rev；Android推荐FlClash或v2rayNG；iOS推荐Shadowrocket（小火箭）。本站客户端教程均提供官方正版验证来源。" },
   { q: "遇到连上节点却打不开网页怎么排查？", a: "请进入本站「网络排障」栏目，通常为本机系统代理注册表死锁、TUN虚拟网卡权限冲突或DNS污染导致。按照我们的六步排障决策树通常可在3分钟内自愈恢复。" },
   { q: "本站引用的价格和优惠码多久核验一次？", a: "编辑部建立每月例行核验与突发变动3日复核机制。所有优惠码均标注最后实测生效日期与折后实际节省金额，失效代码定期归档公示。" },
@@ -1062,7 +1062,7 @@ fs.writeFileSync(
   staticPageTemplate(
     "纠错反馈与编辑部联系通道",
     "读者勘误、数据失效反馈通道与响应承诺。",
-    `<p>若您在浏览本站过程中发现任何失效链接、套餐资费变动、测试数据差异或错别字，欢迎向我们反馈：</p><div class="p-4 bg-slate-50 rounded-xl border border-slate-200 my-4 text-sm"><p><strong>官方反馈邮箱</strong>：<a href="mailto:mingxiaoxin1314@gmail.com" class="text-blue-600 hover:underline">mingxiaoxin1314@gmail.com</a></p><p class="text-xs text-slate-500 mt-1">请附带相关页面 URL 及您的实测截图或日志，我们将在3个工作日内复核并公示变更记录。</p></div>`
+    `<p>若您在浏览本站过程中发现任何失效链接、套餐资费变动、测试数据差异或错别字，欢迎向我们反馈：</p><div class="p-5 bg-slate-50 rounded-xl border border-slate-200 my-5 text-sm"><div class="flex flex-wrap items-center justify-between gap-3"><div class="flex items-center space-x-2"><span class="font-semibold text-slate-700">官方反馈邮箱：</span><code class="px-2.5 py-1 bg-white border border-slate-200 rounded text-slate-800 font-mono text-sm select-all">mingxiaoxin1314 [at] gmail.com</code></div><button type="button" onclick="navigator.clipboard.writeText('mingxiaoxin1314' + '@' + 'gmail.com').then(()=>{const b=this;const o=b.innerText;b.innerText='已复制！';b.classList.add('bg-emerald-600','text-white');setTimeout(()=>{b.innerText=o;b.classList.remove('bg-emerald-600','text-white')},2000)})" class="inline-flex items-center space-x-1.5 px-3 py-1.5 bg-blue-50 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg text-xs font-medium border border-blue-200 transition-colors cursor-pointer"><svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg><span>一键复制完整邮箱</span></button></div><p class="text-xs text-slate-500 mt-2.5">请附带相关页面 URL 及您的实测截图或日志，我们将在3个工作日内复核并公示变更记录。</p></div>`
   ),
   'utf-8'
 );
